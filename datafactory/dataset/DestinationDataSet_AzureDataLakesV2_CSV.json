@@ -5,6 +5,11 @@
 			"referenceName": "DataLakeStorage",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"products_filename": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
