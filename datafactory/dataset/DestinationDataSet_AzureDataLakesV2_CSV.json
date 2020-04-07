@@ -10,10 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "Product+@utcnow()+.csv",
-					"type": "Expression"
-				}
+				"fileName": "Products.csv",
+				"fileSystem": "AdventureWorks"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
