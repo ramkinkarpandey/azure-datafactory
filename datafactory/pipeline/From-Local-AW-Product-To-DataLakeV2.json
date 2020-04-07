@@ -43,7 +43,10 @@
 				"outputs": [
 					{
 						"referenceName": "DestinationDataSet_AzureDataLakesV2_CSV",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"products_filename": "products-@{utcnow()}.csv"
+						}
 					}
 				]
 			}
