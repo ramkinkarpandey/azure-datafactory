@@ -19,7 +19,9 @@
 						"referenceName": "SourceDataSet_FileSystem_AvanadeMachine",
 						"type": "DatasetReference"
 					},
-					"fieldList": [],
+					"fieldList": [
+						"childItems"
+					],
 					"storeSettings": {
 						"type": "FileServerReadSettings",
 						"recursive": true
