@@ -25,7 +25,7 @@
 					"source": {
 						"type": "SqlServerSource",
 						"sqlReaderQuery": {
-							"value": "SELECT * FROM dbo.EMPLOYEE\nWHERE Id > @{activity('get-last-synched-iid').output.firstrow.Id}",
+							"value": "SELECT * FROM dbo.EMPLOYEE\nWHERE Id > if(@{activity('get-last-synched-iid').output.firstrow.Id}==null),0,@{activity('get-last-synched-iid').output.firstrow.Id})",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00"
@@ -71,7 +71,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "SELECT Max(Id) AS 'Id' FROM dbo.Employee",
+						"sqlReaderQuery": "SELECT IsNull(Max(Id),0) AS 'Id' FROM dbo.Employee",
 						"queryTimeout": "02:00:00"
 					},
 					"dataset": {
