@@ -3,9 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "lookup-data-from-employee",
-				"description": "Pull data from Employee table",
-				"type": "Lookup",
+				"name": "copy-data-to-azure-sql",
+				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -20,15 +19,17 @@
 						"type": "SqlServerSource",
 						"queryTimeout": "02:00:00"
 					},
-					"dataset": {
+					"enableStaging": false
+				},
+				"inputs": [
+					{
 						"referenceName": "OrganisationDatabase",
 						"type": "DatasetReference"
-					},
-					"firstRowOnly": false
-				}
+					}
+				]
 			},
 			{
-				"name": "lookup-data-from-department",
+				"name": "get-last-synched-iid",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -41,11 +42,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "SqlServerSource",
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT Max(Id) FROM dbo.Employee",
 						"queryTimeout": "02:00:00"
 					},
 					"dataset": {
-						"referenceName": "OrganisationDatabase",
+						"referenceName": "azure_sql_organisation_db_employee_table",
 						"type": "DatasetReference"
 					}
 				}
