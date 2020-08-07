@@ -56,7 +56,17 @@
 									"referenceName": "run-newyorktaxi-notebooks-in-databricks",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true
+								"waitOnCompletion": true,
+								"parameters": {
+									"month": {
+										"value": "@item().Month",
+										"type": "Expression"
+									},
+									"year": {
+										"value": "@item().Year",
+										"type": "Expression"
+									}
+								}
 							}
 						}
 					]
