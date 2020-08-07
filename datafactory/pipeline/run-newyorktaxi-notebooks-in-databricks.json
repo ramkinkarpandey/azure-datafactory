@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"notebookPath": "/Production/OrchestrateTaxiServicesWorkflow",
 					"baseParameters": {
-						"ProcessMonth": "202019-12"
+						"ProcessMonth": "2019-12"
 					}
 				},
 				"linkedServiceName": {
