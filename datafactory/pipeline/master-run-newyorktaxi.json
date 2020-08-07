@@ -45,6 +45,8 @@
 						"value": "@activity('Lookup Schedule').output.value",
 						"type": "Expression"
 					},
+					"isSequential": false,
+					"batchCount": 20,
 					"activities": [
 						{
 							"name": "Execute Notebook Processing Pipeline",
