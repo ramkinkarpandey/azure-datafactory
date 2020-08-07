@@ -66,6 +66,14 @@
 				}
 			}
 		],
+		"parameters": {
+			"month": {
+				"type": "string"
+			},
+			"year": {
+				"type": "string"
+			}
+		},
 		"variables": {
 			"errorDetails": {
 				"type": "String"

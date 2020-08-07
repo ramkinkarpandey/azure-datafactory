@@ -17,22 +17,52 @@
 				"typeProperties": {
 					"source": {
 						"type": "SqlServerSource",
+						"sqlReaderQuery": "SELECT Year, Month FROM dbo.Schedule",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
 					"dataset": {
 						"referenceName": "NewYorkTaxiDb",
 						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "For Each YearMonth",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup Schedule",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup Schedule').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Execute Notebook Processing Pipeline",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "run-newyorktaxi-notebooks-in-databricks",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						}
+					]
 				}
 			}
 		],
-		"variables": {
-			"databaseName": {
-				"type": "String",
-				"defaultValue": "NewYorkTaxi"
-			}
-		},
 		"annotations": []
 	}
 }
