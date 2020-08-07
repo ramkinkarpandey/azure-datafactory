@@ -24,8 +24,33 @@
 					"referenceName": "LinkedServiceToDataBricks",
 					"type": "LinkedServiceReference"
 				}
+			},
+			{
+				"name": "Set errorDetails",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "OrchestrateTaxiServices",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "errorDetails",
+					"value": {
+						"value": "@activity('OrchestrateTaxiServices').output.value",
+						"type": "Expression"
+					}
+				}
 			}
 		],
+		"variables": {
+			"errorDetails": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
