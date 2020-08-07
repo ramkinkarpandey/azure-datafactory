@@ -1,0 +1,19 @@
+{
+	"name": "NewYorkTaxiDb",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AvanadeMachine_SqlServer_Parameterised",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"dataBaseName": "NewYorkTaxi"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Schedule"
+		}
+	}
+}

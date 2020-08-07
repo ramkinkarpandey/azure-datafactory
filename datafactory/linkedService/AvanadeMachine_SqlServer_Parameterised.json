@@ -1,0 +1,22 @@
+{
+	"name": "AvanadeMachine_SqlServer_Parameterised",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"dataBaseName": {
+				"type": "String",
+				"defaultValue": "NewYorkTaxi"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"connectionString": "integrated security=False;data source=localhost;initial catalog=@{linkedService().dataBaseName};user id=sa",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIyZmJiYTNlZC1iZDY3LTQ2YjctYWYxOS00NTZjZTFhYTExZDAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "ir-to-externalcomputer",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

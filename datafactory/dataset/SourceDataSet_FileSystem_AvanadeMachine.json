@@ -1,0 +1,21 @@
+{
+	"name": "SourceDataSet_FileSystem_AvanadeMachine",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AvanadeMachineFileSystem",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
