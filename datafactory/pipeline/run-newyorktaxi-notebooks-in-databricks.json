@@ -44,10 +44,33 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Set successDetails",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "OrchestrateTaxiServices",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "successDetails",
+					"value": {
+						"value": "@activity('OrchestrateTaxiServices').output",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"variables": {
 			"errorDetails": {
+				"type": "String"
+			},
+			"successDetails": {
 				"type": "String"
 			}
 		},
