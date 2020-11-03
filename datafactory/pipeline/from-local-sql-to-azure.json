@@ -28,7 +28,8 @@
 							"value": "SELECT * FROM dbo.EMPLOYEE\nWHERE Id > @{activity('get-last-synched-iid').output.firstrow.Id}",
 							"type": "Expression"
 						},
-						"queryTimeout": "02:00:00"
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
 					},
 					"sink": {
 						"type": "AzureSqlSink"
@@ -72,7 +73,8 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": "SELECT IsNull(Max(Id),0) AS 'Id' FROM dbo.Employee",
-						"queryTimeout": "02:00:00"
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
 					},
 					"dataset": {
 						"referenceName": "azure_sql_organisation_db_employee_table",
