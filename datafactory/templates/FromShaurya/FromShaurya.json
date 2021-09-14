@@ -1,0 +1,2043 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "dev-szen-ds-adf-rdp-acqnbc"
+		},
+		"TRG_ADOBE_DELTA_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parameters_Country_id": {
+			"type": "string",
+			"defaultValue": "'OO'"
+		},
+		"TRG_ADOBE_DELTA_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parameters_Source": {
+			"type": "string",
+			"defaultValue": "'ADOBE'"
+		},
+		"TRG_ADOBE_DELTA_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parameters_Subscription_Id": {
+			"type": "string",
+			"defaultValue": "2e183fe5-d882-4de8-b7c4-84b5c0e4a468"
+		},
+		"TRG_ADOBE_DELTA_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parameters_Resource_Group": {
+			"type": "string",
+			"defaultValue": "MAHSBC-RGP-0092-END0142-RTL_RETAIL_DATA_PLATFORM_BC_DEV"
+		},
+		"TRG_ADOBE_DELTA_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parameters_Factory_Name": {
+			"type": "string",
+			"defaultValue": "dev-szen-ds-adf-rdp-acqnbc"
+		},
+		"TRG_ADOBE_PARALLEL_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parallel_load_parameters_Country_id": {
+			"type": "string",
+			"defaultValue": "'OO'"
+		},
+		"TRG_ADOBE_PARALLEL_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parallel_load_parameters_Source": {
+			"type": "string",
+			"defaultValue": "'ADOBE'"
+		},
+		"TRG_ADOBE_PARALLEL_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parallel_load_parameters_Subscription_Id": {
+			"type": "string",
+			"defaultValue": "1b0429f6-9a73-4d82-b706-239f759b9b1e"
+		},
+		"TRG_ADOBE_PARALLEL_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parallel_load_parameters_Resource_Group": {
+			"type": "string",
+			"defaultValue": "MAHSBC-RGP-0093-ENP0154-RTL_RETAIL_DATA_PLATFORM_BC_PROD"
+		},
+		"TRG_ADOBE_PARALLEL_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parallel_load_parameters_Factory_Name": {
+			"type": "string",
+			"defaultValue": "prd-szen-ds-adf-rdp-acqnbc"
+		},
+		"TRG_ADOBE_PARALLEL_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parallel_load_parameters_Update_Key_Country": {
+			"type": "string",
+			"defaultValue": "'DE'"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Source": {
+			"type": "string",
+			"defaultValue": "'LCMS'"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Country_id": {
+			"type": "string",
+			"defaultValue": "'DE'"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_HostName": {
+			"type": "string",
+			"defaultValue": "AMSD2A-A-RESH557D.europe.shell.com"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_ServiceName": {
+			"type": "string",
+			"defaultValue": "RESH557D"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Username": {
+			"type": "string",
+			"defaultValue": "SAS_TRANSFER_USR"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Subscription_Id": {
+			"type": "string",
+			"defaultValue": "2e183fe5-d882-4de8-b7c4-84b5c0e4a468"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Resource_Group": {
+			"type": "string",
+			"defaultValue": "MAHSBC-RGP-0092-END0142-RTL_RETAIL_DATA_PLATFORM_BC_DEV"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Factory_Name": {
+			"type": "string",
+			"defaultValue": "dev-szen-ds-adf-rdp-acqnbc"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Secret": {
+			"type": "string",
+			"defaultValue": "LcmsOraclePassword"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Port": {
+			"type": "string",
+			"defaultValue": "1648"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Source": {
+			"type": "string",
+			"defaultValue": "'LCMS'"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Country_id": {
+			"type": "string",
+			"defaultValue": "'SG'"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_HostName": {
+			"type": "string",
+			"defaultValue": "addHostName"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_ServiceName": {
+			"type": "string",
+			"defaultValue": "addServiceName"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Username": {
+			"type": "string",
+			"defaultValue": "addUserName"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Subscription_Id": {
+			"type": "string",
+			"defaultValue": "addSubscriptionID"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Resource_Group": {
+			"type": "string",
+			"defaultValue": "addResourceGroup"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Factory_Name": {
+			"type": "string",
+			"defaultValue": "addFactoryName"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Secret": {
+			"type": "string",
+			"defaultValue": "addSecretName"
+		},
+		"TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Port": {
+			"type": "string",
+			"defaultValue": "1648"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Source": {
+			"type": "string",
+			"defaultValue": "'LCMS'"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Country_id": {
+			"type": "string",
+			"defaultValue": "'DE'"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_HostName": {
+			"type": "string",
+			"defaultValue": "AMSDC1-A-RESH438P.europe.shell.com"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_ServiceName": {
+			"type": "string",
+			"defaultValue": "RESH438P_PRIM"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Username": {
+			"type": "string",
+			"defaultValue": "SAS_TRANSFER_USR"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Subscription_Id": {
+			"type": "string",
+			"defaultValue": "1b0429f6-9a73-4d82-b706-239f759b9b1e"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Resource_Group": {
+			"type": "string",
+			"defaultValue": "MAHSBC-RGP-0093-ENP0154-RTL_RETAIL_DATA_PLATFORM_BC_PROD"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Factory_Name": {
+			"type": "string",
+			"defaultValue": "prd-szen-ds-adf-rdp-acqnbc"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Secret": {
+			"type": "string",
+			"defaultValue": "LcmsOraclePassword"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Port": {
+			"type": "string",
+			"defaultValue": "1648"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Source": {
+			"type": "string",
+			"defaultValue": "'LCMS'"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Country_id": {
+			"type": "string",
+			"defaultValue": "'NL'"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_HostName": {
+			"type": "string",
+			"defaultValue": "devhostname"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_ServiceName": {
+			"type": "string",
+			"defaultValue": "devservicename"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Username": {
+			"type": "string",
+			"defaultValue": "SAS_TRANSFER_USR"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Subscription_Id": {
+			"type": "string",
+			"defaultValue": "2e183fe5-d882-4de8-b7c4-84b5c0e4a468"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Resource_Group": {
+			"type": "string",
+			"defaultValue": "MAHSBC-RGP-0092-END0142-RTL_RETAIL_DATA_PLATFORM_BC_DEV"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Factory_Name": {
+			"type": "string",
+			"defaultValue": "dev-szen-ds-adf-rdp-acqnbc"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Secret": {
+			"type": "string",
+			"defaultValue": "LcmsDatabaseCredentials-NL"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Port": {
+			"type": "string",
+			"defaultValue": "1648"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Source": {
+			"type": "string",
+			"defaultValue": "'LCMS'"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Country_id": {
+			"type": "string",
+			"defaultValue": "'TR'"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_HostName": {
+			"type": "string",
+			"defaultValue": "devHost"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_ServiceName": {
+			"type": "string",
+			"defaultValue": "devServiceName"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Username": {
+			"type": "string",
+			"defaultValue": "devUserName"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Subscription_Id": {
+			"type": "string",
+			"defaultValue": "devSubID"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Resource_Group": {
+			"type": "string",
+			"defaultValue": "devResourceGroup"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Factory_Name": {
+			"type": "string",
+			"defaultValue": "devFactory"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Secret": {
+			"type": "string",
+			"defaultValue": "devSecret"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Port": {
+			"type": "string",
+			"defaultValue": "1648"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Source": {
+			"type": "string",
+			"defaultValue": "'LCMS'"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Country_id": {
+			"type": "string",
+			"defaultValue": "'TR'"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_HostName": {
+			"type": "string",
+			"defaultValue": "devHostName"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_ServiceName": {
+			"type": "string",
+			"defaultValue": "devServiceName"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Username": {
+			"type": "string",
+			"defaultValue": "devUserName"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Subscription_Id": {
+			"type": "string",
+			"defaultValue": "devSubscription"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Resource_Group": {
+			"type": "string",
+			"defaultValue": "devResourceGroup"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Factory_Name": {
+			"type": "string",
+			"defaultValue": "devFactoryName"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Secret": {
+			"type": "string",
+			"defaultValue": "devSecret"
+		},
+		"TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Port": {
+			"type": "string",
+			"defaultValue": "1648"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_adf_SSO_latosql_wrapper_parallel_load')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "SSO Delta to PREP delta",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ds_adf_ssotoadls_staging_inbound",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"Country_id": {
+									"value": "@{pipeline().parameters.Country_id}",
+									"type": "Expression"
+								},
+								"Source": {
+									"value": "@{pipeline().parameters.Source}",
+									"type": "Expression"
+								},
+								"Subscription_Id": {
+									"value": "@{pipeline().parameters.Subscription_Id}",
+									"type": "Expression"
+								},
+								"Resource_Group": {
+									"value": "@{pipeline().parameters.Resource_Group}",
+									"type": "Expression"
+								},
+								"Factory_Name": {
+									"value": "@{pipeline().parameters.Factory_Name}",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "SSO Curation",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "SSO GDPR",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ds_adf_lcmstoadls_Curation_master",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"Country_id": {
+									"value": "@{pipeline().parameters.Country_id}",
+									"type": "Expression"
+								},
+								"Source": {
+									"value": "@{pipeline().parameters.Source}",
+									"type": "Expression"
+								},
+								"Subscription_Id": {
+									"value": "@{pipeline().parameters.Subscription_Id}",
+									"type": "Expression"
+								},
+								"Resource_Group": {
+									"value": "@{pipeline().parameters.Resource_Group}",
+									"type": "Expression"
+								},
+								"Factory_Name": {
+									"value": "@{pipeline().parameters.Factory_Name}",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "SSO - Reporting Load Pipeline",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "SSO Curation",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ds_adf_lcmstoadls_reporting_master",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"Country_id": {
+									"value": "@{pipeline().parameters.Country_id}",
+									"type": "Expression"
+								},
+								"Source": {
+									"value": "@{pipeline().parameters.Source}",
+									"type": "Expression"
+								},
+								"Subscription_Id": {
+									"value": "@{pipeline().parameters.Subscription_Id}",
+									"type": "Expression"
+								},
+								"Resource_Group": {
+									"value": "@{pipeline().parameters.Resource_Group}",
+									"type": "Expression"
+								},
+								"Factory_Name": {
+									"value": "@{pipeline().parameters.Factory_Name}",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Check SSO Entries",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "SSO Curation",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "DECLARE @count INT\n\nSelect @count = count(*)\nFROM CFW.CurationConfig\nwhere Source_Name= 'ADOBE-SSO'\nand Country_Name=@{pipeline().parameters.Country_id}\n\n\tIF @count >0\n\t\tSELECT 'YES' AS SSO_Load\n\tELSE \n\t\tSELECT 'NO' AS SSO_Load",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "ds_sql_rdpcrm_reporting_db",
+								"type": "DatasetReference"
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "If Condition1",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Check SSO Entries",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(activity('Check SSO Entries').output.value[0].SSO_Load,'YES')",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Execute Adobe Export pipeline",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "ds_adf_lcms_adobe_export_outbound_Master_parallel_load",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"Country_id": {
+												"value": "@{pipeline().parameters.Country_id}",
+												"type": "Expression"
+											},
+											"Source": {
+												"value": "@{pipeline().parameters.Source}",
+												"type": "Expression"
+											},
+											"Subscription_Id": {
+												"value": "@{pipeline().parameters.Subscription_Id}",
+												"type": "Expression"
+											},
+											"Resource_Group": {
+												"value": "@{pipeline().parameters.Resource_Group}",
+												"type": "Expression"
+											},
+											"Factory_Name": {
+												"value": "@{pipeline().parameters.Factory_Name}",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "SSO GDPR",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "SSO Delta to PREP delta",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ds_adf_sso_gdpr",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"Source": {
+									"value": "@pipeline().parameters.Source",
+									"type": "Expression"
+								},
+								"Country_id": {
+									"value": "@pipeline().parameters.Country_id",
+									"type": "Expression"
+								}
+							}
+						}
+					}
+				],
+				"parameters": {
+					"Country_id": {
+						"type": "string",
+						"defaultValue": "'DE'"
+					},
+					"Source": {
+						"type": "string",
+						"defaultValue": "'SSO'"
+					},
+					"Subscription_Id": {
+						"type": "string",
+						"defaultValue": "2e183fe5-d882-4de8-b7c4-84b5c0e4a468"
+					},
+					"Resource_Group": {
+						"type": "string",
+						"defaultValue": "MAHSBC-RGP-0092-ENT0158-RTL_RETAIL_DATA_PLATFORM_BC_TEST"
+					},
+					"Factory_Name": {
+						"type": "string",
+						"defaultValue": "test-szen-ds-adf-rdp-acqnbc"
+					}
+				},
+				"folder": {
+					"name": "CRMRDP/DataEngineering"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_adf_LCMS_latosql_wrapper')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "LCMS to PREP delta",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ds_adf_lcmstoadls_delta_Landing",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"Country_id": {
+									"value": "@{pipeline().parameters.Country_id}",
+									"type": "Expression"
+								},
+								"HostName": {
+									"value": "@{pipeline().parameters.HostName}",
+									"type": "Expression"
+								},
+								"ServiceName": {
+									"value": "@{pipeline().parameters.ServiceName}",
+									"type": "Expression"
+								},
+								"Source": {
+									"value": "@{pipeline().parameters.Source}",
+									"type": "Expression"
+								},
+								"Username": {
+									"value": "@pipeline().parameters.Username",
+									"type": "Expression"
+								},
+								"Subscription_Id": {
+									"value": "@{pipeline().parameters.Subscription_Id}",
+									"type": "Expression"
+								},
+								"Resource_Group": {
+									"value": "@{pipeline().parameters.Resource_Group}",
+									"type": "Expression"
+								},
+								"Factory_Name": {
+									"value": "@{pipeline().parameters.Factory_Name}",
+									"type": "Expression"
+								},
+								"Secret": {
+									"value": "@pipeline().parameters.Secret",
+									"type": "Expression"
+								},
+								"Port": {
+									"value": "@pipeline().parameters.Port",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Curation Pipeline",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "LCMS to PREP delta",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ds_adf_lcmstoadls_Curation_master",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"Country_id": {
+									"value": "@{pipeline().parameters.Country_id}",
+									"type": "Expression"
+								},
+								"Source": {
+									"value": "@{pipeline().parameters.Source}",
+									"type": "Expression"
+								},
+								"Subscription_Id": {
+									"value": "@{pipeline().parameters.Subscription_Id}",
+									"type": "Expression"
+								},
+								"Resource_Group": {
+									"value": "@{pipeline().parameters.Resource_Group}",
+									"type": "Expression"
+								},
+								"Factory_Name": {
+									"value": "@{pipeline().parameters.Factory_Name}",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Reporting Load Pipeline",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Curation Pipeline",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ds_adf_lcmstoadls_reporting_master",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"Country_id": {
+									"value": "@{pipeline().parameters.Country_id}",
+									"type": "Expression"
+								},
+								"Source": {
+									"value": "@{pipeline().parameters.Source}",
+									"type": "Expression"
+								},
+								"Subscription_Id": {
+									"value": "@{pipeline().parameters.Subscription_Id}",
+									"type": "Expression"
+								},
+								"Resource_Group": {
+									"value": "@{pipeline().parameters.Resource_Group}",
+									"type": "Expression"
+								},
+								"Factory_Name": {
+									"value": "@{pipeline().parameters.Factory_Name}",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Check Headroom",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Curation Pipeline",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "DECLARE @Days INT\nIF EXISTS (select  1 FROM [CFW].[Export_Extract_Detail] where source= @{pipeline().parameters.Source} \nAND LOAD_STAGE = 'HEADROOM'  \nAND COUNTRY_ID = @{pipeline().parameters.Country_id}  )\nBEGIN \nselect @Days = DATEDIFF(DAY,MAX(LOAD_FINISH_DT),GETDATE()) \nFROM [CFW].[Export_Extract_Detail]\nwhere source= @{pipeline().parameters.Source}\nAND LOAD_STAGE = 'HEADROOM' \nand COUNTRY_ID =@{pipeline().parameters.Country_id}\n\nIF @Days >=7\n\tSELECT 'YES' AS Days_Since\nELSE \n\tSELECT 'NO' AS Days_Since\nEND\nELSE\n\tSELECT 'YES' AS Days_Since",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "ds_sql_rdpcrm_reporting_db",
+								"type": "DatasetReference"
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "If Headroom is to be excuted",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Check Headroom",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(activity('Check Headroom').output.value[0].Days_Since,'YES')",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Execute Adobe Headroom Pipeline",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "ds_adf_adlstoadobe_headroom",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"Country_id": {
+												"value": "@{pipeline().parameters.Country_id}",
+												"type": "Expression"
+											},
+											"Source": {
+												"value": "@{pipeline().parameters.Source}",
+												"type": "Expression"
+											},
+											"Load_Stage": "HEADROOM"
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "PREP to SQL Pipeline",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "LCMS to PREP delta",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ds_adf_preptosql_reporting_delta",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"Country_id": {
+									"value": "@{pipeline().parameters.Country_id}",
+									"type": "Expression"
+								},
+								"Source": {
+									"value": "@{pipeline().parameters.Source}",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Execute Adobe Export pipeline",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "If SSO then yes",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ds_adf_lcms_adobe_export_outbound_Master",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"Country_id": {
+									"value": "@{pipeline().parameters.Country_id}",
+									"type": "Expression"
+								},
+								"Source": {
+									"value": "@{pipeline().parameters.Source}",
+									"type": "Expression"
+								},
+								"Subscription_Id": {
+									"value": "@{pipeline().parameters.Subscription_Id}",
+									"type": "Expression"
+								},
+								"Resource_Group": {
+									"value": "@{pipeline().parameters.Resource_Group}",
+									"type": "Expression"
+								},
+								"Factory_Name": {
+									"value": "@{pipeline().parameters.Factory_Name}",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Check SSO Entries",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Curation Pipeline",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "DECLARE @count INT\n\nSelect @count = count(*)\nFROM config.IngestionConfig\nwhere Source= 'SSO'\nand CountryCode  =@{pipeline().parameters.Country_id}\n\n\tIF @count >0\n\t\tSELECT 'YES' AS SSO_Load\n\tELSE \n\t\tSELECT 'NO' AS SSO_Load",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "ds_sql_rdpcrm_azure_db",
+								"type": "DatasetReference"
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "If SSO then yes",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Check SSO Entries",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(activity('Check SSO Entries').output.value[0].SSO_Load,'YES')",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Execute SSO Wrapper",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "ds_adf_SSO_latosql_wrapper",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"Country_id": {
+												"value": "@pipeline().parameters.Country_id",
+												"type": "Expression"
+											},
+											"Source": "'SSO'",
+											"Subscription_Id": {
+												"value": "@pipeline().parameters.Subscription_Id",
+												"type": "Expression"
+											},
+											"Resource_Group": {
+												"value": "@pipeline().parameters.Resource_Group",
+												"type": "Expression"
+											},
+											"Factory_Name": {
+												"value": "@pipeline().parameters.Factory_Name",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Check MOE Entries",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Curation Pipeline",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "DECLARE @count INT\n\nSelect @count = count(*)\nFROM CFW.CurationConfig\nwhere Source_Name= 'MOE'\nand Country_Name=@{pipeline().parameters.Country_id}\n\n\tIF @count >0\n\t\tSELECT 'YES' AS MOE_Load\n\tELSE \n\t\tSELECT 'NO' AS MOE_Load",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "ds_sql_rdpcrm_reporting_db",
+								"type": "DatasetReference"
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "If MOE then yes",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Check MOE Entries",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(activity('Check MOE Entries').output.value[0].MOE_LOAD,'YES')",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Execute MOE Pipeline",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "ds_adf_adlstooms_curation",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"Country_id": {
+												"value": "@{pipeline().parameters.Country_id}",
+												"type": "Expression"
+											},
+											"Source": {
+												"value": "@{pipeline().parameters.Source}",
+												"type": "Expression"
+											},
+											"Load_Stage": "MOE"
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Reporting Model Refresh",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "If Headroom is to be excuted",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Execute Adobe Export pipeline",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "If MOE then yes",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Reporting Load Pipeline",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ds_adf_reporting_models_refresh",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true
+						}
+					}
+				],
+				"parameters": {
+					"Source": {
+						"type": "string",
+						"defaultValue": "'LCMS'"
+					},
+					"Country_id": {
+						"type": "string",
+						"defaultValue": "'DE'"
+					},
+					"HostName": {
+						"type": "string",
+						"defaultValue": "AMSD2A-A-RESH557D.europe.shell.com"
+					},
+					"ServiceName": {
+						"type": "string",
+						"defaultValue": "RESH557D"
+					},
+					"Username": {
+						"type": "string",
+						"defaultValue": "SAS_TRANSFER_USR"
+					},
+					"Subscription_Id": {
+						"type": "string",
+						"defaultValue": "2e183fe5-d882-4de8-b7c4-84b5c0e4a468"
+					},
+					"Resource_Group": {
+						"type": "string",
+						"defaultValue": "MAHSBC-RGP-0092-ENT0158-RTL_RETAIL_DATA_PLATFORM_BC_TEST"
+					},
+					"Factory_Name": {
+						"type": "string",
+						"defaultValue": "test-szen-ds-adf-rdp-acqnbc"
+					},
+					"Secret": {
+						"type": "string"
+					},
+					"Port": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "CRMRDP/DataEngineering"
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_adf_LCMS_latosql_wrapper_parallel_load')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "LCMS to PREP delta",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ds_adf_lcmstoadls_delta_Landing_parallel_load",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"Country_id": {
+									"value": "@{pipeline().parameters.Country_id}",
+									"type": "Expression"
+								},
+								"HostName": {
+									"value": "@{pipeline().parameters.HostName}",
+									"type": "Expression"
+								},
+								"ServiceName": {
+									"value": "@{pipeline().parameters.ServiceName}",
+									"type": "Expression"
+								},
+								"Source": {
+									"value": "@{pipeline().parameters.Source}",
+									"type": "Expression"
+								},
+								"Username": {
+									"value": "@pipeline().parameters.Username",
+									"type": "Expression"
+								},
+								"Subscription_Id": {
+									"value": "@{pipeline().parameters.Subscription_Id}",
+									"type": "Expression"
+								},
+								"Resource_Group": {
+									"value": "@{pipeline().parameters.Resource_Group}",
+									"type": "Expression"
+								},
+								"Factory_Name": {
+									"value": "@{pipeline().parameters.Factory_Name}",
+									"type": "Expression"
+								},
+								"Secret": {
+									"value": "@pipeline().parameters.Secret",
+									"type": "Expression"
+								},
+								"Port": {
+									"value": "@pipeline().parameters.Port",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Curation Pipeline",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "LCMS to PREP delta",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ds_adf_lcmstoadls_Curation_master",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"Country_id": {
+									"value": "@{pipeline().parameters.Country_id}",
+									"type": "Expression"
+								},
+								"Source": {
+									"value": "@{pipeline().parameters.Source}",
+									"type": "Expression"
+								},
+								"Subscription_Id": {
+									"value": "@{pipeline().parameters.Subscription_Id}",
+									"type": "Expression"
+								},
+								"Resource_Group": {
+									"value": "@{pipeline().parameters.Resource_Group}",
+									"type": "Expression"
+								},
+								"Factory_Name": {
+									"value": "@{pipeline().parameters.Factory_Name}",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Reporting Load Pipeline",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Curation Pipeline",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ds_adf_lcmstoadls_reporting_master",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"Country_id": {
+									"value": "@{pipeline().parameters.Country_id}",
+									"type": "Expression"
+								},
+								"Source": {
+									"value": "@{pipeline().parameters.Source}",
+									"type": "Expression"
+								},
+								"Subscription_Id": {
+									"value": "@{pipeline().parameters.Subscription_Id}",
+									"type": "Expression"
+								},
+								"Resource_Group": {
+									"value": "@{pipeline().parameters.Resource_Group}",
+									"type": "Expression"
+								},
+								"Factory_Name": {
+									"value": "@{pipeline().parameters.Factory_Name}",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Check Headroom",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Curation Pipeline",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "DECLARE @Days INT\n\nIF EXISTS (select  1 FROM [CFW].[Export_Extract_Detail] where source= @{pipeline().parameters.Source} \nAND LOAD_STAGE = 'HEADROOM'  \nAND COUNTRY_ID = @{pipeline().parameters.Country_id}  )\nBEGIN \nselect @Days = DATEDIFF(DAY,MAX(LOAD_FINISH_DT),GETDATE()) \nFROM [CFW].[Export_Extract_Detail]\nwhere source= @{pipeline().parameters.Source}\nAND LOAD_STAGE = 'HEADROOM' \nand COUNTRY_ID =@{pipeline().parameters.Country_id}\n\nIF @Days >=7\n\tSELECT 'YES' AS Days_Since\nELSE \n\tSELECT 'NO' AS Days_Since\nEND\nELSE\n\tSELECT 'YES' AS Days_Since",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "ds_sql_rdpcrm_reporting_db",
+								"type": "DatasetReference"
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "If Headroom is to be excuted",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Check Headroom",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(activity('Check Headroom').output.value[0].Days_Since,'YES')",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Execute Adobe Headroom Parallel Load Pipeline",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "ds_adf_adlstoadobe_headroom_parallel_load",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"Country_id": {
+												"value": "@{pipeline().parameters.Country_id}",
+												"type": "Expression"
+											},
+											"Source": {
+												"value": "@{pipeline().parameters.Source}",
+												"type": "Expression"
+											},
+											"Load_Stage": "HEADROOM"
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "PREP to SQL Pipeline",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "LCMS to PREP delta",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ds_adf_preptosql_reporting_delta",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"Country_id": {
+									"value": "@{pipeline().parameters.Country_id}",
+									"type": "Expression"
+								},
+								"Source": {
+									"value": "@{pipeline().parameters.Source}",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Execute Adobe Export parallel load pipeline",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "If SSO then yes",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ds_adf_lcms_adobe_export_outbound_Master_parallel_load",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {
+								"Country_id": {
+									"value": "@{pipeline().parameters.Country_id}",
+									"type": "Expression"
+								},
+								"Source": {
+									"value": "@{pipeline().parameters.Source}",
+									"type": "Expression"
+								},
+								"Subscription_Id": {
+									"value": "@{pipeline().parameters.Subscription_Id}",
+									"type": "Expression"
+								},
+								"Resource_Group": {
+									"value": "@{pipeline().parameters.Resource_Group}",
+									"type": "Expression"
+								},
+								"Factory_Name": {
+									"value": "@{pipeline().parameters.Factory_Name}",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "Check SSO Entries",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Curation Pipeline",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "DECLARE @count INT\n\nSelect @count = count(*)\nFROM config.IngestionConfig\nwhere Source= 'SSO'\nand CountryCode  =@{pipeline().parameters.Country_id}\n\n\tIF @count >0\n\t\tSELECT 'YES' AS SSO_Load\n\tELSE \n\t\tSELECT 'NO' AS SSO_Load",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "ds_sql_rdpcrm_azure_db",
+								"type": "DatasetReference"
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "If SSO then yes",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Check SSO Entries",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(activity('Check SSO Entries').output.value[0].SSO_Load,'YES')",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Execute SSO Wrapper",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "ds_adf_SSO_latosql_wrapper_parallel_load",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"Country_id": {
+												"value": "@pipeline().parameters.Country_id",
+												"type": "Expression"
+											},
+											"Source": "'SSO'",
+											"Subscription_Id": {
+												"value": "@pipeline().parameters.Subscription_Id",
+												"type": "Expression"
+											},
+											"Resource_Group": {
+												"value": "@pipeline().parameters.Resource_Group",
+												"type": "Expression"
+											},
+											"Factory_Name": {
+												"value": "@pipeline().parameters.Factory_Name",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Check MOE Entries",
+						"type": "Lookup",
+						"dependsOn": [
+							{
+								"activity": "Curation Pipeline",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"sqlReaderQuery": {
+									"value": "DECLARE @count INT\n\nSelect @count = count(*)\nFROM CFW.CurationConfig\nwhere Source_Name= 'MOE'\nand Country_Name=@{pipeline().parameters.Country_id}\n\n\tIF @count >0\n\t\tSELECT 'YES' AS MOE_Load\n\tELSE \n\t\tSELECT 'NO' AS MOE_Load",
+									"type": "Expression"
+								},
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "ds_sql_rdpcrm_reporting_db",
+								"type": "DatasetReference"
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "If MOE they yes",
+						"type": "IfCondition",
+						"dependsOn": [
+							{
+								"activity": "Check MOE Entries",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(activity('Check MOE Entries').output.value[0].MOE_Load,'YES')",
+								"type": "Expression"
+							},
+							"ifTrueActivities": [
+								{
+									"name": "Execute MOE parallel load Pipeline",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "ds_adf_adlstooms_curation_parallel_load",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"Country_id": {
+												"value": "@{pipeline().parameters.Country_id}",
+												"type": "Expression"
+											},
+											"Source": {
+												"value": "@{pipeline().parameters.Source}",
+												"type": "Expression"
+											},
+											"Load_Stage": "MOE"
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"parameters": {
+					"Source": {
+						"type": "string",
+						"defaultValue": "'LCMS'"
+					},
+					"Country_id": {
+						"type": "string",
+						"defaultValue": "'DE'"
+					},
+					"HostName": {
+						"type": "string",
+						"defaultValue": "AMSD2A-A-RESH557D.europe.shell.com"
+					},
+					"ServiceName": {
+						"type": "string",
+						"defaultValue": "RESH557D"
+					},
+					"Username": {
+						"type": "string",
+						"defaultValue": "SAS_TRANSFER_USR"
+					},
+					"Subscription_Id": {
+						"type": "string",
+						"defaultValue": "2e183fe5-d882-4de8-b7c4-84b5c0e4a468"
+					},
+					"Resource_Group": {
+						"type": "string",
+						"defaultValue": "MAHSBC-RGP-0092-ENT0158-RTL_RETAIL_DATA_PLATFORM_BC_TEST"
+					},
+					"Factory_Name": {
+						"type": "string",
+						"defaultValue": "test-szen-ds-adf-rdp-acqnbc"
+					},
+					"Secret": {
+						"type": "string"
+					},
+					"Port": {
+						"type": "string"
+					}
+				},
+				"folder": {
+					"name": "CRMRDP/DataEngineering"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/ds_adf_SSO_latosql_wrapper_parallel_load')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TRG_ADOBE_DELTA_LOAD_DAILY_OO')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "ds_adf_ADOBE_latosql_inbound_wrapper",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"Country_id": "[parameters('TRG_ADOBE_DELTA_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parameters_Country_id')]",
+							"Source": "[parameters('TRG_ADOBE_DELTA_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parameters_Source')]",
+							"Subscription_Id": "[parameters('TRG_ADOBE_DELTA_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parameters_Subscription_Id')]",
+							"Resource_Group": "[parameters('TRG_ADOBE_DELTA_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parameters_Resource_Group')]",
+							"Factory_Name": "[parameters('TRG_ADOBE_DELTA_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parameters_Factory_Name')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2020-02-27T14:35:00.000Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								30
+							],
+							"hours": [
+								2
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TRG_ADOBE_PARALLEL_LOAD_DAILY_OO')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Runs Everyday to load data from adobe files to RDP ",
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "ds_adf_ADOBE_latosql_inbound_wrapper_parallel_load",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"Country_id": "[parameters('TRG_ADOBE_PARALLEL_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parallel_load_parameters_Country_id')]",
+							"Source": "[parameters('TRG_ADOBE_PARALLEL_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parallel_load_parameters_Source')]",
+							"Subscription_Id": "[parameters('TRG_ADOBE_PARALLEL_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parallel_load_parameters_Subscription_Id')]",
+							"Resource_Group": "[parameters('TRG_ADOBE_PARALLEL_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parallel_load_parameters_Resource_Group')]",
+							"Factory_Name": "[parameters('TRG_ADOBE_PARALLEL_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parallel_load_parameters_Factory_Name')]",
+							"Update_Key_Country": "[parameters('TRG_ADOBE_PARALLEL_LOAD_DAILY_OO_properties_ds_adf_ADOBE_latosql_inbound_wrapper_parallel_load_parameters_Update_Key_Country')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2020-02-20T04:30:00.000Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TRG_LCMS_DELTA_LOAD_WEEKDAY_DE')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "ds_adf_LCMS_latosql_wrapper",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"Source": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Source')]",
+							"Country_id": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Country_id')]",
+							"HostName": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_HostName')]",
+							"ServiceName": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_ServiceName')]",
+							"Username": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Username')]",
+							"Subscription_Id": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Subscription_Id')]",
+							"Resource_Group": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Resource_Group')]",
+							"Factory_Name": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Factory_Name')]",
+							"Secret": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Secret')]",
+							"Port": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_DE_properties_ds_adf_LCMS_latosql_wrapper_parameters_Port')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2020-02-27T14:41:00.000Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								30
+							],
+							"hours": [
+								5
+							],
+							"weekDays": [
+								"Monday",
+								"Tuesday",
+								"Wednesday",
+								"Thursday",
+								"Friday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/ds_adf_LCMS_latosql_wrapper')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TRG_LCMS_DELTA_LOAD_WEEKDAY_SG')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "ds_adf_LCMS_latosql_wrapper",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"Source": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Source')]",
+							"Country_id": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Country_id')]",
+							"HostName": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_HostName')]",
+							"ServiceName": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_ServiceName')]",
+							"Username": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Username')]",
+							"Subscription_Id": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Subscription_Id')]",
+							"Resource_Group": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Resource_Group')]",
+							"Factory_Name": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Factory_Name')]",
+							"Secret": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Secret')]",
+							"Port": "[parameters('TRG_LCMS_DELTA_LOAD_WEEKDAY_SG_properties_ds_adf_LCMS_latosql_wrapper_parameters_Port')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2020-03-26T12:38:00.000Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"weekDays": [
+								"Monday",
+								"Tuesday",
+								"Wednesday",
+								"Thursday",
+								"Friday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/ds_adf_LCMS_latosql_wrapper')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TRG_LCMS_PARALLEL_LOAD_DAILY_DE')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Trigger Parallel load of LCMS Delta during Production GO LIVE",
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "ds_adf_LCMS_latosql_wrapper_parallel_load",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"Source": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Source')]",
+							"Country_id": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Country_id')]",
+							"HostName": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_HostName')]",
+							"ServiceName": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_ServiceName')]",
+							"Username": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Username')]",
+							"Subscription_Id": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Subscription_Id')]",
+							"Resource_Group": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Resource_Group')]",
+							"Factory_Name": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Factory_Name')]",
+							"Secret": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Secret')]",
+							"Port": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_DE_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Port')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 1,
+						"startTime": "2020-02-12T04:45:00.000Z",
+						"timeZone": "UTC"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/ds_adf_LCMS_latosql_wrapper_parallel_load')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TRG_LCMS_PARALLEL_LOAD_DAILY_NL')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "ds_adf_LCMS_latosql_wrapper_parallel_load",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"Source": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Source')]",
+							"Country_id": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Country_id')]",
+							"HostName": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_HostName')]",
+							"ServiceName": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_ServiceName')]",
+							"Username": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Username')]",
+							"Subscription_Id": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Subscription_Id')]",
+							"Resource_Group": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Resource_Group')]",
+							"Factory_Name": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Factory_Name')]",
+							"Secret": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Secret')]",
+							"Port": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_NL_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Port')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2020-03-20T15:39:00.000Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								45
+							],
+							"hours": [
+								8
+							],
+							"weekDays": [
+								"Monday",
+								"Tuesday",
+								"Wednesday",
+								"Thursday",
+								"Friday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/ds_adf_LCMS_latosql_wrapper_parallel_load')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TRG_LCMS_PARALLEL_LOAD_DAILY_SG')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "ds_adf_LCMS_latosql_wrapper_parallel_load",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"Source": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Source')]",
+							"Country_id": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Country_id')]",
+							"HostName": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_HostName')]",
+							"ServiceName": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_ServiceName')]",
+							"Username": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Username')]",
+							"Subscription_Id": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Subscription_Id')]",
+							"Resource_Group": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Resource_Group')]",
+							"Factory_Name": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Factory_Name')]",
+							"Secret": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Secret')]",
+							"Port": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_SG_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Port')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2020-03-20T15:55:00.000Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								30
+							],
+							"hours": [
+								3
+							],
+							"weekDays": [
+								"Monday",
+								"Tuesday",
+								"Wednesday",
+								"Thursday",
+								"Friday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/ds_adf_LCMS_latosql_wrapper_parallel_load')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/TRG_LCMS_PARALLEL_LOAD_DAILY_TR')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "ds_adf_LCMS_latosql_wrapper_parallel_load",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"Source": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Source')]",
+							"Country_id": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Country_id')]",
+							"HostName": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_HostName')]",
+							"ServiceName": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_ServiceName')]",
+							"Username": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Username')]",
+							"Subscription_Id": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Subscription_Id')]",
+							"Resource_Group": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Resource_Group')]",
+							"Factory_Name": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Factory_Name')]",
+							"Secret": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Secret')]",
+							"Port": "[parameters('TRG_LCMS_PARALLEL_LOAD_DAILY_TR_properties_ds_adf_LCMS_latosql_wrapper_parallel_load_parameters_Port')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Week",
+						"interval": 1,
+						"startTime": "2020-03-20T15:57:00.000Z",
+						"timeZone": "UTC",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								7
+							],
+							"weekDays": [
+								"Tuesday",
+								"Monday",
+								"Wednesday",
+								"Thursday",
+								"Friday"
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/ds_adf_LCMS_latosql_wrapper_parallel_load')]"
+			]
+		}
+	]
+}
