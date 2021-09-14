@@ -1,0 +1,37 @@
+{
+	"name": "TRG_LCMS_PARALLEL_LOAD_DAILY_DE",
+	"properties": {
+		"description": "Trigger Parallel load of LCMS Delta during Production GO LIVE",
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "ds_adf_LCMS_latosql_wrapper_parallel_load",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"Source": "'LCMS'",
+					"Country_id": "'DE'",
+					"HostName": "AMSDC1-A-RESH438P.europe.shell.com",
+					"ServiceName": "RESH438P_PRIM",
+					"Username": "SAS_TRANSFER_USR",
+					"Subscription_Id": "1b0429f6-9a73-4d82-b706-239f759b9b1e",
+					"Resource_Group": "MAHSBC-RGP-0093-ENP0154-RTL_RETAIL_DATA_PLATFORM_BC_PROD",
+					"Factory_Name": "prd-szen-ds-adf-rdp-acqnbc",
+					"Secret": "LcmsOraclePassword",
+					"Port": "1648"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 1,
+				"startTime": "2020-02-12T04:45:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

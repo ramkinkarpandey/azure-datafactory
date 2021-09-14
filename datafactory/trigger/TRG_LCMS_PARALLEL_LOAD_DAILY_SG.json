@@ -1,0 +1,51 @@
+{
+	"name": "TRG_LCMS_PARALLEL_LOAD_DAILY_SG",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "ds_adf_LCMS_latosql_wrapper_parallel_load",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"Source": "'LCMS'",
+					"Country_id": "'TR'",
+					"HostName": "devHost",
+					"ServiceName": "devServiceName",
+					"Username": "devUserName",
+					"Subscription_Id": "devSubID",
+					"Resource_Group": "devResourceGroup",
+					"Factory_Name": "devFactory",
+					"Secret": "devSecret",
+					"Port": "1648"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Week",
+				"interval": 1,
+				"startTime": "2020-03-20T15:55:00Z",
+				"timeZone": "UTC",
+				"schedule": {
+					"minutes": [
+						30
+					],
+					"hours": [
+						3
+					],
+					"weekDays": [
+						"Monday",
+						"Tuesday",
+						"Wednesday",
+						"Thursday",
+						"Friday"
+					]
+				}
+			}
+		}
+	}
+}
