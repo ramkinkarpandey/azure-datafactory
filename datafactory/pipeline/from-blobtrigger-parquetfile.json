@@ -3,13 +3,16 @@
 	"properties": {
 		"variables": {
 			"Year": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "2022"
 			},
 			"Month": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "02"
 			},
 			"Date": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "20"
 			}
 		},
 		"annotations": []
