@@ -2,13 +2,13 @@
 	"name": "from-blobtrigger-parquetfile",
 	"properties": {
 		"variables": {
-			"YYYY": {
+			"Year": {
 				"type": "String"
 			},
-			"MM": {
+			"Month": {
 				"type": "String"
 			},
-			"DD": {
+			"Date": {
 				"type": "String"
 			}
 		},
