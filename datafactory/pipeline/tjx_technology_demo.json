@@ -18,7 +18,7 @@
 					"notebookPath": "/tjx/sales",
 					"baseParameters": {
 						"fileName": {
-							"value": "triggerBody().fileName",
+							"value": "@pipeline().parameters.triggeringFileName",
 							"type": "Expression"
 						}
 					}
@@ -29,6 +29,12 @@
 				}
 			}
 		],
+		"parameters": {
+			"triggeringFileName": {
+				"type": "string",
+				"defaultValue": "@triggerBody().fileName"
+			}
+		},
 		"annotations": []
 	}
 }
