@@ -3,7 +3,7 @@
 	"properties": {
 		"description": "Pipeline is execute as new file arrives at source.",
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
