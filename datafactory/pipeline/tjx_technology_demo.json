@@ -18,7 +18,7 @@
 					"notebookPath": "/tjx/sales",
 					"baseParameters": {
 						"fileName": {
-							"value": "@triggerBody().fileName",
+							"value": "triggerBody().fileName",
 							"type": "Expression"
 						}
 					}
