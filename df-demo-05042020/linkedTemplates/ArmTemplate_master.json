@@ -71,6 +71,10 @@
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowStartTime"
 		},
+		"file_created_event_properties_tjx_technology_demo_parameters_triggeringFileName": {
+			"type": "string",
+			"defaultValue": "@triggerBody().fileName"
+		},
 		"file_created_event_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
@@ -164,6 +168,9 @@
 					},
 					"FtpLocation_properties_typeProperties_userId": {
 						"value": "[parameters('FtpLocation_properties_typeProperties_userId')]"
+					},
+					"file_created_event_properties_tjx_technology_demo_parameters_triggeringFileName": {
+						"value": "[parameters('file_created_event_properties_tjx_technology_demo_parameters_triggeringFileName')]"
 					},
 					"file_created_event_properties_typeProperties_scope": {
 						"value": "[parameters('file_created_event_properties_typeProperties_scope')]"

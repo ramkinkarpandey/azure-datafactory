@@ -43,6 +43,10 @@
 			"type": "string",
 			"defaultValue": "Avanade-corp\\ram.b.pandey"
 		},
+		"file_created_event_properties_tjx_technology_demo_parameters_triggeringFileName": {
+			"type": "string",
+			"defaultValue": "@triggerBody().fileName"
+		},
 		"file_created_event_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
@@ -382,7 +386,9 @@
 							"referenceName": "tjx_technology_demo",
 							"type": "PipelineReference"
 						},
-						"parameters": {}
+						"parameters": {
+							"triggeringFileName": "[parameters('file_created_event_properties_tjx_technology_demo_parameters_triggeringFileName')]"
+						}
 					}
 				],
 				"type": "BlobEventsTrigger",

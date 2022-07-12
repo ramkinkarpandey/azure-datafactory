@@ -53,6 +53,9 @@
 		"Trigger_1hs_properties_pipeline_parameters_windowStart": {
 			"value": "@trigger().outputs.windowStartTime"
 		},
+		"file_created_event_properties_tjx_technology_demo_parameters_triggeringFileName": {
+			"value": "@triggerBody().fileName"
+		},
 		"file_created_event_properties_typeProperties_scope": {
 			"value": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
 		},
