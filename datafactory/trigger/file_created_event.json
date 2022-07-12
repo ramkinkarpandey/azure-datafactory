@@ -3,12 +3,15 @@
 	"properties": {
 		"description": "Pipeline is execute as new file arrives at source.",
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
 					"referenceName": "tjx_technology_demo",
 					"type": "PipelineReference"
+				},
+				"parameters": {
+					"triggeringFileName": "@triggerBody().fileName"
 				}
 			}
 		],
