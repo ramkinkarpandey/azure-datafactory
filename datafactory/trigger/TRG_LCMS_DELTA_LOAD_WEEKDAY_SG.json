@@ -3,26 +3,7 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Stopped",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "ds_adf_LCMS_latosql_wrapper",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"Source": "'LCMS'",
-					"Country_id": "'SG'",
-					"HostName": "addHostName",
-					"ServiceName": "addServiceName",
-					"Username": "addUserName",
-					"Subscription_Id": "addSubscriptionID",
-					"Resource_Group": "addResourceGroup",
-					"Factory_Name": "addFactoryName",
-					"Secret": "addSecretName",
-					"Port": "1648"
-				}
-			}
-		],
+		"pipelines": [],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {

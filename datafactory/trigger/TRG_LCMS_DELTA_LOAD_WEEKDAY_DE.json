@@ -3,26 +3,7 @@
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Stopped",
-		"pipelines": [
-			{
-				"pipelineReference": {
-					"referenceName": "ds_adf_LCMS_latosql_wrapper",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"Source": "'LCMS'",
-					"Country_id": "'DE'",
-					"HostName": "AMSD2A-A-RESH557D.europe.shell.com",
-					"ServiceName": "RESH557D",
-					"Username": "SAS_TRANSFER_USR",
-					"Subscription_Id": "2e183fe5-d882-4de8-b7c4-84b5c0e4a468",
-					"Resource_Group": "MAHSBC-RGP-0092-END0142-RTL_RETAIL_DATA_PLATFORM_BC_DEV",
-					"Factory_Name": "dev-szen-ds-adf-rdp-acqnbc",
-					"Secret": "LcmsOraclePassword",
-					"Port": "1648"
-				}
-			}
-		],
+		"pipelines": [],
 		"type": "ScheduleTrigger",
 		"typeProperties": {
 			"recurrence": {
