@@ -488,7 +488,7 @@
 							"notebookPath": "/tjx/sales",
 							"baseParameters": {
 								"fileName": {
-									"value": "triggerBody().fileName",
+									"value": "@pipeline().parameters.triggeringFileName",
 									"type": "Expression"
 								}
 							}
@@ -502,6 +502,12 @@
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
+				},
+				"parameters": {
+					"triggeringFileName": {
+						"type": "string",
+						"defaultValue": "@triggerBody().fileName"
+					}
 				},
 				"annotations": []
 			},
