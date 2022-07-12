@@ -31,8 +31,7 @@
 		],
 		"parameters": {
 			"triggeringFileName": {
-				"type": "string",
-				"defaultValue": "@triggerBody().fileName"
+				"type": "string"
 			}
 		},
 		"annotations": []
