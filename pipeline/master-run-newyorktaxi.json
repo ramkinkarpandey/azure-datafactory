@@ -1,0 +1,82 @@
+{
+	"name": "master-run-newyorktaxi",
+	"properties": {
+		"activities": [
+			{
+				"name": "Lookup Schedule",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "SqlServerSource",
+						"sqlReaderQuery": "SELECT Year, Month FROM dbo.Schedule",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "NewYorkTaxiDb",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "For Each YearMonth",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookup Schedule",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookup Schedule').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"batchCount": 20,
+					"activities": [
+						{
+							"name": "Execute Notebook Processing Pipeline",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "run-newyorktaxi-notebooks-in-databricks",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"month": {
+										"value": "@item().Month",
+										"type": "Expression"
+									},
+									"year": {
+										"value": "@item().Year",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2020-08-07T14:14:48Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

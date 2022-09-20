@@ -1,0 +1,41 @@
+{
+	"name": "tjx_technology_demo",
+	"properties": {
+		"activities": [
+			{
+				"name": "tjx_sales",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/tjx/sales",
+					"baseParameters": {
+						"fileName": {
+							"value": "@pipeline().parameters.triggeringFileName",
+							"type": "Expression"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "LinkedServiceToDataBricks",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"parameters": {
+			"triggeringFileName": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-07-12T22:27:35Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,9 @@
+{
+	"name": "df-demo-05042020",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "9679a638-dbba-4cef-b8d7-926db425185f",
+		"tenantId": "cf36141c-ddd7-45a7-b073-111f66d0b30c"
+	}
+}

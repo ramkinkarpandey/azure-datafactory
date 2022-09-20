@@ -1,0 +1,18 @@
+{
+	"name": "BlobCreation",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/nytdata/blobs/{year}/{month}/{date}/",
+			"blobPathEndsWith": "_SUCCESS",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

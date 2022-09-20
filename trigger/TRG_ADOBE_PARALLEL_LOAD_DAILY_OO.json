@@ -1,0 +1,18 @@
+{
+	"name": "TRG_ADOBE_PARALLEL_LOAD_DAILY_OO",
+	"properties": {
+		"description": "Runs Everyday to load data from adobe files to RDP ",
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2020-02-20T04:30:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}

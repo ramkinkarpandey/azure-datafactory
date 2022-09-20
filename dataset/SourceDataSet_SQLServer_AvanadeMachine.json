@@ -1,0 +1,13 @@
+{
+	"name": "SourceDataSet_SQLServer_AvanadeMachine",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AvanadeMachine",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
