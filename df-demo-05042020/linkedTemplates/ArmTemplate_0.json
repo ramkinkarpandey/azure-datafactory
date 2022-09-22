@@ -29,7 +29,7 @@
 		},
 		"LinkedServiceToDataBricks_properties_typeProperties_existingClusterId": {
 			"type": "string",
-			"defaultValue": "0922-121014-dqw2um6z"
+			"defaultValue": "0922-134701-okvdwpdm"
 		},
 		"BlobCreation_properties_typeProperties_scope": {
 			"type": "string",
