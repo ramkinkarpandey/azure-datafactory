@@ -1,0 +1,72 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "df-demo-05042020"
+		},
+		"AvanadeMachine_connectionString": {
+			"value": ""
+		},
+		"AvanadeMachineFileSystem_password": {
+			"value": ""
+		},
+		"AvanadeMachine_OrnaginsationDatabase_connectionString": {
+			"value": ""
+		},
+		"AvanadeMachine_SqlServer_Parameterised_connectionString": {
+			"value": ""
+		},
+		"Azure_Sql_DfDemo_Db_connectionString": {
+			"value": ""
+		},
+		"DataLakeStorage_accountKey": {
+			"value": ""
+		},
+		"FtpLocation_password": {
+			"value": ""
+		},
+		"LinkedServiceToDataBricks_accessToken": {
+			"value": ""
+		},
+		"blob_linkedservice_connectionString": {
+			"value": ""
+		},
+		"AvanadeMachineFileSystem_properties_typeProperties_host": {
+			"value": "C:\\CSVs"
+		},
+		"AvanadeMachineFileSystem_properties_typeProperties_userId": {
+			"value": "localuser"
+		},
+		"DataLakeStorage_properties_typeProperties_url": {
+			"value": "https://datalakesv2storage.dfs.core.windows.net/"
+		},
+		"FtpLocation_properties_typeProperties_host": {
+			"value": "C:\\Temp"
+		},
+		"FtpLocation_properties_typeProperties_userId": {
+			"value": "Avanade-corp\\ram.b.pandey"
+		},
+		"LinkedServiceToDataBricks_properties_typeProperties_existingClusterId": {
+			"value": "0922-121014-dqw2um6z"
+		},
+		"BlobCreation_properties_typeProperties_scope": {
+			"value": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
+		},
+		"Trigger_1hs_properties_pipeline_parameters_windowStart": {
+			"value": "@trigger().outputs.windowStartTime"
+		},
+		"file_created_event_properties_tjx_technology_demo_parameters_triggeringFileName": {
+			"value": "@triggerBody().fileName"
+		},
+		"file_created_event_properties_typeProperties_scope": {
+			"value": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

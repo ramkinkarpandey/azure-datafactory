@@ -1,0 +1,195 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "df-demo-05042020"
+		},
+		"AvanadeMachine_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AvanadeMachine'"
+		},
+		"AvanadeMachineFileSystem_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AvanadeMachineFileSystem'"
+		},
+		"AvanadeMachine_OrnaginsationDatabase_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AvanadeMachine_OrnaginsationDatabase'"
+		},
+		"AvanadeMachine_SqlServer_Parameterised_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AvanadeMachine_SqlServer_Parameterised'"
+		},
+		"Azure_Sql_DfDemo_Db_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Azure_Sql_DfDemo_Db'"
+		},
+		"DataLakeStorage_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'DataLakeStorage'"
+		},
+		"FtpLocation_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'FtpLocation'"
+		},
+		"LinkedServiceToDataBricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'LinkedServiceToDataBricks'"
+		},
+		"blob_linkedservice_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'blob_linkedservice'"
+		},
+		"AvanadeMachineFileSystem_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\CSVs"
+		},
+		"AvanadeMachineFileSystem_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "localuser"
+		},
+		"DataLakeStorage_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakesv2storage.dfs.core.windows.net/"
+		},
+		"FtpLocation_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "C:\\Temp"
+		},
+		"FtpLocation_properties_typeProperties_userId": {
+			"type": "string",
+			"defaultValue": "Avanade-corp\\ram.b.pandey"
+		},
+		"LinkedServiceToDataBricks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0922-121014-dqw2um6z"
+		},
+		"BlobCreation_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
+		},
+		"Trigger_1hs_properties_pipeline_parameters_windowStart": {
+			"type": "string",
+			"defaultValue": "@trigger().outputs.windowStartTime"
+		},
+		"file_created_event_properties_tjx_technology_demo_parameters_triggeringFileName": {
+			"type": "string",
+			"defaultValue": "@triggerBody().fileName"
+		},
+		"file_created_event_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "df-demo-05042020_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"Azure_Sql_DfDemo_Db_connectionString": {
+						"value": "[parameters('Azure_Sql_DfDemo_Db_connectionString')]"
+					},
+					"DataLakeStorage_accountKey": {
+						"value": "[parameters('DataLakeStorage_accountKey')]"
+					},
+					"LinkedServiceToDataBricks_accessToken": {
+						"value": "[parameters('LinkedServiceToDataBricks_accessToken')]"
+					},
+					"blob_linkedservice_connectionString": {
+						"value": "[parameters('blob_linkedservice_connectionString')]"
+					},
+					"DataLakeStorage_properties_typeProperties_url": {
+						"value": "[parameters('DataLakeStorage_properties_typeProperties_url')]"
+					},
+					"LinkedServiceToDataBricks_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('LinkedServiceToDataBricks_properties_typeProperties_existingClusterId')]"
+					},
+					"BlobCreation_properties_typeProperties_scope": {
+						"value": "[parameters('BlobCreation_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "df-demo-05042020_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AvanadeMachine_connectionString": {
+						"value": "[parameters('AvanadeMachine_connectionString')]"
+					},
+					"AvanadeMachineFileSystem_password": {
+						"value": "[parameters('AvanadeMachineFileSystem_password')]"
+					},
+					"AvanadeMachine_OrnaginsationDatabase_connectionString": {
+						"value": "[parameters('AvanadeMachine_OrnaginsationDatabase_connectionString')]"
+					},
+					"AvanadeMachine_SqlServer_Parameterised_connectionString": {
+						"value": "[parameters('AvanadeMachine_SqlServer_Parameterised_connectionString')]"
+					},
+					"FtpLocation_password": {
+						"value": "[parameters('FtpLocation_password')]"
+					},
+					"AvanadeMachineFileSystem_properties_typeProperties_host": {
+						"value": "[parameters('AvanadeMachineFileSystem_properties_typeProperties_host')]"
+					},
+					"AvanadeMachineFileSystem_properties_typeProperties_userId": {
+						"value": "[parameters('AvanadeMachineFileSystem_properties_typeProperties_userId')]"
+					},
+					"FtpLocation_properties_typeProperties_host": {
+						"value": "[parameters('FtpLocation_properties_typeProperties_host')]"
+					},
+					"FtpLocation_properties_typeProperties_userId": {
+						"value": "[parameters('FtpLocation_properties_typeProperties_userId')]"
+					},
+					"file_created_event_properties_tjx_technology_demo_parameters_triggeringFileName": {
+						"value": "[parameters('file_created_event_properties_tjx_technology_demo_parameters_triggeringFileName')]"
+					},
+					"file_created_event_properties_typeProperties_scope": {
+						"value": "[parameters('file_created_event_properties_typeProperties_scope')]"
+					},
+					"Trigger_1hs_properties_pipeline_parameters_windowStart": {
+						"value": "[parameters('Trigger_1hs_properties_pipeline_parameters_windowStart')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'df-demo-05042020_ArmTemplate_0')]"
+			]
+		}
+	]
+}
