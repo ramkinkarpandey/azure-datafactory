@@ -27,7 +27,8 @@
 					"dataset": {
 						"referenceName": "Employee",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			}
 		],
