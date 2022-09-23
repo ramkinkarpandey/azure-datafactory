@@ -54,7 +54,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "@activity('Look For Updated Rows').output.value",
+							"value": "SELECT * FROM EMPLOYEE WHERE DEPARTMENTID = @{pipeline().parameters.departmentid}",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
