@@ -28,6 +28,12 @@
 				}
 			}
 		],
+		"parameters": {
+			"departmentid": {
+				"type": "int",
+				"defaultValue": 3
+			}
+		},
 		"annotations": []
 	}
 }
