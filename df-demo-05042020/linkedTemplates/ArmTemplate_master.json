@@ -43,6 +43,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'blob_linkedservice'"
 		},
+		"azure_sql_db_dfdemodatabase_employee_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'azure_sql_db_dfdemodatabase_employee'"
+		},
 		"AvanadeMachineFileSystem_properties_typeProperties_host": {
 			"type": "string",
 			"defaultValue": "C:\\CSVs"
@@ -122,6 +126,9 @@
 					"blob_linkedservice_connectionString": {
 						"value": "[parameters('blob_linkedservice_connectionString')]"
 					},
+					"azure_sql_db_dfdemodatabase_employee_connectionString": {
+						"value": "[parameters('azure_sql_db_dfdemodatabase_employee_connectionString')]"
+					},
 					"DataLakeStorage_properties_typeProperties_url": {
 						"value": "[parameters('DataLakeStorage_properties_typeProperties_url')]"
 					},
@@ -181,6 +188,26 @@
 					},
 					"file_created_event_properties_typeProperties_scope": {
 						"value": "[parameters('file_created_event_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'df-demo-05042020_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "df-demo-05042020_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
 					},
 					"Trigger_1hs_properties_pipeline_parameters_windowStart": {
 						"value": "[parameters('Trigger_1hs_properties_pipeline_parameters_windowStart')]"
@@ -188,7 +215,7 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'df-demo-05042020_ArmTemplate_0')]"
+				"[resourceId('Microsoft.Resources/deployments', 'df-demo-05042020_ArmTemplate_1')]"
 			]
 		}
 	]

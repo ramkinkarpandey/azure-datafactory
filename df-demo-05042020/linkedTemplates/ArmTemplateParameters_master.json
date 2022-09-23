@@ -32,6 +32,9 @@
 		"blob_linkedservice_connectionString": {
 			"value": ""
 		},
+		"azure_sql_db_dfdemodatabase_employee_connectionString": {
+			"value": ""
+		},
 		"AvanadeMachineFileSystem_properties_typeProperties_host": {
 			"value": "C:\\CSVs"
 		},
