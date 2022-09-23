@@ -17,6 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT * FROM EMPLOYEE WHERE DEPARTMENTID = ",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
