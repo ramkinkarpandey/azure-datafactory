@@ -54,7 +54,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "@activity('Look For Updated Rows').output",
+							"value": "@activity('Look For Updated Rows').output.value",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
