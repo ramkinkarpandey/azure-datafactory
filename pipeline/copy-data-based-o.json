@@ -18,7 +18,7 @@
 					"source": {
 						"type": "AzureSqlSource",
 						"sqlReaderQuery": {
-							"value": "SEELCT Id, Name, DepartmentId FROM EMPLOYEE WHERE DEPARTMENTID = @pipeline().parameters.departmentid",
+							"value": "SELECT Id, Name, DepartmentId FROM EMPLOYEE WHERE DEPARTMENTID = @pipeline().parameters.departmentid",
 							"type": "Expression"
 						},
 						"queryTimeout": "02:00:00",
