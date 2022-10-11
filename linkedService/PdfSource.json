@@ -1,0 +1,18 @@
+{
+	"name": "PdfSource",
+	"properties": {
+		"parameters": {
+			"url": {
+				"type": "string",
+				"defaultValue": "https://form-recogniser-instance.cognitiveservices.azure.com/"
+			}
+		},
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "@{linkedService().url}",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
