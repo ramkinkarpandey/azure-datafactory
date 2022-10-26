@@ -1,6 +1,17 @@
 {
 	"name": "CallingPipeline",
 	"properties": {
+		"activities": [
+			{
+				"name": "Call CalledPipline",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitOnCompletion": true
+				}
+			}
+		],
 		"annotations": []
 	}
 }
