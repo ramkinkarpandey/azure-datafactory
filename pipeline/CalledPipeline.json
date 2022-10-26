@@ -19,6 +19,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"SourceLocation": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
