@@ -17,10 +17,12 @@
 		},
 		"parameters": {
 			"databasename": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "dfdemodatabaseserver"
 			},
 			"datatablename": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "employee"
 			}
 		},
 		"annotations": [],
