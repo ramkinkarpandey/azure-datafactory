@@ -5,8 +5,14 @@
 			"referenceName": "parameterised_linked_service",
 			"type": "LinkedServiceReference",
 			"parameters": {
-				"sourcedatabase": "dfdemodatabaseserver",
-				"sourcetable": "employee"
+				"sourcedatabase": {
+					"value": "@dataset().databasename",
+					"type": "Expression"
+				},
+				"sourcetable": {
+					"value": "@dataset().datatablename",
+					"type": "Expression"
+				}
 			}
 		},
 		"parameters": {
