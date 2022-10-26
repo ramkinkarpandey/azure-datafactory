@@ -31,7 +31,10 @@
 			}
 		],
 		"parameters": {
-			"SourceLocation": {
+			"SourceDatabase": {
+				"type": "string"
+			},
+			"SourceTable": {
 				"type": "string"
 			}
 		},
