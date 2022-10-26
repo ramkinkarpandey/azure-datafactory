@@ -20,11 +20,32 @@
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
 						"referenceName": "sqltable_dynamic",
+						"type": "DatasetReference",
+						"parameters": {
+							"databasename": {
+								"value": "@pipeline().parameters.SourceDatabase",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "blob_filtered_employee",
 						"type": "DatasetReference"
 					}
 				]
