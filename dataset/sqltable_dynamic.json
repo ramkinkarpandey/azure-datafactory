@@ -1,0 +1,43 @@
+{
+	"name": "sqltable_dynamic",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "parameterised_linked_service",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"sourcedatabase": "dfdemodatabaseserver",
+				"sourcetable": "employee"
+			}
+		},
+		"parameters": {
+			"databasename": {
+				"type": "string"
+			},
+			"datatablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "DepartmentId",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Employee"
+		}
+	}
+}
