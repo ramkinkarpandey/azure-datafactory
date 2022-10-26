@@ -12,7 +12,11 @@
 						"referenceName": "CalledPipeline",
 						"type": "PipelineReference"
 					},
-					"waitOnCompletion": true
+					"waitOnCompletion": true,
+					"parameters": {
+						"SourceDatabase": "dfdemodatabaseserver",
+						"SourceTable": "employee"
+					}
 				}
 			}
 		],
