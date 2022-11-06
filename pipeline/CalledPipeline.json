@@ -139,7 +139,7 @@
 								"functionName": "IncrementSalary",
 								"method": "POST",
 								"body": {
-									"value": "{\n\"Id\": \"@item.Id\",\n\"Salary\": 2000\n}\n",
+									"value": "{\n\"Id\": \"@{item.Id}\",\n\"Salary\": 2000\n}\n",
 									"type": "Expression"
 								}
 							},
