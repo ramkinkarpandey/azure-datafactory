@@ -101,7 +101,8 @@
 								"type": "Expression"
 							}
 						}
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -118,7 +119,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get All Employees Whose Salary Is Less Than 2000').output",
+						"value": "@activity('Get All Employees Whose Salary Is Less Than 2000').output.value",
 						"type": "Expression"
 					},
 					"activities": [
