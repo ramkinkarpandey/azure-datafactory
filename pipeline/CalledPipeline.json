@@ -50,7 +50,7 @@
 						"referenceName": "sqltable_dynamic",
 						"type": "DatasetReference",
 						"parameters": {
-							"databasename": "dfdemodatabaseserver",
+							"databasename": "dfdemodatabase",
 							"datatablename": "EmployeeV2"
 						}
 					}
