@@ -16,7 +16,7 @@
 					"parameters": {
 						"SourceDatabase": "dfdemodatabaseserver",
 						"SourceTable": "employee",
-						"FileName": "employee.csv"
+						"FileName": "Employee.csv"
 					}
 				}
 			}
