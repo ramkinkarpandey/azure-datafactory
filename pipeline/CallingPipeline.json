@@ -15,7 +15,8 @@
 					"waitOnCompletion": true,
 					"parameters": {
 						"SourceDatabase": "dfdemodatabaseserver",
-						"SourceTable": "employee"
+						"SourceTable": "employee",
+						"FileName": "employee.csv"
 					}
 				}
 			}
