@@ -55,6 +55,63 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "Increment Salary",
+				"type": "AzureFunctionActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"functionName": "IncrementSalary",
+					"method": "POST"
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_function_salaryOperations",
+					"type": "LinkedServiceReference"
+				}
+			},
+			{
+				"name": "Get All Employees Whose Salary Is Less Than 1000",
+				"type": "Lookup",
+				"dependsOn": [
+					{
+						"activity": "CopyData From Blob To Database",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT * FROM EmployeeV2 WHERE Salary < 2000",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"dataset": {
+						"referenceName": "sqltable_dynamic",
+						"type": "DatasetReference",
+						"parameters": {
+							"databasename": "dfdemodatabaseserver",
+							"datatablename": "EmployeeV2"
+						}
+					}
+				}
 			}
 		],
 		"parameters": {
