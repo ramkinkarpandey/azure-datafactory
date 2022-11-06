@@ -1,6 +1,41 @@
 {
 	"name": "Increment Salary",
 	"properties": {
+		"activities": [
+			{
+				"name": "Increment Salary",
+				"type": "AzureFunctionActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"functionName": "IncrementSalary",
+					"method": "POST",
+					"body": {
+						"value": "@json(concat('{\"Id:\"',string(pipeline().parameters.Id),',\"Salary:\"',string(pipeline().parameters.Salary),'}'))",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_function_salaryOperations",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"parameters": {
+			"Id": {
+				"type": "int"
+			},
+			"Salary": {
+				"type": "float"
+			}
+		},
 		"annotations": []
 	}
 }
