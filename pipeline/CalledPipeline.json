@@ -57,27 +57,6 @@
 				]
 			},
 			{
-				"name": "Increment Salary",
-				"type": "AzureFunctionActivity",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"functionName": "IncrementSalary",
-					"method": "POST"
-				},
-				"linkedServiceName": {
-					"referenceName": "ls_function_salaryOperations",
-					"type": "LinkedServiceReference"
-				}
-			},
-			{
 				"name": "Get All Employees Whose Salary Is Less Than 1000",
 				"type": "Lookup",
 				"dependsOn": [
@@ -111,6 +90,49 @@
 							"datatablename": "EmployeeV2"
 						}
 					}
+				}
+			},
+			{
+				"name": "Loop Through All The Salaries",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get All Employees Whose Salary Is Less Than 1000",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get All Employees Whose Salary Is Less Than 1000').output",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Increment Salary",
+							"type": "AzureFunctionActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"functionName": "IncrementSalary",
+								"method": "POST",
+								"body": "{\n\"Id\": item().Id\n}"
+							},
+							"linkedServiceName": {
+								"referenceName": "ls_function_salaryOperations",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
 				}
 			}
 		],
