@@ -18,7 +18,7 @@
 					"functionName": "IncrementSalary",
 					"method": "POST",
 					"body": {
-						"value": "@json(concat('{\"Id:\"',string(pipeline().parameters.Id),',\"Salary:\"',string(pipeline().parameters.Salary),'}'))",
+						"value": "@json(concat('{\"Id\":',string(pipeline().parameters.Id),',\"Salary\":',string(pipeline().parameters.Salary),'}'))",
 						"type": "Expression"
 					}
 				},
