@@ -36,7 +36,13 @@
 				"inputs": [
 					{
 						"referenceName": "blob_filtered_employee",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"fileName": {
+								"value": "@pipeline().parameters.FileName",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
