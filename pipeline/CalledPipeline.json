@@ -125,7 +125,10 @@
 							"typeProperties": {
 								"functionName": "IncrementSalary",
 								"method": "POST",
-								"body": "{\n\"Id\": item().Id\n}"
+								"body": {
+									"value": "{\n\"Id\": @item().Id\n}",
+									"type": "Expression"
+								}
 							},
 							"linkedServiceName": {
 								"referenceName": "ls_function_salaryOperations",
