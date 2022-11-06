@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "CopyData From Sierra To OTS",
+				"name": "CopyData From Blob To Database",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -16,37 +16,37 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "AzureSqlSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"sink": {
-						"type": "JsonSink",
+						"type": "JsonSource",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "JsonWriteSettings"
+							"type": "JsonReadSettings"
 						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
 					},
 					"enableStaging": false
 				},
 				"inputs": [
 					{
-						"referenceName": "sqltable_dynamic",
-						"type": "DatasetReference",
-						"parameters": {
-							"databasename": {
-								"value": "@pipeline().parameters.SourceDatabase",
-								"type": "Expression"
-							}
-						}
+						"referenceName": "blob_filtered_employee",
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "blob_filtered_employee",
-						"type": "DatasetReference"
+						"referenceName": "sqltable_dynamic",
+						"type": "DatasetReference",
+						"parameters": {
+							"databasename": "dfdemodatabaseserver",
+							"datatablename": "EmployeeV2"
+						}
 					}
 				]
 			}
