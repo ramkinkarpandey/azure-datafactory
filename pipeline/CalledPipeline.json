@@ -16,14 +16,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "JsonSource",
+						"type": "DelimitedTextSource",
 						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
+							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "JsonReadSettings"
+							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"sink": {
@@ -35,10 +35,10 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "blob_filtered_employee",
+						"referenceName": "ds_datalake_csv",
 						"type": "DatasetReference",
 						"parameters": {
-							"fileName": {
+							"FileName": {
 								"value": "@pipeline().parameters.FileName",
 								"type": "Expression"
 							}
