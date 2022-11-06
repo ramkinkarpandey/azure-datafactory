@@ -63,7 +63,7 @@
 				]
 			},
 			{
-				"name": "Get All Employees Whose Salary Is Less Than 1000",
+				"name": "Get All Employees Whose Salary Is Less Than 2000",
 				"type": "Lookup",
 				"dependsOn": [
 					{
@@ -109,7 +109,7 @@
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Get All Employees Whose Salary Is Less Than 1000",
+						"activity": "Get All Employees Whose Salary Is Less Than 2000",
 						"dependencyConditions": [
 							"Succeeded"
 						]
