@@ -92,8 +92,14 @@
 						"referenceName": "sqltable_dynamic",
 						"type": "DatasetReference",
 						"parameters": {
-							"databasename": "dfdemodatabaseserver",
-							"datatablename": "EmployeeV2"
+							"databasename": {
+								"value": "@pipeline().parameters.SourceDatabase",
+								"type": "Expression"
+							},
+							"datatablename": {
+								"value": "@pipeline().parameters.SourceTable",
+								"type": "Expression"
+							}
 						}
 					}
 				}
