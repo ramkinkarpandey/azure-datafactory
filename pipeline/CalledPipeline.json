@@ -139,7 +139,7 @@
 								"functionName": "IncrementSalary",
 								"method": "POST",
 								"body": {
-									"value": "@{\"Id\": item().Id,\"Salary\": 2000}",
+									"value": "@json('{\"Id\": @item().Id, \"Salary: @item().Salary\"}')",
 									"type": "Expression"
 								}
 							},
