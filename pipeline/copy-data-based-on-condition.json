@@ -63,7 +63,7 @@
 					"sink": {
 						"type": "JsonSink",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
+							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
 							"type": "JsonWriteSettings"
@@ -80,7 +80,10 @@
 				"outputs": [
 					{
 						"referenceName": "blob_filtered_employee",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"fileName": "Employee.csv"
+						}
 					}
 				]
 			}
