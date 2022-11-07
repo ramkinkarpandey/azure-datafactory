@@ -29,10 +29,19 @@
 		"LinkedServiceToDataBricks_accessToken": {
 			"value": ""
 		},
+		"azure_sql_db_dfdemodatabase_employee_connectionString": {
+			"value": ""
+		},
 		"blob_linkedservice_connectionString": {
 			"value": ""
 		},
-		"azure_sql_db_dfdemodatabase_employee_connectionString": {
+		"ls_datalake_csv_accountKey": {
+			"value": ""
+		},
+		"ls_function_salaryOperations_functionKey": {
+			"value": ""
+		},
+		"parameterised_linked_service_connectionString": {
 			"value": ""
 		},
 		"AvanadeMachineFileSystem_properties_typeProperties_host": {
@@ -53,6 +62,15 @@
 		"LinkedServiceToDataBricks_properties_typeProperties_existingClusterId": {
 			"value": "0922-134701-okvdwpdm"
 		},
+		"PdfSource_properties_typeProperties_url": {
+			"value": "@{linkedService().url}"
+		},
+		"ls_datalake_csv_properties_typeProperties_url": {
+			"value": "https://datalakesv2storage.dfs.core.windows.net/"
+		},
+		"ls_function_salaryOperations_properties_typeProperties_functionAppUrl": {
+			"value": "https://salaryoperations.azurewebsites.net"
+		},
 		"BlobCreation_properties_typeProperties_scope": {
 			"value": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
 		},
@@ -63,6 +81,9 @@
 			"value": "@triggerBody().fileName"
 		},
 		"file_created_event_properties_typeProperties_scope": {
+			"value": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
+		},
+		"trg_OnBlobCreation_properties_typeProperties_scope": {
 			"value": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
 		}
 	}

@@ -19,13 +19,25 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'LinkedServiceToDataBricks'"
 		},
+		"azure_sql_db_dfdemodatabase_employee_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'azure_sql_db_dfdemodatabase_employee'"
+		},
 		"blob_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'blob_linkedservice'"
 		},
-		"azure_sql_db_dfdemodatabase_employee_connectionString": {
+		"ls_datalake_csv_accountKey": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'azure_sql_db_dfdemodatabase_employee'"
+			"metadata": "Secure string for 'accountKey' of 'ls_datalake_csv'"
+		},
+		"ls_function_salaryOperations_functionKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'functionKey' of 'ls_function_salaryOperations'"
+		},
+		"parameterised_linked_service_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'parameterised_linked_service'"
 		},
 		"DataLakeStorage_properties_typeProperties_url": {
 			"type": "string",
@@ -34,6 +46,18 @@
 		"LinkedServiceToDataBricks_properties_typeProperties_existingClusterId": {
 			"type": "string",
 			"defaultValue": "0922-134701-okvdwpdm"
+		},
+		"PdfSource_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "@{linkedService().url}"
+		},
+		"ls_datalake_csv_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakesv2storage.dfs.core.windows.net/"
+		},
+		"ls_function_salaryOperations_properties_typeProperties_functionAppUrl": {
+			"type": "string",
+			"defaultValue": "https://salaryoperations.azurewebsites.net"
 		},
 		"BlobCreation_properties_typeProperties_scope": {
 			"type": "string",
@@ -93,6 +117,40 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/PdfSource')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"url": {
+						"type": "string",
+						"defaultValue": "https://form-recogniser-instance.cognitiveservices.azure.com/"
+					}
+				},
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('PdfSource_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/azure_sql_db_dfdemodatabase_employee')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('azure_sql_db_dfdemodatabase_employee_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/blob_linkedservice')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -101,6 +159,64 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('blob_linkedservice_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_datalake_csv')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('ls_datalake_csv_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('ls_datalake_csv_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_function_salaryOperations')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureFunction",
+				"typeProperties": {
+					"functionAppUrl": "[parameters('ls_function_salaryOperations_properties_typeProperties_functionAppUrl')]",
+					"functionKey": {
+						"type": "SecureString",
+						"value": "[parameters('ls_function_salaryOperations_functionKey')]"
+					},
+					"authentication": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/parameterised_linked_service')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"sourcedatabase": {
+						"type": "string",
+						"defaultValue": "dfdemodatabaseserver"
+					},
+					"sourcetable": {
+						"type": "string",
+						"defaultValue": "employee"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"connectionString": "[parameters('parameterised_linked_service_connectionString')]"
 				}
 			},
 			"dependsOn": []
@@ -376,30 +492,17 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/azure_sql_db_dfdemodatabase_employee')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "AzureSqlDatabase",
-				"typeProperties": {
-					"connectionString": "[parameters('azure_sql_db_dfdemodatabase_employee_connectionString')]"
-				}
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/run-newyorktaxi-notebooks-in-databricks')]",
+			"name": "[concat(parameters('factoryName'), '/Increment Salary')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "OrchestrateTaxiServices",
-						"type": "DatabricksNotebook",
+						"name": "Increment Salary",
+						"type": "AzureFunctionActivity",
 						"dependsOn": [],
 						"policy": {
-							"timeout": "7.00:00:00",
+							"timeout": "0.12:00:00",
 							"retry": 0,
 							"retryIntervalInSeconds": 30,
 							"secureOutput": false,
@@ -407,116 +510,16 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"notebookPath": "/Production/OrchestrateTaxiServicesWorkflow",
-							"baseParameters": {
-								"ProcessMonth": {
-									"value": "{@pipeline().parameters.year}-{@pipeline().parameters.month}",
-									"type": "Expression"
-								}
+							"functionName": "IncrementSalary",
+							"method": "POST",
+							"headers": {},
+							"body": {
+								"value": "@json(concat('{\"Id\":',string(pipeline().parameters.Id),',\"Salary\":',string(pipeline().parameters.Salary),'}'))",
+								"type": "Expression"
 							}
 						},
 						"linkedServiceName": {
-							"referenceName": "LinkedServiceToDataBricks",
-							"type": "LinkedServiceReference"
-						}
-					},
-					{
-						"name": "Set errorDetails",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "OrchestrateTaxiServices",
-								"dependencyConditions": [
-									"Failed"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "errorDetails",
-							"value": {
-								"value": "@activity('OrchestrateTaxiServices').output",
-								"type": "Expression"
-							}
-						}
-					},
-					{
-						"name": "Set successDetails",
-						"type": "SetVariable",
-						"dependsOn": [
-							{
-								"activity": "OrchestrateTaxiServices",
-								"dependencyConditions": [
-									"Succeeded"
-								]
-							}
-						],
-						"userProperties": [],
-						"typeProperties": {
-							"variableName": "successDetails",
-							"value": {
-								"value": "@activity('OrchestrateTaxiServices').output",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"month": {
-						"type": "string"
-					},
-					"year": {
-						"type": "string"
-					}
-				},
-				"variables": {
-					"errorDetails": {
-						"type": "String"
-					},
-					"successDetails": {
-						"type": "String"
-					}
-				},
-				"annotations": [],
-				"lastPublishTime": "2020-08-07T14:14:48Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LinkedServiceToDataBricks')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/tjx_technology_demo')]",
-			"type": "Microsoft.DataFactory/factories/pipelines",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"activities": [
-					{
-						"name": "tjx_sales",
-						"type": "DatabricksNotebook",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"notebookPath": "/tjx/sales",
-							"baseParameters": {
-								"fileName": {
-									"value": "@pipeline().parameters.triggeringFileName",
-									"type": "Expression"
-								}
-							}
-						},
-						"linkedServiceName": {
-							"referenceName": "LinkedServiceToDataBricks",
+							"referenceName": "ls_function_salaryOperations",
 							"type": "LinkedServiceReference"
 						}
 					}
@@ -526,113 +529,17 @@
 					"cancelAfter": {}
 				},
 				"parameters": {
-					"triggeringFileName": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"lastPublishTime": "2022-07-12T22:27:35Z"
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/LinkedServiceToDataBricks')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DestinationDataSet_AzureDataLakesV2_CSV')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "DataLakeStorage",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"products_filename": {
-						"type": "string"
-					}
-				},
-				"annotations": [],
-				"type": "DelimitedText",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"fileName": {
-							"value": "@dataset().products_filename",
-							"type": "Expression"
-						},
-						"fileSystem": "advertureworks"
+					"Id": {
+						"type": "int"
 					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
+					"Salary": {
+						"type": "float"
+					}
 				},
-				"schema": []
+				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/DataLakeStorage')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/DestinationDataset_1hs')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "blob_linkedservice",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"cw_folderPath": {
-						"type": "String"
-					}
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"folderPath": {
-							"value": "@dataset().cw_folderPath",
-							"type": "Expression"
-						},
-						"container": "output"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/blob_linkedservice')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/SourceDataset_1hs')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "blob_linkedservice",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"cw_folderPath": {
-						"type": "String"
-					}
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobStorageLocation",
-						"folderPath": {
-							"value": "@dataset().cw_folderPath",
-							"type": "Expression"
-						},
-						"container": "nytdata"
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/blob_linkedservice')]"
+				"[concat(variables('factoryId'), '/linkedServices/ls_function_salaryOperations')]"
 			]
 		}
 	]

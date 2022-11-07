@@ -39,13 +39,25 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accessToken' of 'LinkedServiceToDataBricks'"
 		},
+		"azure_sql_db_dfdemodatabase_employee_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'azure_sql_db_dfdemodatabase_employee'"
+		},
 		"blob_linkedservice_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'blob_linkedservice'"
 		},
-		"azure_sql_db_dfdemodatabase_employee_connectionString": {
+		"ls_datalake_csv_accountKey": {
 			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'azure_sql_db_dfdemodatabase_employee'"
+			"metadata": "Secure string for 'accountKey' of 'ls_datalake_csv'"
+		},
+		"ls_function_salaryOperations_functionKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'functionKey' of 'ls_function_salaryOperations'"
+		},
+		"parameterised_linked_service_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'parameterised_linked_service'"
 		},
 		"AvanadeMachineFileSystem_properties_typeProperties_host": {
 			"type": "string",
@@ -71,6 +83,18 @@
 			"type": "string",
 			"defaultValue": "0922-134701-okvdwpdm"
 		},
+		"PdfSource_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "@{linkedService().url}"
+		},
+		"ls_datalake_csv_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakesv2storage.dfs.core.windows.net/"
+		},
+		"ls_function_salaryOperations_properties_typeProperties_functionAppUrl": {
+			"type": "string",
+			"defaultValue": "https://salaryoperations.azurewebsites.net"
+		},
 		"BlobCreation_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
@@ -84,6 +108,10 @@
 			"defaultValue": "@triggerBody().fileName"
 		},
 		"file_created_event_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
+		},
+		"trg_OnBlobCreation_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
 		},
@@ -123,17 +151,35 @@
 					"LinkedServiceToDataBricks_accessToken": {
 						"value": "[parameters('LinkedServiceToDataBricks_accessToken')]"
 					},
+					"azure_sql_db_dfdemodatabase_employee_connectionString": {
+						"value": "[parameters('azure_sql_db_dfdemodatabase_employee_connectionString')]"
+					},
 					"blob_linkedservice_connectionString": {
 						"value": "[parameters('blob_linkedservice_connectionString')]"
 					},
-					"azure_sql_db_dfdemodatabase_employee_connectionString": {
-						"value": "[parameters('azure_sql_db_dfdemodatabase_employee_connectionString')]"
+					"ls_datalake_csv_accountKey": {
+						"value": "[parameters('ls_datalake_csv_accountKey')]"
+					},
+					"ls_function_salaryOperations_functionKey": {
+						"value": "[parameters('ls_function_salaryOperations_functionKey')]"
+					},
+					"parameterised_linked_service_connectionString": {
+						"value": "[parameters('parameterised_linked_service_connectionString')]"
 					},
 					"DataLakeStorage_properties_typeProperties_url": {
 						"value": "[parameters('DataLakeStorage_properties_typeProperties_url')]"
 					},
 					"LinkedServiceToDataBricks_properties_typeProperties_existingClusterId": {
 						"value": "[parameters('LinkedServiceToDataBricks_properties_typeProperties_existingClusterId')]"
+					},
+					"PdfSource_properties_typeProperties_url": {
+						"value": "[parameters('PdfSource_properties_typeProperties_url')]"
+					},
+					"ls_datalake_csv_properties_typeProperties_url": {
+						"value": "[parameters('ls_datalake_csv_properties_typeProperties_url')]"
+					},
+					"ls_function_salaryOperations_properties_typeProperties_functionAppUrl": {
+						"value": "[parameters('ls_function_salaryOperations_properties_typeProperties_functionAppUrl')]"
 					},
 					"BlobCreation_properties_typeProperties_scope": {
 						"value": "[parameters('BlobCreation_properties_typeProperties_scope')]"
@@ -182,12 +228,6 @@
 					},
 					"FtpLocation_properties_typeProperties_userId": {
 						"value": "[parameters('FtpLocation_properties_typeProperties_userId')]"
-					},
-					"file_created_event_properties_tjx_technology_demo_parameters_triggeringFileName": {
-						"value": "[parameters('file_created_event_properties_tjx_technology_demo_parameters_triggeringFileName')]"
-					},
-					"file_created_event_properties_typeProperties_scope": {
-						"value": "[parameters('file_created_event_properties_typeProperties_scope')]"
 					}
 				}
 			},
@@ -209,8 +249,17 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"file_created_event_properties_tjx_technology_demo_parameters_triggeringFileName": {
+						"value": "[parameters('file_created_event_properties_tjx_technology_demo_parameters_triggeringFileName')]"
+					},
+					"file_created_event_properties_typeProperties_scope": {
+						"value": "[parameters('file_created_event_properties_typeProperties_scope')]"
+					},
 					"Trigger_1hs_properties_pipeline_parameters_windowStart": {
 						"value": "[parameters('Trigger_1hs_properties_pipeline_parameters_windowStart')]"
+					},
+					"trg_OnBlobCreation_properties_typeProperties_scope": {
+						"value": "[parameters('trg_OnBlobCreation_properties_typeProperties_scope')]"
 					}
 				}
 			},
