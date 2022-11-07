@@ -2240,7 +2240,7 @@
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
 					"blobPathBeginsWith": "/genericcontainer/blobs/",
-					"blobPathEndsWith": ".csv",
+					"blobPathEndsWith": "E*.csv",
 					"ignoreEmptyBlobs": false,
 					"scope": "[parameters('trg_OnBlobCreation_properties_typeProperties_scope')]",
 					"events": [
