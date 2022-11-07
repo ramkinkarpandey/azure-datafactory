@@ -2222,6 +2222,37 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/trg_OnBlobCreation')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "CallingPipeline",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/genericcontainer/blobs/",
+					"blobPathEndsWith": ".csv",
+					"ignoreEmptyBlobs": false,
+					"scope": "[parameters('trg_OnBlobCreation_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/CallingPipeline')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ir-to-externalcomputer')]",
 			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
 			"apiVersion": "2018-06-01",
@@ -2351,37 +2382,6 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/PdfSource')]",
 				"[concat(variables('factoryId'), '/linkedServices/DataLakeStorage')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/trg_OnBlobCreation')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "CallingPipeline",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/genericcontainer/blobs/",
-					"blobPathEndsWith": "employee/Employee.csv",
-					"ignoreEmptyBlobs": false,
-					"scope": "[parameters('trg_OnBlobCreation_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/CallingPipeline')]"
 			]
 		}
 	]
