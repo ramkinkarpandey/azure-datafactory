@@ -1,0 +1,48 @@
+{
+	"name": "EmployeeCompanyAggregation",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "sqltable_dynamic",
+						"type": "DatasetReference"
+					},
+					"name": "Employee",
+					"description": "Employee Dataset"
+				},
+				{
+					"dataset": {
+						"referenceName": "sqltable_dynamic",
+						"type": "DatasetReference"
+					},
+					"name": "Company",
+					"description": "Company Dataset"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          Id as integer,",
+				"          Name as string,",
+				"          DepartmentId as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> Employee",
+				"source(output(",
+				"          Id as integer,",
+				"          Name as string,",
+				"          DepartmentId as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> Company"
+			]
+		}
+	}
+}
