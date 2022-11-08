@@ -1,5 +1,5 @@
 {
-	"name": "EmployeeCompanyAggregation",
+	"name": "EmployeeDepartmentJoin",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {

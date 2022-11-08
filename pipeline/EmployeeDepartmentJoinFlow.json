@@ -16,7 +16,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "EmployeeCompanyAggregation",
+						"referenceName": "EmployeeDepartmentJoin",
 						"type": "DataFlowReference"
 					},
 					"compute": {
