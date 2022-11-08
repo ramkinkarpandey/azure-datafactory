@@ -17,8 +17,8 @@
 						"referenceName": "ds_AzureSql_DfDemoDatabase_Department",
 						"type": "DatasetReference"
 					},
-					"name": "Company",
-					"description": "Company Dataset"
+					"name": "Department",
+					"description": "Department Dataset"
 				}
 			],
 			"sinks": [
@@ -53,19 +53,27 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> Company",
-				"Employee, Company join(DepartmentId == Company@Id,",
+				"     format: 'table') ~> Department",
+				"Employee, Department join(DepartmentId == Department@Id,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> InnerJoinEmployeeDepartment",
 				"InnerJoinEmployeeDepartment sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     truncate: true,",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> EmployeeCompanyJoinData"
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          Id = Employee@Id,",
+				"          Name = Employee@Name,",
+				"          DepartmentId,",
+				"          Id = Department@Id,",
+				"          Name = Department@Name",
+				"     )) ~> EmployeeCompanyJoinData"
 			]
 		}
 	}
