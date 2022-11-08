@@ -1,0 +1,26 @@
+{
+	"name": "ds_AzureSql_DfDemoDatabase_Department",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "azure_sql_db_dfdemodatabase_employee",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Department"
+		}
+	}
+}
