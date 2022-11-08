@@ -27,7 +27,7 @@
 						"referenceName": "ds_Datalake_Json_EmployeeDepartment",
 						"type": "DatasetReference"
 					},
-					"name": "EmployeeCompanyJoinData"
+					"name": "EmployeeDepartmentJoinData"
 				}
 			],
 			"transformations": [
@@ -69,7 +69,7 @@
 				"          {Employee Id} = Employee@Id,",
 				"          {Employee Name} = Employee@Name,",
 				"          Department = Department@Name",
-				"     )) ~> EmployeeCompanyJoinData"
+				"     )) ~> EmployeeDepartmentJoinData"
 			]
 		}
 	}
