@@ -1,5 +1,5 @@
 {
-	"name": "EmployeeDepartmentAggregationFlow",
+	"name": "EmployeeDepartmentJoinFlow",
 	"properties": {
 		"activities": [
 			{
