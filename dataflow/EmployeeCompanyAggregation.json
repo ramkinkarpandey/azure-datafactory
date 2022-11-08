@@ -22,7 +22,11 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "InnerJoinEmployeeDepartment"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          Id as integer,",
@@ -41,7 +45,12 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> Company"
+				"     format: 'table') ~> Company",
+				"Employee, Company join(DepartmentId == Company@Id,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> InnerJoinEmployeeDepartment"
 			]
 		}
 	}
