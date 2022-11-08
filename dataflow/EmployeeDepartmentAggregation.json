@@ -73,7 +73,7 @@
 				"     postCommands: [],",
 				"     mapColumn(",
 				"          {Department Name},",
-				"          {Average Salary} = {AverageSalaryGroupByDepartment@Average Salary}",
+				"          {Average Salary}",
 				"     )) ~> SaveEmployeeDepartmentAggregation"
 			]
 		}
