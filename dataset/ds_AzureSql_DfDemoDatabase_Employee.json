@@ -1,5 +1,5 @@
 {
-	"name": "ds_Azure_Database_Employee",
+	"name": "ds_AzureSql_DfDemoDatabase_Employee",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "azure_sql_db_dfdemodatabase_employee",
