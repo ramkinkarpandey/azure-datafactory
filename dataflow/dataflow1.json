@@ -21,7 +21,16 @@
 					"description": "Department Dataset"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_Datalake_Json_EmployeeDepartment",
+						"type": "DatasetReference"
+					},
+					"name": "SaveEmployeeDepartmentAggregation",
+					"description": "Save Employee Department Aggregation"
+				}
+			],
 			"transformations": [
 				{
 					"name": "InnerJoinEmployeeDepartment",
@@ -57,7 +66,14 @@
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> InnerJoinEmployeeDepartment",
 				"InnerJoinEmployeeDepartment aggregate(groupBy(Department@Name),",
-				"     {Average Salary} = avg(Employee@Salary)) ~> AverageSalaryGroupByDepatment"
+				"     {Average Salary} = avg(Employee@Salary)) ~> AverageSalaryGroupByDepatment",
+				"AverageSalaryGroupByDepatment sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SaveEmployeeDepartmentAggregation"
 			]
 		}
 	}
