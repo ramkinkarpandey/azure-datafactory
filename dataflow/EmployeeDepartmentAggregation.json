@@ -76,7 +76,13 @@
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> SaveEmployeeDepartmentAggregation"
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          {Department Name},",
+				"          Id,",
+				"          {Employee Name},",
+				"          {Average Salary} = AverageSalaryGroupByDepatment@{Average Salary}",
+				"     )) ~> SaveEmployeeDepartmentAggregation"
 			]
 		}
 	}
