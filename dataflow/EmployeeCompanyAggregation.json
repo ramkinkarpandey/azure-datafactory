@@ -68,8 +68,6 @@
 				"     mapColumn(",
 				"          {Employee Id} = Employee@Id,",
 				"          {Employee Name} = Employee@Name,",
-				"          DepartmentId,",
-				"          Id = Department@Id,",
 				"          Department = Department@Name",
 				"     )) ~> EmployeeCompanyJoinData"
 			]
