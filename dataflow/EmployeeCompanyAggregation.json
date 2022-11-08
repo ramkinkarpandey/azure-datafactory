@@ -61,6 +61,7 @@
 				"     broadcast: 'auto')~> InnerJoinEmployeeDepartment",
 				"InnerJoinEmployeeDepartment sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     partitionFileNames:['EmployeeDepartment.json'],",
 				"     truncate: true,",
 				"     umask: 0022,",
 				"     preCommands: [],",
