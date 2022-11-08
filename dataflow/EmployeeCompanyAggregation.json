@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "sqltable_dynamic",
+						"referenceName": "ds_AzureSql_DfDemoDatabase_Employee",
 						"type": "DatasetReference"
 					},
 					"name": "Employee",
@@ -14,7 +14,7 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "sqltable_dynamic",
+						"referenceName": "ds_AzureSql_DfDemoDatabase_Department",
 						"type": "DatasetReference"
 					},
 					"name": "Company",
@@ -36,8 +36,7 @@
 				"     format: 'table') ~> Employee",
 				"source(output(",
 				"          Id as integer,",
-				"          Name as string,",
-				"          DepartmentId as integer",
+				"          Name as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
