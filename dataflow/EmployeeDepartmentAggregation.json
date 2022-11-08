@@ -42,13 +42,7 @@
 				}
 			],
 			"scriptLines": [
-				"source(output(",
-				"          Id as integer,",
-				"          Name as string,",
-				"          DepartmentId as integer,",
-				"          Salary as integer",
-				"     ),",
-				"     allowSchemaDrift: true,",
+				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> Employee",

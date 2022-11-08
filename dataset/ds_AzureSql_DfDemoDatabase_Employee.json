@@ -7,22 +7,7 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [
-			{
-				"name": "Id",
-				"type": "int",
-				"precision": 10
-			},
-			{
-				"name": "Name",
-				"type": "nvarchar"
-			},
-			{
-				"name": "DepartmentId",
-				"type": "int",
-				"precision": 10
-			}
-		],
+		"schema": [],
 		"typeProperties": {
 			"schema": "dbo",
 			"table": "Employee"
