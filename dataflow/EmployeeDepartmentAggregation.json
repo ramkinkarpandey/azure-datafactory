@@ -75,8 +75,6 @@
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
 				"     mapColumn(",
 				"          {Department Name},",
 				"          Id,",
