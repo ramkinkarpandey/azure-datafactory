@@ -6,7 +6,7 @@
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
 			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=dfdemodatabaseserver.database.windows.net;initial catalog=dfdemodatabase;user id=remotedatabaseuser",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDRBQTE3ODg1LTc4NzYtNDlBQS04QzlELTkwMkYzNkU0NTI3Nl81ZGE2NTIwZC04MTYwLTRmMWUtYmM1MS02MzIwNzIwY2JmNmUiDQp9"
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDRBQTE3ODg1LTc4NzYtNDlBQS04QzlELTkwMkYzNkU0NTI3Nl8yZGU5ODUxNC00Yzk4LTQ5MzAtODkwNC0zOWRlZjAwZTZlYjUiDQp9"
 		}
 	}
 }
