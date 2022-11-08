@@ -65,14 +65,12 @@
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
 				"     mapColumn(",
-				"          Id = Employee@Id,",
-				"          Name = Employee@Name,",
+				"          {Employee Id} = Employee@Id,",
+				"          {Employee Name} = Employee@Name,",
 				"          DepartmentId,",
 				"          Id = Department@Id,",
-				"          Name = Department@Name",
+				"          Department = Department@Name",
 				"     )) ~> EmployeeCompanyJoinData"
 			]
 		}
