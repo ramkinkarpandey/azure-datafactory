@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "EmployeeDepartmentAggregation",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -65,7 +65,10 @@
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> InnerJoinEmployeeDepartment",
-				"InnerJoinEmployeeDepartment aggregate(groupBy(Department@Name),",
+				"InnerJoinEmployeeDepartment aggregate(groupBy(Department@Name,",
+				"          Employee@Id,",
+				"          Employee@Name,",
+				"          {Average Salary} = Avg(Employee@Salary)),",
 				"     {Average Salary} = avg(Employee@Salary)) ~> AverageSalaryGroupByDepatment",
 				"AverageSalaryGroupByDepatment sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
