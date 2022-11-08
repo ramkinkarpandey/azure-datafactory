@@ -68,7 +68,7 @@
 				"InnerJoinEmployeeDepartment aggregate(groupBy({Department Name} = Department@Name,",
 				"          Employee@Id,",
 				"          {Employee Name} = Employee@Name,",
-				"          {} = Avg(Employee@Salary)),",
+				"          {Average Salary} = Avg(Employee@Salary)),",
 				"     {Average Salary} = avg(Employee@Salary)) ~> AverageSalaryGroupByDepatment",
 				"AverageSalaryGroupByDepatment sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
