@@ -37,12 +37,17 @@
 					"description": "Inner Join Employee Department on DepartmentId"
 				},
 				{
-					"name": "AverageSalaryGroupByDepatment",
-					"description": "Average Salary Group By Depatment"
+					"name": "AverageSalaryGroupByDepartment"
 				}
 			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          Id as integer,",
+				"          Name as string,",
+				"          DepartmentId as integer,",
+				"          Salary as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> Employee",
@@ -60,8 +65,8 @@
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> InnerJoinEmployeeDepartment",
 				"InnerJoinEmployeeDepartment aggregate(groupBy({Department Name} = Department@Name),",
-				"     {Average Salary} = avg(Employee@Salary)) ~> AverageSalaryGroupByDepatment",
-				"AverageSalaryGroupByDepatment sink(allowSchemaDrift: true,",
+				"     {Average Salary} = avg(Salary)) ~> AverageSalaryGroupByDepartment",
+				"AverageSalaryGroupByDepartment sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
 				"     preCommands: [],",

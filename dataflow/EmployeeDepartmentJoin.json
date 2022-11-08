@@ -36,7 +36,13 @@
 				}
 			],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          Id as integer,",
+				"          Name as string,",
+				"          DepartmentId as integer,",
+				"          Salary as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     limit: 100,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
