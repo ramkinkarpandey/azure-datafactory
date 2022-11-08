@@ -66,8 +66,6 @@
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> InnerJoinEmployeeDepartment",
 				"InnerJoinEmployeeDepartment aggregate(groupBy({Department Name} = Department@Name,",
-				"          Employee@Id,",
-				"          {Employee Name} = Employee@Name,",
 				"          {Average Salary} = Avg(Employee@Salary)),",
 				"     {Average Salary} = avg(Employee@Salary)) ~> AverageSalaryGroupByDepatment",
 				"AverageSalaryGroupByDepatment sink(allowSchemaDrift: true,",
@@ -77,8 +75,6 @@
 				"     postCommands: [],",
 				"     mapColumn(",
 				"          {Department Name},",
-				"          Id,",
-				"          {Employee Name},",
 				"          {Average Salary} = AverageSalaryGroupByDepatment@{Average Salary}",
 				"     )) ~> SaveEmployeeDepartmentAggregation"
 			]
