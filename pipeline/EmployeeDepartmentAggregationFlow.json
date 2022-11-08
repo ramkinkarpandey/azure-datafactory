@@ -17,25 +17,7 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "EmployeeCompanyAggregation",
-						"type": "DataFlowReference",
-						"datasetParameters": {
-							"Employee": {
-								"databasename": "dfdemodatabase",
-								"datatablename": "Employee"
-							},
-							"Company": {
-								"databasename": "dfdemodatabaseserver",
-								"datatablename": "employee"
-							}
-						},
-						"linkedServiceParameters": {
-							"Employee": {
-								"schemaLinkedService": {
-									"databasename": "dfdemodatabase",
-									"datatablename": "employee"
-								}
-							}
-						}
+						"type": "DataFlowReference"
 					},
 					"compute": {
 						"coreCount": 8,

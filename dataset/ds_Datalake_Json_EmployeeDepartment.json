@@ -1,0 +1,20 @@
+{
+	"name": "ds_Datalake_Json_EmployeeDepartment",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_Datalake_Json",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "EmployeeDepartment.json",
+				"folderPath": "EmployeeDepartment",
+				"fileSystem": "genericcontainer"
+			}
+		},
+		"schema": {}
+	}
+}

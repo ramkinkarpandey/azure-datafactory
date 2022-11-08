@@ -21,7 +21,15 @@
 					"description": "Company Dataset"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_Datalake_Json_EmployeeDepartment",
+						"type": "DatasetReference"
+					},
+					"name": "EmployeeCompanyJoinData"
+				}
+			],
 			"transformations": [
 				{
 					"name": "InnerJoinEmployeeDepartment"
@@ -50,7 +58,14 @@
 				"     joinType:'inner',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> InnerJoinEmployeeDepartment"
+				"     broadcast: 'auto')~> InnerJoinEmployeeDepartment",
+				"InnerJoinEmployeeDepartment sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> EmployeeCompanyJoinData"
 			]
 		}
 	}
