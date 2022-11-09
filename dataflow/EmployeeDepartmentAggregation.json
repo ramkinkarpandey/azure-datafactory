@@ -74,7 +74,8 @@
 				"     mapColumn(",
 				"          {Department Name},",
 				"          {Average Salary}",
-				"     )) ~> SaveEmployeeDepartmentAggregation"
+				"     ),",
+				"     partitionBy('hash', 1)) ~> SaveEmployeeDepartmentAggregation"
 			]
 		}
 	}
