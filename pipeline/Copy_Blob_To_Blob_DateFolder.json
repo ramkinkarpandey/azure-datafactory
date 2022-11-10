@@ -49,7 +49,17 @@
 				"outputs": [
 					{
 						"referenceName": "ds_AzureDatalake_Json_Parameterised",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"DirectoryName": {
+								"value": "@employee\\formatDateTime('DDMMYYYY')",
+								"type": "Expression"
+							},
+							"FileName": {
+								"value": "Employee.csv",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
