@@ -5,6 +5,16 @@
 			"referenceName": "ls_Datalake_Json",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"DirectoryName": {
+				"type": "string",
+				"defaultValue": "employee"
+			},
+			"FileName": {
+				"type": "string",
+				"defaultValue": "Employee.csv"
+			}
+		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
