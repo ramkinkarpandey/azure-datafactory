@@ -28,7 +28,7 @@
 					"value": "@dataset().DirectoryName",
 					"type": "Expression"
 				},
-				"fileSystem": "genericContainer"
+				"fileSystem": "genericcontainer"
 			}
 		},
 		"schema": {}
