@@ -52,7 +52,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"DirectoryName": {
-								"value": "formatDateTime('DDMMYYYY')",
+								"value": "formatDateTime('ddMMyyyy')",
 								"type": "Expression"
 							},
 							"FileName": {
