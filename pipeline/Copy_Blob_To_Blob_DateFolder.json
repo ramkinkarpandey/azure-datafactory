@@ -52,7 +52,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"DirectoryName": {
-								"value": "@concat('employee/',formatDateTime('ddMMyyyy'))",
+								"value": "@concat('employee/',utcNow('ddMMyyyy'))",
 								"type": "Expression"
 							},
 							"FileName": {
