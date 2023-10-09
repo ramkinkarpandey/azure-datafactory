@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "[@{mul(variables('batchSize'), 1)}, @{mul(variables('batchSize'), 2)},@{mul(variables('batchSize'), 3)},@{mul(variables('batchSize'), 4)},@{mul(variables('batchSize'), 5)}]",
+						"value": "@createArray( mul(variables('batchSize'), 1), mul(variables('batchSize'), 2),mul(variables('batchSize'), 3),mul(variables('batchSize'), 4),mul(variables('batchSize'), 5))",
 						"type": "Expression"
 					},
 					"activities": [
