@@ -32,6 +32,27 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "Set variable2",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "recordSkipped",
+					"value": "@activity('ForEach1').item().value"
+				}
 			}
 		],
 		"variables": {
@@ -40,6 +61,9 @@
 				"defaultValue": 10
 			},
 			"itemValue": {
+				"type": "Integer"
+			},
+			"recordSkipped": {
 				"type": "Integer"
 			}
 		},
