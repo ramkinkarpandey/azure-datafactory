@@ -5,11 +5,18 @@
 			{
 				"name": "ForEach1",
 				"type": "ForEach",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set variable3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@createArray( mul(variables('batchSize'), 1), mul(variables('batchSize'), 2),mul(variables('batchSize'), 3),mul(variables('batchSize'), 4),mul(variables('batchSize'), 5))",
+						"value": "@variables('items')",
 						"type": "Expression"
 					},
 					"activities": [
@@ -51,7 +58,30 @@
 				"userProperties": [],
 				"typeProperties": {
 					"variableName": "recordSkipped",
-					"value": "@activity('ForEach1').item().value"
+					"value": {
+						"value": "@add(last(variables('items')), 10)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set variable3",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "items",
+					"value": [
+						"@createArray( mul(variables('batchSize'), 1)",
+						" mul(variables('batchSize'), 2)",
+						"mul(variables('batchSize'), 3)",
+						"mul(variables('batchSize'), 4)",
+						"mul(variables('batchSize'), 5))"
+					]
 				}
 			}
 		],
@@ -65,6 +95,9 @@
 			},
 			"recordSkipped": {
 				"type": "Integer"
+			},
+			"items": {
+				"type": "Array"
 			}
 		},
 		"annotations": []
