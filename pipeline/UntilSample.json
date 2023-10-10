@@ -58,7 +58,7 @@
 		"variables": {
 			"KeepRunning": {
 				"type": "Boolean",
-				"defaultValue": "True"
+				"defaultValue": true
 			}
 		},
 		"annotations": []
