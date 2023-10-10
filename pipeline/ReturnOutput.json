@@ -15,7 +15,7 @@
 					"variableName": "pipelineReturnValue",
 					"value": [
 						{
-							"key": "Output",
+							"key": "Response",
 							"value": {
 								"type": "Int",
 								"content": 2000
@@ -26,12 +26,6 @@
 				}
 			}
 		],
-		"variables": {
-			"Response": {
-				"type": "Integer",
-				"defaultValue": 10
-			}
-		},
 		"annotations": []
 	}
 }
