@@ -147,8 +147,8 @@
 						{
 							"key": "KeepRunning",
 							"value": {
-								"type": "Boolean",
-								"content": false
+								"type": "Expression",
+								"content": "@if(greater(pipeline().parameters.lastRunValue, 6),bool(0), bool(1))"
 							}
 						}
 					],
