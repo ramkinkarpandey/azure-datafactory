@@ -94,6 +94,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"inputValue": {
+				"type": "int"
+			}
+		},
 		"variables": {
 			"LastCount": {
 				"type": "Integer",
