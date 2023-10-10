@@ -1,0 +1,66 @@
+{
+	"name": "UntilSample",
+	"properties": {
+		"activities": [
+			{
+				"name": "Until False",
+				"type": "Until",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@variables('KeepRunning')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Call Foreach",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "For-Each-Sample",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
+							}
+						},
+						{
+							"name": "Set KeepRunning",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Call Foreach",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "KeepRunning",
+								"value": {
+									"value": "@activity('Call Foreach').output.pipelineReturnValue.KeepRunning",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"timeout": "0.12:00:00"
+				}
+			}
+		],
+		"variables": {
+			"KeepRunning": {
+				"type": "Boolean",
+				"defaultValue": "True"
+			}
+		},
+		"annotations": []
+	}
+}
