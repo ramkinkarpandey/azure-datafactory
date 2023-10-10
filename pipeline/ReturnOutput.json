@@ -39,7 +39,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "[1,2,3,4,5]",
+						"value": "@array([1,2,3,4,5])",
 						"type": "Expression"
 					},
 					"activities": [
