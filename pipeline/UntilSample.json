@@ -59,6 +59,10 @@
 			"KeepRunning": {
 				"type": "Boolean",
 				"defaultValue": true
+			},
+			"LastRunValue": {
+				"type": "Integer",
+				"defaultValue": 0
 			}
 		},
 		"annotations": []
