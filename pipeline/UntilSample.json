@@ -68,7 +68,10 @@
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "LastRunValue",
-								"value": ""
+								"value": {
+									"value": "@add(variables('Count'), 1)",
+									"type": "Expression"
+								}
 							}
 						}
 					],
