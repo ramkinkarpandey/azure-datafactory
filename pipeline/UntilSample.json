@@ -65,7 +65,11 @@
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": []
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "LastRunValue",
+								"value": ""
+							}
 						}
 					],
 					"timeout": "0.12:00:00"
@@ -78,6 +82,10 @@
 				"defaultValue": true
 			},
 			"LastRunValue": {
+				"type": "Integer",
+				"defaultValue": 0
+			},
+			"Count": {
 				"type": "Integer",
 				"defaultValue": 0
 			}
