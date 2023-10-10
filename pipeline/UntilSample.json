@@ -45,7 +45,7 @@
 							"typeProperties": {
 								"variableName": "KeepRunning",
 								"value": {
-									"value": "@activity('Call Foreach').output.pipelineReturnValue.KeepRunning",
+									"value": "@bool(activity('Call Foreach').output.pipelineReturnValue.KeepRunning)",
 									"type": "Expression"
 								}
 							}
