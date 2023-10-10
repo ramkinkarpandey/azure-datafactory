@@ -1,0 +1,37 @@
+{
+	"name": "ReturnOutput",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set variable1",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "Output",
+							"value": {
+								"type": "Int",
+								"content": 2000
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
+			}
+		],
+		"variables": {
+			"Response": {
+				"type": "Integer",
+				"defaultValue": 10
+			}
+		},
+		"annotations": []
+	}
+}
