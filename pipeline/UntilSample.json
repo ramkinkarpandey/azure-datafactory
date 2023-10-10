@@ -49,6 +49,23 @@
 									"type": "Expression"
 								}
 							}
+						},
+						{
+							"name": "Set LastRunValue",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Set KeepRunning",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": []
 						}
 					],
 					"timeout": "0.12:00:00"
