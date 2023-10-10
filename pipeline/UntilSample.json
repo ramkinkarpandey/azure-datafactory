@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@variables('KeepRunning')",
+						"value": "@equals(variables('KeepRunning'), bool('false'))",
 						"type": "Expression"
 					},
 					"activities": [
