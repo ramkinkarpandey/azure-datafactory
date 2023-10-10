@@ -120,7 +120,7 @@
 				"typeProperties": {
 					"variableName": "Output",
 					"value": {
-						"value": "@activity('Execute ReturnOutput').output.pipelineReturnValue.keyName[0]",
+						"value": "@activity('Execute ReturnOutput').output.pipelineReturnValue.Response",
 						"type": "Expression"
 					}
 				}
