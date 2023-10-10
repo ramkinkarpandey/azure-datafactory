@@ -124,6 +124,36 @@
 						"type": "Expression"
 					}
 				}
+			},
+			{
+				"name": "Set variable5",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Execute ReturnOutput",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pipelineReturnValue",
+					"value": [
+						{
+							"key": "KeepRunning",
+							"value": {
+								"type": "Boolean",
+								"content": false
+							}
+						}
+					],
+					"setSystemVariable": true
+				}
 			}
 		],
 		"variables": {
