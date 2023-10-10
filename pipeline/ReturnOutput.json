@@ -54,7 +54,10 @@
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "LastCount",
-								"value": "item()"
+								"value": {
+									"value": "@int(item())",
+									"type": "Expression"
+								}
 							}
 						},
 						{
@@ -93,7 +96,8 @@
 		],
 		"variables": {
 			"LastCount": {
-				"type": "Integer"
+				"type": "Integer",
+				"defaultValue": 0
 			}
 		},
 		"annotations": []
