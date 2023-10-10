@@ -24,8 +24,8 @@
 						{
 							"key": "Response",
 							"value": {
-								"type": "Int",
-								"content": 2000
+								"type": "Expression",
+								"content": "@variables('LastCount')"
 							}
 						}
 					],
