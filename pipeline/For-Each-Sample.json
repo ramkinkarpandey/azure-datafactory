@@ -156,6 +156,11 @@
 				}
 			}
 		],
+		"parameters": {
+			"lastRunValue": {
+				"type": "int"
+			}
+		},
 		"variables": {
 			"batchSize": {
 				"type": "Integer",
