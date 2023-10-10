@@ -76,7 +76,7 @@
 				"typeProperties": {
 					"variableName": "items",
 					"value": {
-						"value": "@createArray( mul(variables('batchSize'), 1), mul(variables('batchSize'), 2),mul(variables('batchSize'), 3),mul(variables('batchSize'), 4),mul(variables('batchSize'), 5))",
+						"value": "@createArray( mul(pipeline().parameters.lastRunValue, 1), mul(pipeline().parameters.lastRunValue, 2),mul(pipeline().parameters.lastRunValue, 3),mul(pipeline().parameters.lastRunValue, 4),mul(pipeline().parameters.lastRunValue, 5))",
 						"type": "Expression"
 					}
 				}
