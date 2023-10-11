@@ -23,7 +23,13 @@
 									"referenceName": "For-Each-Sample",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true
+								"waitOnCompletion": true,
+								"parameters": {
+									"lastRunValue": {
+										"value": "@variables('LastRunValue')",
+										"type": "Expression"
+									}
+								}
 							}
 						},
 						{
@@ -69,7 +75,31 @@
 							"typeProperties": {
 								"variableName": "LastRunValue",
 								"value": {
-									"value": "@add(variables('Count'), 1)",
+									"value": "@add(variables('Count'), 6)",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set Count",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Set LastRunValue",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "Count",
+								"value": {
+									"value": "@variables('LastRunValue')",
 									"type": "Expression"
 								}
 							}
