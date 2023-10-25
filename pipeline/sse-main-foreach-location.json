@@ -118,6 +118,13 @@
 												"value": "@item().Longitude",
 												"type": "Expression"
 											}
+										},
+										{
+											"name": "Location",
+											"value": {
+												"value": "@pipeline().parameters.Location",
+												"type": "Expression"
+											}
 										}
 									],
 									"httpRequestTimeout": "00:01:40",
