@@ -39,6 +39,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "Set points",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"userProperties": [],
@@ -55,27 +61,53 @@
 							"userProperties": [],
 							"typeProperties": {
 								"variableName": "turbineCollection",
-								"value": "@item().RowKey"
-							}
-						},
-						{
-							"name": "Append PointsCollection",
-							"type": "AppendVariable",
-							"dependsOn": [
-								{
-									"activity": "Append TurbineCollection",
-									"dependencyConditions": [
-										"Succeeded"
-									]
+								"value": {
+									"value": "@concat('&ObjectIds=',item().RowKey)",
+									"type": "Expression"
 								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "pointsCollection",
-								"value": "@item().Points"
 							}
 						}
 					]
+				}
+			},
+			{
+				"name": "Set points",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "points",
+					"value": {
+						"value": "@concat('&Points=ActivePower','&Points=RotorSpeed', '&Points=WindSpeed')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Copy data from API Call to Storage",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "ForEach Turbine",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"enableStaging": false
 				}
 			}
 		],
