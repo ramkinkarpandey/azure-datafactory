@@ -64,20 +64,6 @@
 				"typeProperties": {
 					"source": {
 						"type": "JsonSource",
-						"additionalColumns": [
-							{
-								"name": "ObjectName",
-								"value": ""
-							},
-							{
-								"name": "Latitude",
-								"value": "$$FILEPATH"
-							},
-							{
-								"name": "Longitude",
-								"value": "$$FILEPATH"
-							}
-						],
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
