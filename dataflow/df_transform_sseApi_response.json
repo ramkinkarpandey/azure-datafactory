@@ -12,18 +12,48 @@
 					"name": "rawMergedFile"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_dataLakeV2_sseTurbines_transformedData",
+						"type": "DatasetReference"
+					},
+					"name": "transformedFile"
+				}
+			],
 			"transformations": [],
 			"scriptLines": [
 				"source(output(",
-				"          result as ({93899031144A000} as (points as (ActivePower as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), RotorSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as double, t_local as string), WindSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as double, t_local as string))), {93898BB7804A000} as (points as (ActivePower as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), RotorSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), WindSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as double, t_local as string))), {95A5BB5FA44A000} as (points as (ActivePower as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), RotorSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), WindSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string)))),",
-				"          replyInfo as (rcvTime as integer, replyTime as integer)",
+				"          result as ({93898BB7804A000} as (points as (ActivePower as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), RotorSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), WindSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as double, t_local as string))), {93899031144A000} as (points as (ActivePower as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), RotorSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as double, t_local as string), WindSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as double, t_local as string))), {95A5BB5FA44A000} as (points as (ActivePower as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), RotorSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), WindSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string)))),",
+				"          replyInfo as (rcvTime as integer, replyTime as integer),",
+				"          ObjectName as string,",
+				"          Latitude as string,",
+				"          Longitude as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     limit: 100,",
 				"     ignoreNoFilesFound: false,",
-				"     documentForm: 'documentPerLine') ~> rawMergedFile"
+				"     documentForm: 'documentPerLine') ~> rawMergedFile",
+				"rawMergedFile sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          result as (ObjectId as string, ObjectName as string, ActivePower as integer, RotorSpeed as integer, WindSpeed as double, Latitude as string, Longitude as string)",
+				"     ),",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          ObjectId = result.{93898BB7804A000}.points.ActivePower.objectId,",
+				"          ObjectName,",
+				"          ActivePower = result.{93898BB7804A000}.points.ActivePower.v,",
+				"          RotorSpeed = result.{93898BB7804A000}.points.RotorSpeed.v,",
+				"          WindSpeed = result.{93898BB7804A000}.points.WindSpeed.v,",
+				"          Latitude,",
+				"          Longitude",
+				"     )) ~> transformedFile"
 			]
 		}
 	}

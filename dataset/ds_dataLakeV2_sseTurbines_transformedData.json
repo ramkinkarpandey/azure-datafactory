@@ -1,0 +1,50 @@
+{
+	"name": "ds_dataLakeV2_sseTurbines_transformedData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_dataLakeV2_sseTurbines_transformedData",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "transformedDataSample.json",
+				"folderPath": "transformedFiles",
+				"fileSystem": "turbine"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"result": {
+					"type": "object",
+					"properties": {
+						"ObjectId": {
+							"type": "string"
+						},
+						"ObjectName": {
+							"type": "string"
+						},
+						"ActivePower": {
+							"type": "integer"
+						},
+						"RotorSpeed": {
+							"type": "integer"
+						},
+						"WindSpeed": {
+							"type": "number"
+						},
+						"Latitude": {
+							"type": "string"
+						},
+						"Longitude": {
+							"type": "string"
+						}
+					}
+				}
+			}
+		}
+	}
+}
