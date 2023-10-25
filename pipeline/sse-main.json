@@ -3,47 +3,19 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup List Of Turbines",
-				"type": "Lookup",
-				"dependsOn": [],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "AzureTableSource",
-						"azureTableSourceQuery": "",
-						"azureTableSourceIgnoreTableNotFound": false
-					},
-					"dataset": {
-						"referenceName": "ds_azureTable_sseStorage",
-						"type": "DatasetReference"
-					},
-					"firstRowOnly": false
-				}
-			},
-			{
-				"name": "ForEach Turbine",
+				"name": "ForEach Location",
 				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "Lookup List Of Turbines",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.Locations",
+						"type": "Expression"
+					},
 					"activities": [
 						{
-							"name": "Copy data using API call",
-							"type": "Copy",
+							"name": "Lookup List Of Turbines",
+							"type": "Lookup",
 							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
@@ -54,7 +26,42 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"enableStaging": false
+								"source": {
+									"type": "AzureTableSource",
+									"azureTableSourceQuery": "PartitionKey eq item()",
+									"azureTableSourceIgnoreTableNotFound": false
+								},
+								"dataset": {
+									"referenceName": "ds_azureTable_sseStorage",
+									"type": "DatasetReference"
+								},
+								"firstRowOnly": false
+							}
+						},
+						{
+							"name": "ForEach Turbine",
+							"type": "ForEach",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"activities": [
+									{
+										"name": "Copy data using API call",
+										"type": "Copy",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"enableStaging": false
+										}
+									}
+								]
 							}
 						}
 					]
