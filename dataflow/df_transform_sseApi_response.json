@@ -18,7 +18,11 @@
 						"referenceName": "ds_dataLakeV2_sseTurbines_transformedData",
 						"type": "DatasetReference"
 					},
-					"name": "transformedFile"
+					"name": "transformedFile",
+					"rejectedDataLinkedService": {
+						"referenceName": "ls_dataLakeV2_sseTurbines_transformedData",
+						"type": "LinkedServiceReference"
+					}
 				}
 			],
 			"transformations": [],
@@ -42,13 +46,7 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     mapColumn(",
-				"          ObjectId = result.{93898BB7804A000}.points.ActivePower.objectId,",
-				"          ObjectName,",
-				"          ActivePower = result.{93898BB7804A000}.points.ActivePower.v,",
-				"          RotorSpeed = result.{93898BB7804A000}.points.RotorSpeed.v,",
-				"          WindSpeed = result.{93898BB7804A000}.points.WindSpeed.v,",
-				"          Latitude,",
-				"          Longitude",
+				"          result",
 				"     )) ~> transformedFile"
 			]
 		}
