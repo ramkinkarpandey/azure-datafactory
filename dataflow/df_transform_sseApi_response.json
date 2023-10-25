@@ -23,10 +23,6 @@
 			],
 			"transformations": [],
 			"scriptLines": [
-				"parameters{",
-				"     folderName as string,",
-				"     fileName as string",
-				"}",
 				"source(output(",
 				"          result as (ObjectId as string, ObjectName as string, ActivePower as integer, RotorSpeed as integer, WindSpeed as double, Latitude as string, Longitude as string)",
 				"     ),",

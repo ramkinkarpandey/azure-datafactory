@@ -129,17 +129,7 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "df_transform_sseApi_response",
-						"type": "DataFlowReference",
-						"parameters": {
-							"folderName": {
-								"value": "'@{transformedFiles}'",
-								"type": "Expression"
-							},
-							"fileName": {
-								"value": "'@{variables('transformedFileName')}'",
-								"type": "Expression"
-							}
-						}
+						"type": "DataFlowReference"
 					},
 					"compute": {
 						"coreCount": 8,
