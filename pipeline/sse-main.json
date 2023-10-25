@@ -103,13 +103,9 @@
 								"sink": {
 									"path": "$['replyInfo']"
 								}
-							},
-							{
-								"sink": {
-									"path": "$['ObjectName']"
-								}
 							}
-						]
+						],
+						"collectionReference": ""
 					}
 				},
 				"inputs": [

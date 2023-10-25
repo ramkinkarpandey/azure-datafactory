@@ -47,7 +47,8 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     mapColumn(",
-				"          {} = result",
+				"          replyInfo,",
+				"          result",
 				"     )) ~> transformedFile"
 			]
 		}
