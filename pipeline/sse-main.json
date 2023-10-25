@@ -64,6 +64,20 @@
 				"typeProperties": {
 					"source": {
 						"type": "JsonSource",
+						"additionalColumns": [
+							{
+								"name": "ObjectName",
+								"value": ""
+							},
+							{
+								"name": "Latitude",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "Longitude",
+								"value": "$$FILEPATH"
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
@@ -103,6 +117,11 @@
 								"sink": {
 									"path": "$['replyInfo']"
 								}
+							},
+							{
+								"sink": {
+									"path": "$['ObjectName']"
+								}
 							}
 						]
 					}
@@ -131,6 +150,8 @@
 			{
 				"name": "Transform Files",
 				"type": "ExecuteDataFlow",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Merge all Newly Created Files",
