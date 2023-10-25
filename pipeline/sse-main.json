@@ -298,8 +298,17 @@
 								"sink": {
 									"name": "WindSpeed"
 								}
+							},
+							{
+								"source": {
+									"path": "$['Location']"
+								},
+								"sink": {
+									"name": "Location"
+								}
 							}
-						]
+						],
+						"collectionReference": ""
 					}
 				},
 				"inputs": [
