@@ -49,13 +49,13 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     mapColumn(",
-				"          {result.Latitude} = Latitude,",
-				"          {result.Longitude} = Longitude,",
-				"          {result.ObjectName} = ObjectName,",
-				"          {result.ObjectId} = result.points.ActivePower.objectId,",
-				"          {result.ActivePower} = result.points.ActivePower.v,",
-				"          {result.RotorSpeed} = result.points.RotorSpeed.v,",
-				"          {result.WindSpeed} = result.points.WindSpeed.v",
+				"          Latitude,",
+				"          Longitude,",
+				"          ObjectName,",
+				"          ObjectId = result.points.ActivePower.objectId,",
+				"          ActivePower = result.points.ActivePower.v,",
+				"          RotorSpeed = result.points.RotorSpeed.v,",
+				"          WindSpeed = result.points.WindSpeed.v",
 				"     )) ~> transformedFile"
 			]
 		}
