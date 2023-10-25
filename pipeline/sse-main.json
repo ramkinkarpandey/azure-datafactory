@@ -90,10 +90,34 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['$[\\'result\\']..[\\'points\\']']"
+									"path": "$['result']['93899031144A000']['points']"
 								},
 								"sink": {
-									"path": "$['result'].['points']"
+									"path": "$['points']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['ObjectName']"
+								},
+								"sink": {
+									"path": "$['ObjectName']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Latitude']"
+								},
+								"sink": {
+									"path": "$['Latitude']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Longitude']"
+								},
+								"sink": {
+									"path": "$['Longitude']"
 								}
 							}
 						],
