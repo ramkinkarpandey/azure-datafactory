@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "ds_dataLakeV2_sseTurbines",
+						"referenceName": "ds_dataLakeV2_sseTurbines_transformedData",
 						"type": "DatasetReference"
 					},
 					"name": "rawMergedFile"
@@ -27,12 +27,14 @@
 				"     folderName as string,",
 				"     fileName as string",
 				"}",
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          result as (ObjectId as string, ObjectName as string, ActivePower as integer, RotorSpeed as integer, WindSpeed as double, Latitude as string, Longitude as string)",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     limit: 100,",
 				"     ignoreNoFilesFound: false,",
-				"     documentForm: 'documentPerLine',",
-				"     wildcardPaths:[($folderName/$fileName)]) ~> rawMergedFile",
+				"     documentForm: 'documentPerLine') ~> rawMergedFile",
 				"rawMergedFile sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
