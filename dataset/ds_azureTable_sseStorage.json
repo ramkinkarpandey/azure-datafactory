@@ -5,6 +5,11 @@
 			"referenceName": "ls_azureTable_sseStorage",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"tableName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "AzureTable",
 		"schema": [],
