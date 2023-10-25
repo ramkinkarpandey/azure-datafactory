@@ -158,7 +158,13 @@
 				"inputs": [
 					{
 						"referenceName": "ds_Rest_sseBazeFieldApi",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"objectIds": {
+								"value": "@variables('turbine')",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
