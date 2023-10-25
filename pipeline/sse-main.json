@@ -227,7 +227,7 @@
 					"sink": {
 						"type": "AzureTableSink",
 						"azureTableInsertType": "merge",
-						"azureTableDefaultPartitionKeyValue": "sse",
+						"azureTablePartitionKeyName": "ObjectName",
 						"azureTableRowKeyName": "ObjectId",
 						"writeBatchSize": 10000
 					},
