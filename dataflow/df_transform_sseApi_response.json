@@ -5,6 +5,10 @@
 		"typeProperties": {
 			"sources": [
 				{
+					"dataset": {
+						"referenceName": "ds_dataLakeV2_sseTurbines",
+						"type": "DatasetReference"
+					},
 					"name": "rawMergedFile"
 				}
 			],
@@ -12,7 +16,10 @@
 			"transformations": [],
 			"scriptLines": [
 				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> rawMergedFile"
+				"     validateSchema: false,",
+				"     limit: 100,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> rawMergedFile"
 			]
 		}
 	}

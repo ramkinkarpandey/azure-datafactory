@@ -102,6 +102,37 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "Transform Files",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Merge all Newly Created Files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "df_transform_sseApi_response",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
 			}
 		],
 		"parameters": {
