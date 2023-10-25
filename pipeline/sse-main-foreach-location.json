@@ -163,6 +163,10 @@
 							"objectIds": {
 								"value": "@variables('turbine')",
 								"type": "Expression"
+							},
+							"points": {
+								"value": "@variables('points')",
+								"type": "Expression"
 							}
 						}
 					}
