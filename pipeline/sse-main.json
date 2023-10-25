@@ -238,36 +238,57 @@
 							{
 								"source": {
 									"path": "$['Latitude']"
+								},
+								"sink": {
+									"name": "Latitude"
 								}
 							},
 							{
 								"source": {
 									"path": "$['Longitude']"
+								},
+								"sink": {
+									"name": "Longitude"
 								}
 							},
 							{
 								"source": {
 									"path": "$['ObjectName']"
+								},
+								"sink": {
+									"name": "ObjectName"
 								}
 							},
 							{
 								"source": {
 									"path": "$['ObjectId']"
+								},
+								"sink": {
+									"name": "ObjectId"
 								}
 							},
 							{
 								"source": {
 									"path": "$['ActivePower']"
+								},
+								"sink": {
+									"name": "ActivePower"
 								}
 							},
 							{
 								"source": {
 									"path": "$['RotorSpeed']"
+								},
+								"sink": {
+									"name": "RotorSpeed"
 								}
 							},
 							{
 								"source": {
 									"path": "$['WindSpeed']"
+								},
+								"sink": {
+									"name": "WindSpeed"
 								}
 							}
 						]
@@ -276,7 +297,11 @@
 				"inputs": [
 					{
 						"referenceName": "ds_dataLakeV2_transformedFileV2",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"folderName": "transformedFiles",
+							"fileName": "\\"
+						}
 					}
 				],
 				"outputs": [
