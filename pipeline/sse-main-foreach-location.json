@@ -177,7 +177,10 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"folderName": "rawFiles",
-							"fileName": "notUsed"
+							"fileName": {
+								"value": "@concat(guid(),'.json')",
+								"type": "Expression"
+							}
 						}
 					}
 				]
