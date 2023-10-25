@@ -228,6 +228,7 @@
 						"type": "AzureTableSink",
 						"azureTableInsertType": "merge",
 						"azureTableDefaultPartitionKeyValue": "sse",
+						"azureTableRowKeyName": "ObjectId",
 						"writeBatchSize": 10000
 					},
 					"enableStaging": false,
