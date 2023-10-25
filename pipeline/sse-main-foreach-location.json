@@ -25,7 +25,10 @@
 					},
 					"dataset": {
 						"referenceName": "ds_azureTable_sseStorage",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"tableName": "turbines"
+						}
 					},
 					"firstRowOnly": false
 				}

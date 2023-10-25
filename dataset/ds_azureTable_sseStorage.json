@@ -14,7 +14,10 @@
 		"type": "AzureTable",
 		"schema": [],
 		"typeProperties": {
-			"tableName": "turbines"
+			"tableName": {
+				"value": "@dataset().tableName",
+				"type": "Expression"
+			}
 		}
 	}
 }
