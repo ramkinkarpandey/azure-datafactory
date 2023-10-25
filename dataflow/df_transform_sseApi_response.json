@@ -50,13 +50,10 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     mapColumn(",
-				"          ObjectId = {result..points.ActivePower.objectId},",
 				"          ObjectName,",
-				"          ActivePower = {result..points.ActivePower.v},",
-				"          RotorSpeed = {result..points.RotorSpeed.v},",
-				"          WindSpeed = {result..points.WindSpeed.v},",
 				"          Latitude,",
-				"          Longitude",
+				"          Longitude,",
+				"          ObjectId = result.{93898BB7804A000}.points.ActivePower.objectId",
 				"     )) ~> transformedFile"
 			]
 		}

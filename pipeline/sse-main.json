@@ -84,7 +84,28 @@
 							"filePattern": "setOfObjects"
 						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['result']..['points']"
+								},
+								"sink": {
+									"path": "$['result']['points']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['replyInfo']"
+								},
+								"sink": {
+									"path": "$['replyInfo']"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
