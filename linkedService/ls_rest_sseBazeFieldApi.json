@@ -12,7 +12,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "@{concat('https://2ts.sserenewables.com/BazeField.Services/api/objects/points',linkedService().objectIds,linkedService().points)}",
+			"url": "@{concat('https://2ts.sserenewables.com/BazeField.Services/api/objects/points?',linkedService().objectIds,linkedService().points)}",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
