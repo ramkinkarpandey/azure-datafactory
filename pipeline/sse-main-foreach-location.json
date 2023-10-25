@@ -55,14 +55,35 @@
 					},
 					"activities": [
 						{
-							"name": "Append TurbineCollection",
-							"type": "AppendVariable",
+							"name": "Set tempTurbine",
+							"type": "SetVariable",
 							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "turbineCollection",
+								"variableName": "tempTurbine",
 								"value": {
-									"value": "@concat('&ObjectIds=',item().RowKey)",
+									"value": "@variables('turbine')",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set turbine",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"policy": {
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "turbine",
+								"value": {
+									"value": "@concat(variables('tempTurbine'), '&ObjectIds=',item().RowKey)",
 									"type": "Expression"
 								}
 							}
@@ -123,11 +144,8 @@
 			"points": {
 				"type": "String"
 			},
-			"turbineCollection": {
-				"type": "Array"
-			},
-			"pointsCollection": {
-				"type": "Array"
+			"tempTurbine": {
+				"type": "String"
 			}
 		},
 		"annotations": []
