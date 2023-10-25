@@ -148,8 +148,6 @@
 			{
 				"name": "Transform Files",
 				"type": "ExecuteDataFlow",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "Merge all Newly Created Files",
