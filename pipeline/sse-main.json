@@ -102,7 +102,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"folderName": "mergedFiles",
-							"fileName": "transformedFile.json"
+							"fileName": "mergedFilesFile.json"
 						}
 					}
 				]
