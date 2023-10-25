@@ -16,18 +16,12 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "JsonSource",
-						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
-							"enablePartitionDiscovery": false
-						},
-						"formatSettings": {
-							"type": "JsonReadSettings"
-						}
+						"type": "AzureTableSource",
+						"azureTableSourceQuery": "",
+						"azureTableSourceIgnoreTableNotFound": false
 					},
 					"dataset": {
-						"referenceName": "ds_sseTurbines_azureTable_json",
+						"referenceName": "ds_azureTable_sseStorage",
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
@@ -67,6 +61,12 @@
 				}
 			}
 		],
+		"parameters": {
+			"Locations": {
+				"type": "array",
+				"defaultValue": "['GRIF']"
+			}
+		},
 		"annotations": []
 	}
 }
