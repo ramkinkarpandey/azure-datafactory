@@ -47,9 +47,11 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     mapColumn(",
-				"          result,",
-				"          replyInfo,",
+				"          ObjectId = result.points.ActivePower.objectId,",
 				"          ObjectName,",
+				"          ActivePower = result.points.ActivePower.v,",
+				"          RotorSpeed = result.points.RotorSpeed.v,",
+				"          WindSpeed = result.points.WindSpeed.v,",
 				"          Latitude,",
 				"          Longitude",
 				"     )) ~> transformedFile"
