@@ -53,6 +53,7 @@
 						"value": "@activity('Lookup List Of Turbines').output.value",
 						"type": "Expression"
 					},
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "Set tempTurbine",
