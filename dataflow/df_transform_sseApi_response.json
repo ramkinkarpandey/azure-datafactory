@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "ds_dataLakeV2_sseTurbines_mergedFiles",
+						"referenceName": "ds_dataLakeV2_sseTurbines",
 						"type": "DatasetReference"
 					},
 					"name": "rawMergedFile"
@@ -23,14 +23,11 @@
 			],
 			"transformations": [],
 			"scriptLines": [
-				"source(output(",
-				"          result as ({93898BB7804A000} as (points as (ActivePower as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), RotorSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), WindSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as double, t_local as string))), {93899031144A000} as (points as (ActivePower as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), RotorSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as double, t_local as string), WindSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as double, t_local as string))), {95A5BB5FA44A000} as (points as (ActivePower as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), RotorSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), WindSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string)))),",
-				"          replyInfo as (rcvTime as integer, replyTime as integer),",
-				"          ObjectName as string,",
-				"          Latitude as string,",
-				"          Longitude as string",
-				"     ),",
-				"     allowSchemaDrift: true,",
+				"parameters{",
+				"     folderName as string,",
+				"     fileName as string",
+				"}",
+				"source(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     limit: 100,",
 				"     ignoreNoFilesFound: false,",

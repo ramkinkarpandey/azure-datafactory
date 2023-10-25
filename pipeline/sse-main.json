@@ -45,6 +45,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "Set transformedFileName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"policy": {
@@ -97,7 +103,7 @@
 						"parameters": {
 							"folderName": "mergedFiles",
 							"fileName": {
-								"value": "@concat(guid(),'.json')",
+								"value": "@variables('transformedFileName')",
 								"type": "Expression"
 							}
 						}
@@ -126,13 +132,40 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "df_transform_sseApi_response",
-						"type": "DataFlowReference"
+						"type": "DataFlowReference",
+						"parameters": {
+							"folderName": {
+								"value": "'@{transformedFiles}'",
+								"type": "Expression"
+							},
+							"fileName": {
+								"value": "'@{variables('transformedFileName')}'",
+								"type": "Expression"
+							}
+						}
 					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
 					},
 					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Set transformedFileName",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "transformedFileName",
+					"value": {
+						"value": "@concat(guid(),'.json')",
+						"type": "Expression"
+					}
 				}
 			}
 		],
@@ -158,6 +191,9 @@
 			},
 			"pointsCollection": {
 				"type": "Array"
+			},
+			"transformedFileName": {
+				"type": "String"
 			}
 		},
 		"annotations": []
