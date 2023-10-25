@@ -28,8 +28,8 @@
 			"transformations": [],
 			"scriptLines": [
 				"source(output(",
-				"          result as (points as (ActivePower as (pointName as string, objectId as string, t as integer, q as integer, v as integer, t_local as string), RotorSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as double, t_local as string), WindSpeed as (pointName as string, objectId as string, t as integer, q as integer, v as double, t_local as string))),",
-				"          replyInfo as (rcvTime as integer, replyTime as integer)",
+				"          replyInfo as (rcvTime as long, replyTime as long),",
+				"          result as (points as (ActivePower as (objectId as string, pointName as string, q as integer, t as long, t_local as string, v as short), RotorSpeed as (objectId as string, pointName as string, q as integer, t as long, t_local as string, v as double), WindSpeed as (objectId as string, pointName as string, q as integer, t as long, t_local as string, v as double)))",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
@@ -47,8 +47,7 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     mapColumn(",
-				"          result,",
-				"          replyInfo",
+				"          {} = result",
 				"     )) ~> transformedFile"
 			]
 		}
