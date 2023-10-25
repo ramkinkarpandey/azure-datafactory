@@ -56,7 +56,7 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "Set tempTurbine",
+							"name": "Set turbine",
 							"type": "SetVariable",
 							"dependsOn": [],
 							"policy": {
@@ -65,36 +65,391 @@
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "tempTurbine",
+								"variableName": "turbine",
 								"value": {
-									"value": "@variables('turbine')",
+									"value": "@concat('&ObjectIds=',item().RowKey)",
 									"type": "Expression"
 								}
 							}
 						},
 						{
-							"name": "Set turbine",
-							"type": "SetVariable",
+							"name": "Copy data from API Call to Storage",
+							"type": "Copy",
 							"dependsOn": [
 								{
-									"activity": "Set tempTurbine",
+									"activity": "Set turbine",
 									"dependencyConditions": [
 										"Succeeded"
 									]
 								}
 							],
 							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
 								"secureInput": false
 							},
 							"userProperties": [],
 							"typeProperties": {
-								"variableName": "turbine",
-								"value": {
-									"value": "@concat(variables('tempTurbine'), '&ObjectIds=',item().RowKey)",
-									"type": "Expression"
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET",
+									"paginationRules": {
+										"supportRFC5988": "true"
+									}
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['pointName']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['pointName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['objectId']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['objectId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['t']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['t']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['q']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['q']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['v']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['v']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['t_local']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['t_local']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['pointName']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['pointName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['objectId']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['objectId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['t']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['t']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['q']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['q']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['v']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['v']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['t_local']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['t_local']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['pointName']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['pointName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['objectId']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['objectId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['t']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['t']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['q']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['q']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['v']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['v']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['t_local']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['t_local']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['ActivePower']['pointName']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['ActivePower']['pointName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['ActivePower']['objectId']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['ActivePower']['objectId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['ActivePower']['t']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['ActivePower']['t']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['ActivePower']['q']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['ActivePower']['q']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['ActivePower']['v']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['ActivePower']['v']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['ActivePower']['t_local']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['ActivePower']['t_local']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['RotorSpeed']['pointName']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['RotorSpeed']['pointName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['RotorSpeed']['objectId']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['RotorSpeed']['objectId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['RotorSpeed']['t']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['RotorSpeed']['t']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['RotorSpeed']['q']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['RotorSpeed']['q']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['RotorSpeed']['v']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['RotorSpeed']['v']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['RotorSpeed']['t_local']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['RotorSpeed']['t_local']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['WindSpeed']['pointName']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['WindSpeed']['pointName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['WindSpeed']['objectId']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['WindSpeed']['objectId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['WindSpeed']['t']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['WindSpeed']['t']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['WindSpeed']['q']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['WindSpeed']['q']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['WindSpeed']['v']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['WindSpeed']['v']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BE5304A000']['points']['WindSpeed']['t_local']"
+											},
+											"sink": {
+												"path": "$['result']['93898BE5304A000']['points']['WindSpeed']['t_local']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['replyInfo']['rcvTime']"
+											},
+											"sink": {
+												"path": "$['replyInfo']['rcvTime']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['replyInfo']['replyTime']"
+											},
+											"sink": {
+												"path": "$['replyInfo']['replyTime']"
+											}
+										}
+									]
 								}
-							}
+							},
+							"inputs": [
+								{
+									"referenceName": "ds_Rest_sseBazeFieldApi",
+									"type": "DatasetReference",
+									"parameters": {
+										"objectIds": {
+											"value": "@variables('turbine')",
+											"type": "Expression"
+										},
+										"points": {
+											"value": "@variables('points')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "ds_dataLakeV2_sseTurbines",
+									"type": "DatasetReference",
+									"parameters": {
+										"folderName": "rawFiles",
+										"fileName": {
+											"value": "@concat(guid(),'.json')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
 						}
 					]
 				}
@@ -115,76 +470,6 @@
 						"type": "Expression"
 					}
 				}
-			},
-			{
-				"name": "Copy data from API Call to Storage",
-				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "ForEach Turbine At One Location",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "0.12:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"source": {
-						"type": "RestSource",
-						"httpRequestTimeout": "00:01:40",
-						"requestInterval": "00.00:00:00.010",
-						"requestMethod": "GET",
-						"paginationRules": {
-							"supportRFC5988": "true"
-						}
-					},
-					"sink": {
-						"type": "JsonSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
-						},
-						"formatSettings": {
-							"type": "JsonWriteSettings"
-						}
-					},
-					"enableStaging": false
-				},
-				"inputs": [
-					{
-						"referenceName": "ds_Rest_sseBazeFieldApi",
-						"type": "DatasetReference",
-						"parameters": {
-							"objectIds": {
-								"value": "@variables('turbine')",
-								"type": "Expression"
-							},
-							"points": {
-								"value": "@variables('points')",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "ds_dataLakeV2_sseTurbines",
-						"type": "DatasetReference",
-						"parameters": {
-							"folderName": "rawFiles",
-							"fileName": {
-								"value": "@concat(guid(),'.json')",
-								"type": "Expression"
-							}
-						}
-					}
-				]
 			}
 		],
 		"parameters": {
