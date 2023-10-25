@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "e9416a30-d7a9-4440-9806-9004d65e054b.json",
+				"fileName": "mergedFile.json",
 				"folderPath": "mergedFiles",
 				"fileSystem": "turbine"
 			}
