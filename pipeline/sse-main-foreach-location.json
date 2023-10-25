@@ -18,7 +18,7 @@
 					"source": {
 						"type": "AzureTableSource",
 						"azureTableSourceQuery": {
-							"value": "@PartitionKey eq pipeline().parameters.Location",
+							"value": "@concat('PartitionKey eq ', pipeline().parameters.Location)",
 							"type": "Expression"
 						},
 						"azureTableSourceIgnoreTableNotFound": false
