@@ -38,7 +38,7 @@
 				"     limit: 100,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> rawMergedFile",
-				"rawMergedFile sink(allowSchemaDrift: true,",
+				"rawMergedFile sink(allowSchemaDrift: false,",
 				"     validateSchema: false,",
 				"     input(",
 				"          result as (ObjectId as string, ObjectName as string, ActivePower as integer, RotorSpeed as integer, WindSpeed as double, Latitude as string, Longitude as string)",
