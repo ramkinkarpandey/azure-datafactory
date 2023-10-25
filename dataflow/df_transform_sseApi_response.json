@@ -20,7 +20,7 @@
 					},
 					"name": "transformedFile",
 					"rejectedDataLinkedService": {
-						"referenceName": "ls_dataLakeV2_sseTurbines_transformedData",
+						"referenceName": "ls_dataLakeV2_sseTurbines",
 						"type": "LinkedServiceReference"
 					}
 				}
