@@ -54,7 +54,21 @@
 								"items": {
 									"value": "@activity('Lookup List Of Turbines').output.value",
 									"type": "Expression"
-								}
+								},
+								"activities": [
+									{
+										"name": "Append TurbineNamesCollection",
+										"type": "AppendVariable",
+										"dependsOn": [],
+										"userProperties": []
+									},
+									{
+										"name": "Append PointsCollection",
+										"type": "AppendVariable",
+										"dependsOn": [],
+										"userProperties": []
+									}
+								]
 							}
 						}
 					]
@@ -70,10 +84,16 @@
 			}
 		},
 		"variables": {
-			"turbineName": {
+			"turbine": {
 				"type": "String"
 			},
-			"pointsToCollect": {
+			"points": {
+				"type": "String"
+			},
+			"turbineCollection": {
+				"type": "Array"
+			},
+			"pointsCollection": {
 				"type": "String"
 			}
 		},
