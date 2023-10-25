@@ -64,7 +64,17 @@
 		"parameters": {
 			"Locations": {
 				"type": "array",
-				"defaultValue": "[GRIF]"
+				"defaultValue": [
+					"GRIF"
+				]
+			}
+		},
+		"variables": {
+			"turbineName": {
+				"type": "String"
+			},
+			"pointsToCollect": {
+				"type": "String"
 			}
 		},
 		"annotations": []
