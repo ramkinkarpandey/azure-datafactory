@@ -40,7 +40,9 @@
 			"Locations": {
 				"type": "array",
 				"defaultValue": [
-					"GRIF"
+					"GRIF",
+					"ARTF",
+					"DROM"
 				]
 			}
 		},
