@@ -114,10 +114,18 @@
 							},
 							{
 								"source": {
-									"path": "$['result']..['points']"
+									"path": "$['result']['points']"
 								},
 								"sink": {
 									"path": "$['result']['points']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['Location']"
+								},
+								"sink": {
+									"path": "$['Location']"
 								}
 							}
 						],
