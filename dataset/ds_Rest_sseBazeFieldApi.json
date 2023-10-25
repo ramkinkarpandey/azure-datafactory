@@ -3,7 +3,17 @@
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_rest_sseBazeFieldApi",
-			"type": "LinkedServiceReference"
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"objectIds": {
+					"value": "@dataset().objectIds",
+					"type": "Expression"
+				},
+				"points": {
+					"value": "@dataset().points",
+					"type": "Expression"
+				}
+			}
 		},
 		"parameters": {
 			"objectIds": {
