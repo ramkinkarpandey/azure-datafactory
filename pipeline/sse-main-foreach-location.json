@@ -31,7 +31,7 @@
 				}
 			},
 			{
-				"name": "ForEach Turbine",
+				"name": "ForEach Turbine At One Location",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -92,7 +92,7 @@
 				"type": "Copy",
 				"dependsOn": [
 					{
-						"activity": "ForEach Turbine",
+						"activity": "ForEach Turbine At One Location",
 						"dependencyConditions": [
 							"Succeeded"
 						]
