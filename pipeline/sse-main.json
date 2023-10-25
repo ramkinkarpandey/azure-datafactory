@@ -237,60 +237,37 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['result']['ObjectId']"
-								},
-								"sink": {
-									"name": "ObjectId"
+									"path": "$['Latitude']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['result']['ObjectName']"
-								},
-								"sink": {
-									"name": "ObjectName"
+									"path": "$['Longitude']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['result']['ActivePower']"
-								},
-								"sink": {
-									"name": "ActivePower"
+									"path": "$['ObjectName']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['result']['RotorSpeed']"
-								},
-								"sink": {
-									"name": "RotorSpeed"
+									"path": "$['ObjectId']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['result']['WindSpeed']"
-								},
-								"sink": {
-									"name": "WindSpeed"
+									"path": "$['ActivePower']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['result']['Latitude']"
-								},
-								"sink": {
-									"name": "Latitude",
-									"type": "Double"
+									"path": "$['RotorSpeed']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['result']['Longitude']"
-								},
-								"sink": {
-									"name": "Longitude",
-									"type": "Double"
+									"path": "$['WindSpeed']"
 								}
 							}
 						]
@@ -298,12 +275,8 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_dataLakeV2_sseTurbines",
-						"type": "DatasetReference",
-						"parameters": {
-							"folderName": "transformedFiles",
-							"fileName": "\\"
-						}
+						"referenceName": "ds_dataLakeV2_transformedFileV2",
+						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
