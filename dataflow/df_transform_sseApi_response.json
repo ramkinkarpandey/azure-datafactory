@@ -38,7 +38,7 @@
 				"     validateSchema: false,",
 				"     limit: 100,",
 				"     ignoreNoFilesFound: false,",
-				"     documentForm: 'arrayOfDocuments') ~> rawMergedFile",
+				"     documentForm: 'documentPerLine') ~> rawMergedFile",
 				"rawMergedFile sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
