@@ -236,7 +236,7 @@
 						"type": "AzureTableSink",
 						"azureTableInsertType": "merge",
 						"azureTablePartitionKeyName": "Location",
-						"azureTableRowKeyName": "ObjectId",
+						"azureTableRowKeyName": "ObjectName",
 						"writeBatchSize": 10000
 					},
 					"enableStaging": false,
