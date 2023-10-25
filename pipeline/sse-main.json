@@ -80,7 +80,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"variableName": "pointsCollection",
-											"value": ""
+											"value": "@item().Points"
 										}
 									}
 								]
