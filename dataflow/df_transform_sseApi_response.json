@@ -53,6 +53,7 @@
 				"          Latitude,",
 				"          Longitude,",
 				"          ObjectName,",
+				"          Location,",
 				"          ObjectId = result.points.ActivePower.objectId,",
 				"          ActivePower = result.points.ActivePower.v,",
 				"          RotorSpeed = result.points.RotorSpeed.v,",
