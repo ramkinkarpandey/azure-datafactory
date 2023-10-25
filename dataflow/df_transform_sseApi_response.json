@@ -14,10 +14,6 @@
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "ds_dataLakeV2_sseTurbines_transformedData",
-						"type": "DatasetReference"
-					},
 					"name": "transformedFile",
 					"rejectedDataLinkedService": {
 						"referenceName": "ls_dataLakeV2_sseTurbines",
@@ -39,24 +35,9 @@
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> rawMergedFile",
 				"rawMergedFile sink(allowSchemaDrift: false,",
-				"     validateSchema: false,",
-				"     input(",
-				"          result as (ObjectId as string, ObjectName as string, ActivePower as integer, RotorSpeed as integer, WindSpeed as double, Latitude as string, Longitude as string)",
-				"     ),",
-				"     umask: 0022,",
-				"     preCommands: [],",
-				"     postCommands: [],",
+				"     validateSchema: true,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     mapColumn(",
-				"          Latitude,",
-				"          Longitude,",
-				"          ObjectName,",
-				"          ObjectId = result.points.ActivePower.objectId,",
-				"          ActivePower = result.points.ActivePower.v,",
-				"          RotorSpeed = result.points.RotorSpeed.v,",
-				"          WindSpeed = result.points.WindSpeed.v",
-				"     )) ~> transformedFile"
+				"     skipDuplicateMapOutputs: true) ~> transformedFile"
 			]
 		}
 	}
