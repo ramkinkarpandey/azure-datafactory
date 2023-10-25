@@ -50,10 +50,11 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     mapColumn(",
+				"          result,",
+				"          replyInfo,",
 				"          ObjectName,",
 				"          Latitude,",
-				"          Longitude,",
-				"          ObjectId = result.{93898BB7804A000}.points.ActivePower.objectId",
+				"          Longitude",
 				"     )) ~> transformedFile"
 			]
 		}
