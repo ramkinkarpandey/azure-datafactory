@@ -1,0 +1,277 @@
+{
+	"name": "ds_dataLakeV2_sseTurbines_mergedFiles",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_dataLakeV2_sseTurbines_mergedFiles",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "3c6bea09-4182-471c-8b9b-d4ceb26534dc.json",
+				"folderPath": "mergedFiles",
+				"fileSystem": "turbine"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"result": {
+					"type": "object",
+					"properties": {
+						"93899031144A000": {
+							"type": "object",
+							"properties": {
+								"points": {
+									"type": "object",
+									"properties": {
+										"ActivePower": {
+											"type": "object",
+											"properties": {
+												"pointName": {
+													"type": "string"
+												},
+												"objectId": {
+													"type": "string"
+												},
+												"t": {
+													"type": "integer"
+												},
+												"q": {
+													"type": "integer"
+												},
+												"v": {
+													"type": "integer"
+												},
+												"t_local": {
+													"type": "string"
+												}
+											}
+										},
+										"RotorSpeed": {
+											"type": "object",
+											"properties": {
+												"pointName": {
+													"type": "string"
+												},
+												"objectId": {
+													"type": "string"
+												},
+												"t": {
+													"type": "integer"
+												},
+												"q": {
+													"type": "integer"
+												},
+												"v": {
+													"type": "number"
+												},
+												"t_local": {
+													"type": "string"
+												}
+											}
+										},
+										"WindSpeed": {
+											"type": "object",
+											"properties": {
+												"pointName": {
+													"type": "string"
+												},
+												"objectId": {
+													"type": "string"
+												},
+												"t": {
+													"type": "integer"
+												},
+												"q": {
+													"type": "integer"
+												},
+												"v": {
+													"type": "number"
+												},
+												"t_local": {
+													"type": "string"
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"93898BB7804A000": {
+							"type": "object",
+							"properties": {
+								"points": {
+									"type": "object",
+									"properties": {
+										"ActivePower": {
+											"type": "object",
+											"properties": {
+												"pointName": {
+													"type": "string"
+												},
+												"objectId": {
+													"type": "string"
+												},
+												"t": {
+													"type": "integer"
+												},
+												"q": {
+													"type": "integer"
+												},
+												"v": {
+													"type": "integer"
+												},
+												"t_local": {
+													"type": "string"
+												}
+											}
+										},
+										"RotorSpeed": {
+											"type": "object",
+											"properties": {
+												"pointName": {
+													"type": "string"
+												},
+												"objectId": {
+													"type": "string"
+												},
+												"t": {
+													"type": "integer"
+												},
+												"q": {
+													"type": "integer"
+												},
+												"v": {
+													"type": "integer"
+												},
+												"t_local": {
+													"type": "string"
+												}
+											}
+										},
+										"WindSpeed": {
+											"type": "object",
+											"properties": {
+												"pointName": {
+													"type": "string"
+												},
+												"objectId": {
+													"type": "string"
+												},
+												"t": {
+													"type": "integer"
+												},
+												"q": {
+													"type": "integer"
+												},
+												"v": {
+													"type": "number"
+												},
+												"t_local": {
+													"type": "string"
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"95A5BB5FA44A000": {
+							"type": "object",
+							"properties": {
+								"points": {
+									"type": "object",
+									"properties": {
+										"ActivePower": {
+											"type": "object",
+											"properties": {
+												"pointName": {
+													"type": "string"
+												},
+												"objectId": {
+													"type": "string"
+												},
+												"t": {
+													"type": "integer"
+												},
+												"q": {
+													"type": "integer"
+												},
+												"v": {
+													"type": "integer"
+												},
+												"t_local": {
+													"type": "string"
+												}
+											}
+										},
+										"RotorSpeed": {
+											"type": "object",
+											"properties": {
+												"pointName": {
+													"type": "string"
+												},
+												"objectId": {
+													"type": "string"
+												},
+												"t": {
+													"type": "integer"
+												},
+												"q": {
+													"type": "integer"
+												},
+												"v": {
+													"type": "integer"
+												},
+												"t_local": {
+													"type": "string"
+												}
+											}
+										},
+										"WindSpeed": {
+											"type": "object",
+											"properties": {
+												"pointName": {
+													"type": "string"
+												},
+												"objectId": {
+													"type": "string"
+												},
+												"t": {
+													"type": "integer"
+												},
+												"q": {
+													"type": "integer"
+												},
+												"v": {
+													"type": "integer"
+												},
+												"t_local": {
+													"type": "string"
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"replyInfo": {
+					"type": "object",
+					"properties": {
+						"rcvTime": {
+							"type": "integer"
+						},
+						"replyTime": {
+							"type": "integer"
+						}
+					}
+				}
+			}
+		}
+	}
+}
