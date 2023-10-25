@@ -234,7 +234,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"folderName": "rawFiles",
-							"fileName": "*.json"
+							"fileName": "*"
 						}
 					}
 				],
