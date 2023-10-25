@@ -57,10 +57,14 @@
 								},
 								"activities": [
 									{
-										"name": "Append TurbineNamesCollection",
+										"name": "Append TurbineCollection",
 										"type": "AppendVariable",
 										"dependsOn": [],
-										"userProperties": []
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "turbineCollection",
+											"value": ""
+										}
 									},
 									{
 										"name": "Append PointsCollection",
