@@ -176,7 +176,8 @@
 						"referenceName": "ds_dataLakeV2_sseTurbines",
 						"type": "DatasetReference",
 						"parameters": {
-							"folderName": "rawFiles"
+							"folderName": "rawFiles",
+							"fileName": "notUsed"
 						}
 					}
 				]
@@ -238,7 +239,8 @@
 						"referenceName": "ds_dataLakeV2_sseTurbines",
 						"type": "DatasetReference",
 						"parameters": {
-							"folderName": "mergedFiles"
+							"folderName": "mergedFiles",
+							"fileName": "notUsed"
 						}
 					}
 				]
