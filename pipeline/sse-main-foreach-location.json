@@ -77,9 +77,8 @@
 			}
 		],
 		"parameters": {
-			"Locations": {
-				"type": "array",
-				"defaultValue": "['GRIF']"
+			"Location": {
+				"type": "string"
 			}
 		},
 		"annotations": []
