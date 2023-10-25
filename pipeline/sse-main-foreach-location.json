@@ -81,6 +81,20 @@
 				"type": "string"
 			}
 		},
+		"variables": {
+			"turbine": {
+				"type": "String"
+			},
+			"points": {
+				"type": "String"
+			},
+			"turbineCollection": {
+				"type": "Array"
+			},
+			"pointsCollection": {
+				"type": "Array"
+			}
+		},
 		"annotations": []
 	}
 }
