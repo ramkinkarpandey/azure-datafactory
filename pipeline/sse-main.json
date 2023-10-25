@@ -81,7 +81,7 @@
 						},
 						"formatSettings": {
 							"type": "JsonWriteSettings",
-							"filePattern": "arrayOfObjects"
+							"filePattern": "setOfObjects"
 						}
 					},
 					"enableStaging": false
