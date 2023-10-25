@@ -63,7 +63,7 @@
 										"userProperties": [],
 										"typeProperties": {
 											"variableName": "turbineCollection",
-											"value": "@item().turbine"
+											"value": "@item().RowKey"
 										}
 									},
 									{
