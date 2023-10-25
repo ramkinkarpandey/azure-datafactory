@@ -63,14 +63,25 @@
 										"userProperties": [],
 										"typeProperties": {
 											"variableName": "turbineCollection",
-											"value": ""
+											"value": "@item().turbine"
 										}
 									},
 									{
 										"name": "Append PointsCollection",
 										"type": "AppendVariable",
-										"dependsOn": [],
-										"userProperties": []
+										"dependsOn": [
+											{
+												"activity": "Append TurbineCollection",
+												"dependencyConditions": [
+													"Succeeded"
+												]
+											}
+										],
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "pointsCollection",
+											"value": ""
+										}
 									}
 								]
 							}
