@@ -5,6 +5,14 @@
 			"referenceName": "ls_rest_sseBazeFieldApi",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"objectIds": {
+				"type": "string"
+			},
+			"points": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "RestResource",
 		"schema": []
