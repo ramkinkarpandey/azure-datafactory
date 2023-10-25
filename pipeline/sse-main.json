@@ -14,76 +14,22 @@
 					},
 					"activities": [
 						{
-							"name": "Lookup List Of Turbines",
-							"type": "Lookup",
+							"name": "Execute sse-main-foreach-location",
+							"type": "ExecutePipeline",
 							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "AzureTableSource",
-									"azureTableSourceQuery": "PartitionKey eq item()",
-									"azureTableSourceIgnoreTableNotFound": false
+								"pipeline": {
+									"referenceName": "sse-main-foreach-location",
+									"type": "PipelineReference"
 								},
-								"dataset": {
-									"referenceName": "ds_azureTable_sseStorage",
-									"type": "DatasetReference"
-								},
-								"firstRowOnly": false
-							}
-						},
-						{
-							"name": "ForEach Turbine",
-							"type": "ForEach",
-							"dependsOn": [
-								{
-									"activity": "Lookup List Of Turbines",
-									"dependencyConditions": [
-										"Succeeded"
-									]
-								}
-							],
-							"userProperties": [],
-							"typeProperties": {
-								"items": {
-									"value": "@activity('Lookup List Of Turbines').output.value",
-									"type": "Expression"
-								},
-								"activities": [
-									{
-										"name": "Append TurbineCollection",
-										"type": "AppendVariable",
-										"dependsOn": [],
-										"userProperties": [],
-										"typeProperties": {
-											"variableName": "turbineCollection",
-											"value": "@item().RowKey"
-										}
-									},
-									{
-										"name": "Append PointsCollection",
-										"type": "AppendVariable",
-										"dependsOn": [
-											{
-												"activity": "Append TurbineCollection",
-												"dependencyConditions": [
-													"Succeeded"
-												]
-											}
-										],
-										"userProperties": [],
-										"typeProperties": {
-											"variableName": "pointsCollection",
-											"value": "@item().Points"
-										}
+								"waitOnCompletion": true,
+								"parameters": {
+									"Locations": {
+										"value": "@item()",
+										"type": "Expression"
 									}
-								]
+								}
 							}
 						}
 					]
