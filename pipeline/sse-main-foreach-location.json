@@ -119,7 +119,181 @@
 										"type": "JsonWriteSettings"
 									}
 								},
-								"enableStaging": false
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['pointName']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['pointName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['objectId']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['objectId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['t']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['t']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['q']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['q']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['v']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['v']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['t_local']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['ActivePower']['t_local']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['pointName']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['pointName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['objectId']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['objectId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['t']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['t']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['q']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['q']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['v']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['v']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['t_local']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['RotorSpeed']['t_local']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['pointName']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['pointName']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['objectId']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['objectId']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['t']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['t']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['q']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['q']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['v']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['v']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['t_local']"
+											},
+											"sink": {
+												"path": "$['result']['93898BB7804A000']['points']['WindSpeed']['t_local']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['replyInfo']['rcvTime']"
+											},
+											"sink": {
+												"path": "$['replyInfo']['rcvTime']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['replyInfo']['replyTime']"
+											},
+											"sink": {
+												"path": "$['replyInfo']['replyTime']"
+											}
+										},
+										{
+											"source": {
+												"path": "$['ObjectName']"
+											},
+											"sink": {
+												"path": "$['ObjectName']"
+											}
+										}
+									],
+									"collectionReference": ""
+								}
 							},
 							"inputs": [
 								{
