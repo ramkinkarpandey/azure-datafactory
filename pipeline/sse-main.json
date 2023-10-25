@@ -41,7 +41,14 @@
 						{
 							"name": "ForEach Turbine",
 							"type": "ForEach",
-							"dependsOn": [],
+							"dependsOn": [
+								{
+									"activity": "Lookup List Of Turbines",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
 							"userProperties": [],
 							"typeProperties": {
 								"activities": [
