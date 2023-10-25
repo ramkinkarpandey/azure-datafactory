@@ -43,6 +43,7 @@
 				"     input(",
 				"          result as (ObjectId as string, ObjectName as string, ActivePower as integer, RotorSpeed as integer, WindSpeed as double, Latitude as string, Longitude as string)",
 				"     ),",
+				"     truncate: true,",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",

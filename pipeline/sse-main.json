@@ -298,8 +298,12 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_dataLakeV2_sseTurbines_transformedData",
-						"type": "DatasetReference"
+						"referenceName": "ds_dataLakeV2_sseTurbines",
+						"type": "DatasetReference",
+						"parameters": {
+							"folderName": "transformedFiles",
+							"fileName": "\\"
+						}
 					}
 				],
 				"outputs": [
