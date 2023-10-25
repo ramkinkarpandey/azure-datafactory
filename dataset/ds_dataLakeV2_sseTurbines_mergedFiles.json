@@ -21,238 +21,75 @@
 				"result": {
 					"type": "object",
 					"properties": {
-						"93898BB7804A000": {
+						"points": {
 							"type": "object",
 							"properties": {
-								"points": {
+								"ActivePower": {
 									"type": "object",
 									"properties": {
-										"ActivePower": {
-											"type": "object",
-											"properties": {
-												"pointName": {
-													"type": "string"
-												},
-												"objectId": {
-													"type": "string"
-												},
-												"t": {
-													"type": "integer"
-												},
-												"q": {
-													"type": "integer"
-												},
-												"v": {
-													"type": "integer"
-												},
-												"t_local": {
-													"type": "string"
-												}
-											}
+										"pointName": {
+											"type": "string"
 										},
-										"RotorSpeed": {
-											"type": "object",
-											"properties": {
-												"pointName": {
-													"type": "string"
-												},
-												"objectId": {
-													"type": "string"
-												},
-												"t": {
-													"type": "integer"
-												},
-												"q": {
-													"type": "integer"
-												},
-												"v": {
-													"type": "integer"
-												},
-												"t_local": {
-													"type": "string"
-												}
-											}
+										"objectId": {
+											"type": "string"
 										},
-										"WindSpeed": {
-											"type": "object",
-											"properties": {
-												"pointName": {
-													"type": "string"
-												},
-												"objectId": {
-													"type": "string"
-												},
-												"t": {
-													"type": "integer"
-												},
-												"q": {
-													"type": "integer"
-												},
-												"v": {
-													"type": "number"
-												},
-												"t_local": {
-													"type": "string"
-												}
-											}
+										"t": {
+											"type": "integer"
+										},
+										"q": {
+											"type": "integer"
+										},
+										"v": {
+											"type": "integer"
+										},
+										"t_local": {
+											"type": "string"
 										}
 									}
-								}
-							}
-						},
-						"93899031144A000": {
-							"type": "object",
-							"properties": {
-								"points": {
+								},
+								"RotorSpeed": {
 									"type": "object",
 									"properties": {
-										"ActivePower": {
-											"type": "object",
-											"properties": {
-												"pointName": {
-													"type": "string"
-												},
-												"objectId": {
-													"type": "string"
-												},
-												"t": {
-													"type": "integer"
-												},
-												"q": {
-													"type": "integer"
-												},
-												"v": {
-													"type": "integer"
-												},
-												"t_local": {
-													"type": "string"
-												}
-											}
+										"pointName": {
+											"type": "string"
 										},
-										"RotorSpeed": {
-											"type": "object",
-											"properties": {
-												"pointName": {
-													"type": "string"
-												},
-												"objectId": {
-													"type": "string"
-												},
-												"t": {
-													"type": "integer"
-												},
-												"q": {
-													"type": "integer"
-												},
-												"v": {
-													"type": "number"
-												},
-												"t_local": {
-													"type": "string"
-												}
-											}
+										"objectId": {
+											"type": "string"
 										},
-										"WindSpeed": {
-											"type": "object",
-											"properties": {
-												"pointName": {
-													"type": "string"
-												},
-												"objectId": {
-													"type": "string"
-												},
-												"t": {
-													"type": "integer"
-												},
-												"q": {
-													"type": "integer"
-												},
-												"v": {
-													"type": "number"
-												},
-												"t_local": {
-													"type": "string"
-												}
-											}
+										"t": {
+											"type": "integer"
+										},
+										"q": {
+											"type": "integer"
+										},
+										"v": {
+											"type": "number"
+										},
+										"t_local": {
+											"type": "string"
 										}
 									}
-								}
-							}
-						},
-						"95A5BB5FA44A000": {
-							"type": "object",
-							"properties": {
-								"points": {
+								},
+								"WindSpeed": {
 									"type": "object",
 									"properties": {
-										"ActivePower": {
-											"type": "object",
-											"properties": {
-												"pointName": {
-													"type": "string"
-												},
-												"objectId": {
-													"type": "string"
-												},
-												"t": {
-													"type": "integer"
-												},
-												"q": {
-													"type": "integer"
-												},
-												"v": {
-													"type": "integer"
-												},
-												"t_local": {
-													"type": "string"
-												}
-											}
+										"pointName": {
+											"type": "string"
 										},
-										"RotorSpeed": {
-											"type": "object",
-											"properties": {
-												"pointName": {
-													"type": "string"
-												},
-												"objectId": {
-													"type": "string"
-												},
-												"t": {
-													"type": "integer"
-												},
-												"q": {
-													"type": "integer"
-												},
-												"v": {
-													"type": "integer"
-												},
-												"t_local": {
-													"type": "string"
-												}
-											}
+										"objectId": {
+											"type": "string"
 										},
-										"WindSpeed": {
-											"type": "object",
-											"properties": {
-												"pointName": {
-													"type": "string"
-												},
-												"objectId": {
-													"type": "string"
-												},
-												"t": {
-													"type": "integer"
-												},
-												"q": {
-													"type": "integer"
-												},
-												"v": {
-													"type": "integer"
-												},
-												"t_local": {
-													"type": "string"
-												}
-											}
+										"t": {
+											"type": "integer"
+										},
+										"q": {
+											"type": "integer"
+										},
+										"v": {
+											"type": "number"
+										},
+										"t_local": {
+											"type": "string"
 										}
 									}
 								}
@@ -270,15 +107,6 @@
 							"type": "integer"
 						}
 					}
-				},
-				"ObjectName": {
-					"type": "string"
-				},
-				"Latitude": {
-					"type": "string"
-				},
-				"Longitude": {
-					"type": "string"
 				}
 			}
 		}
