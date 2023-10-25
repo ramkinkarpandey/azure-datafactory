@@ -98,7 +98,7 @@
 				"type": "Array"
 			},
 			"pointsCollection": {
-				"type": "String"
+				"type": "Array"
 			}
 		},
 		"annotations": []
