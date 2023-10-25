@@ -1,5 +1,6 @@
 {
 	"name": "ls_rest_sseBazeFieldApi",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
 	"properties": {
 		"parameters": {
 			"objectIds": {
@@ -14,7 +15,13 @@
 		"typeProperties": {
 			"url": "@{concat('https://2ts.sserenewables.com/BazeField.Services/api/objects/points?',linkedService().objectIds,linkedService().points)}",
 			"enableServerCertificateValidation": true,
-			"authenticationType": "Anonymous"
+			"authenticationType": "Anonymous",
+			"authHeaders": {
+				"Authorization": {
+					"type": "SecureString",
+					"value": "**********"
+				}
+			}
 		}
 	}
 }
