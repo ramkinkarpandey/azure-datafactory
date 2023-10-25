@@ -1,0 +1,12 @@
+{
+	"name": "ds_Rest_sseBazeFieldApi",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_rest_sseBazeFieldApi",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}
