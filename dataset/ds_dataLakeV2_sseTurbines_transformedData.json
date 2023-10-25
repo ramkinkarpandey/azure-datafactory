@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "transformedDataSample.json",
+				"fileName": "transformedFile.json",
 				"folderPath": "transformedFiles",
 				"fileSystem": "turbine"
 			}
