@@ -50,14 +50,6 @@
 							},
 							{
 								"source": {
-									"path": "$['result']['ObjectName']"
-								},
-								"sink": {
-									"name": "ObjectName"
-								}
-							},
-							{
-								"source": {
 									"path": "$['result']['ActivePower']"
 								},
 								"sink": {
