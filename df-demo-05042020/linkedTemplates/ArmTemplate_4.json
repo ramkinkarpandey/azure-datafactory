@@ -11,10 +11,6 @@
 			"type": "string",
 			"defaultValue": "@trigger().outputs.windowStartTime"
 		},
-		"trg_OnBlobCreation_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
-		},
 		"scheduleTrigger-SSE_properties_sse-main_parameters_Locations": {
 			"type": "array",
 			"defaultValue": [
@@ -22,6 +18,10 @@
 				"ARTM",
 				"DROM"
 			]
+		},
+		"trg_OnBlobCreation_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
 		}
 	},
 	"variables": {
@@ -63,35 +63,6 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/trg_OnBlobCreation')]",
-			"type": "Microsoft.DataFactory/factories/triggers",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "CallingPipeline",
-							"type": "PipelineReference"
-						},
-						"parameters": {}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/genericcontainer/blobs/",
-					"blobPathEndsWith": "E*.csv",
-					"ignoreEmptyBlobs": false,
-					"scope": "[parameters('trg_OnBlobCreation_properties_typeProperties_scope')]",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": []
-		},
-		{
 			"name": "[concat(parameters('factoryName'), '/scheduleTrigger-SSE')]",
 			"type": "Microsoft.DataFactory/factories/triggers",
 			"apiVersion": "2018-06-01",
@@ -118,6 +89,35 @@
 						"endTime": "2023-10-27T17:28:00",
 						"timeZone": "GMT Standard Time"
 					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/trg_OnBlobCreation')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "CallingPipeline",
+							"type": "PipelineReference"
+						},
+						"parameters": {}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/genericcontainer/blobs/",
+					"blobPathEndsWith": "E*.csv",
+					"ignoreEmptyBlobs": false,
+					"scope": "[parameters('trg_OnBlobCreation_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
 				}
 			},
 			"dependsOn": []

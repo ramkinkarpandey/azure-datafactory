@@ -159,10 +159,6 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
 		},
-		"trg_OnBlobCreation_properties_typeProperties_scope": {
-			"type": "string",
-			"defaultValue": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
-		},
 		"scheduleTrigger-SSE_properties_sse-main_parameters_Locations": {
 			"type": "array",
 			"defaultValue": [
@@ -170,6 +166,10 @@
 				"ARTM",
 				"DROM"
 			]
+		},
+		"trg_OnBlobCreation_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
 		},
 		"containerUri": {
 			"type": "string",
@@ -390,11 +390,11 @@
 					"Trigger_1hs_properties_pipeline_parameters_windowStart": {
 						"value": "[parameters('Trigger_1hs_properties_pipeline_parameters_windowStart')]"
 					},
-					"trg_OnBlobCreation_properties_typeProperties_scope": {
-						"value": "[parameters('trg_OnBlobCreation_properties_typeProperties_scope')]"
-					},
 					"scheduleTrigger-SSE_properties_sse-main_parameters_Locations": {
 						"value": "[parameters('scheduleTrigger-SSE_properties_sse-main_parameters_Locations')]"
+					},
+					"trg_OnBlobCreation_properties_typeProperties_scope": {
+						"value": "[parameters('trg_OnBlobCreation_properties_typeProperties_scope')]"
 					}
 				}
 			},

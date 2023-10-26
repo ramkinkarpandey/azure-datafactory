@@ -119,15 +119,15 @@
 		"file_created_event_properties_typeProperties_scope": {
 			"value": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
 		},
-		"trg_OnBlobCreation_properties_typeProperties_scope": {
-			"value": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
-		},
 		"scheduleTrigger-SSE_properties_sse-main_parameters_Locations": {
 			"value": [
 				"GRIF",
 				"ARTM",
 				"DROM"
 			]
+		},
+		"trg_OnBlobCreation_properties_typeProperties_scope": {
+			"value": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
 		},
 		"containerUri": {
 			"value": ""
