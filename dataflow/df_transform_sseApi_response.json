@@ -52,7 +52,7 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     mapColumn(",
-				"          ObjectId = result.points.ActivePower.objectId,",
+				"          ObjectId = result.points.{CALC-ActivePower}.objectId,",
 				"          ObjectName,",
 				"          ActivePower = result.points.ActivePower.v,",
 				"          RotorSpeed = result.points.RotorSpeed.v,",
