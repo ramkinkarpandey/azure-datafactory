@@ -41,6 +41,15 @@
 						"mappings": [
 							{
 								"source": {
+									"path": "$['ObjectId']"
+								},
+								"sink": {
+									"name": "ObjectId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
 									"path": "$['ActivePower']"
 								},
 								"sink": {
@@ -108,7 +117,7 @@
 								},
 								"sink": {
 									"name": "CALC_ExternalCurtailmentFlag",
-									"type": "Double"
+									"type": "Boolean"
 								}
 							},
 							{
@@ -127,15 +136,6 @@
 								"sink": {
 									"name": "Longitude",
 									"type": "Double"
-								}
-							},
-							{
-								"source": {
-									"path": "$['ObjectId']"
-								},
-								"sink": {
-									"name": "ObjectId",
-									"type": "String"
 								}
 							}
 						],
