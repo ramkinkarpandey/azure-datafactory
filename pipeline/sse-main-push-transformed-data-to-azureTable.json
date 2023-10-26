@@ -51,6 +51,9 @@
 							{
 								"source": {
 									"path": "$['result']['ObjectName']"
+								},
+								"sink": {
+									"name": "ObjectName"
 								}
 							},
 							{
@@ -83,36 +86,57 @@
 							{
 								"source": {
 									"path": "$['result']['CALC-TheoreticalProduction']"
+								},
+								"sink": {
+									"name": "CALC-TheoreticalProduction"
 								}
 							},
 							{
 								"source": {
 									"path": "$['result']['IEC-OperationState']"
+								},
+								"sink": {
+									"name": "IEC-OperationStat"
 								}
 							},
 							{
 								"source": {
 									"path": "$['result']['CALC-ActivePower']"
+								},
+								"sink": {
+									"name": "CALC-ActivePower"
 								}
 							},
 							{
 								"source": {
 									"path": "$['result']['PI-ProducedMWh']"
+								},
+								"sink": {
+									"name": "PI-ProducedMWh"
 								}
 							},
 							{
 								"source": {
 									"path": "$['result']['DailyBudget']"
+								},
+								"sink": {
+									"name": "DailyBudget"
 								}
 							},
 							{
 								"source": {
 									"path": "$['result']['PI-CapacityFactor']"
+								},
+								"sink": {
+									"name": "PI-CapacityFactor"
 								}
 							},
 							{
 								"source": {
 									"path": "$['result']['CALC-ExternalCurtailmentFlag']"
+								},
+								"sink": {
+									"name": "CALC-ExternalCurtailmentFlag"
 								}
 							},
 							{
