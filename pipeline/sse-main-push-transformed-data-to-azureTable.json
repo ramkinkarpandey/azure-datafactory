@@ -102,6 +102,62 @@
 								"sink": {
 									"name": "Location"
 								}
+							},
+							{
+								"source": {
+									"path": "$['CALC-TheoreticalProduction']"
+								},
+								"sink": {
+									"name": "CALC-TheoreticalProduction"
+								}
+							},
+							{
+								"source": {
+									"path": "$['IEC-OperationState']"
+								},
+								"sink": {
+									"name": "IEC-OperationState"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CALC-ActivePower']"
+								},
+								"sink": {
+									"name": "CALC-ActivePower"
+								}
+							},
+							{
+								"source": {
+									"path": "$['PI-ProducedMWh']"
+								},
+								"sink": {
+									"name": "PI-ProducedMWh"
+								}
+							},
+							{
+								"source": {
+									"path": "$['DailyBudget']"
+								},
+								"sink": {
+									"name": "DailyBudget"
+								}
+							},
+							{
+								"source": {
+									"path": "$['PI-CapacityFactor']"
+								},
+								"sink": {
+									"name": "PI-CapacityFactor"
+								}
+							},
+							{
+								"source": {
+									"path": "$['CALC-ExternalCurtailmentFlag']"
+								},
+								"sink": {
+									"name": "CALC-ExternalCurtailmentFlag"
+								}
 							}
 						],
 						"collectionReference": ""
