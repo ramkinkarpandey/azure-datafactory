@@ -16,7 +16,10 @@
 			"defaultValue": [
 				"GRIF",
 				"ARTM",
-				"DROM"
+				"DROM",
+				"BESS",
+				"BIND",
+				"COOM"
 			]
 		},
 		"trg_OnBlobCreation_properties_typeProperties_scope": {
