@@ -17,6 +17,9 @@
 		"AvanadeMachine_SqlServer_Parameterised_connectionString": {
 			"value": ""
 		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
 		"Azure_Sql_DfDemo_Db_connectionString": {
 			"value": ""
 		},
@@ -35,6 +38,21 @@
 		"blob_linkedservice_connectionString": {
 			"value": ""
 		},
+		"ls_Datalake_Json_accountKey": {
+			"value": ""
+		},
+		"ls_azureTable_sseStorage_connectionString": {
+			"value": ""
+		},
+		"ls_dataLakeV2_sseTurbines_accountKey": {
+			"value": ""
+		},
+		"ls_dataLakeV2_sseTurbines_mergedFiles_accountKey": {
+			"value": ""
+		},
+		"ls_dataLakeV2_sseTurbines_transformedData_accountKey": {
+			"value": ""
+		},
 		"ls_datalake_csv_accountKey": {
 			"value": ""
 		},
@@ -49,6 +67,9 @@
 		},
 		"AvanadeMachineFileSystem_properties_typeProperties_userId": {
 			"value": "localuser"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://datalakesv2storage.dfs.core.windows.net/"
 		},
 		"DataLakeStorage_properties_typeProperties_url": {
 			"value": "https://datalakesv2storage.dfs.core.windows.net/"
@@ -65,11 +86,26 @@
 		"PdfSource_properties_typeProperties_url": {
 			"value": "@{linkedService().url}"
 		},
+		"ls_Datalake_Json_properties_typeProperties_url": {
+			"value": "https://datalakesv2storage.dfs.core.windows.net/"
+		},
+		"ls_dataLakeV2_sseTurbines_properties_typeProperties_url": {
+			"value": "https://ssestoragedemo.dfs.core.windows.net/"
+		},
+		"ls_dataLakeV2_sseTurbines_mergedFiles_properties_typeProperties_url": {
+			"value": "https://ssestoragedemo.dfs.core.windows.net/"
+		},
+		"ls_dataLakeV2_sseTurbines_transformedData_properties_typeProperties_url": {
+			"value": "https://ssestoragedemo.dfs.core.windows.net/"
+		},
 		"ls_datalake_csv_properties_typeProperties_url": {
 			"value": "https://datalakesv2storage.dfs.core.windows.net/"
 		},
 		"ls_function_salaryOperations_properties_typeProperties_functionAppUrl": {
 			"value": "https://salaryoperations.azurewebsites.net"
+		},
+		"ls_rest_sseBazeFieldApi_properties_typeProperties_url": {
+			"value": "@{concat('https://2ts.sserenewables.com/BazeField.Services/api/objects/points?',linkedService().objectIds,linkedService().points)}"
 		},
 		"BlobCreation_properties_typeProperties_scope": {
 			"value": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
@@ -85,6 +121,13 @@
 		},
 		"trg_OnBlobCreation_properties_typeProperties_scope": {
 			"value": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
+		},
+		"scheduleTrigger-SSE_properties_sse-main_parameters_Locations": {
+			"value": [
+				"GRIF",
+				"ARTM",
+				"DROM"
+			]
 		}
 	}
 }

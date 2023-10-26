@@ -23,6 +23,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AvanadeMachine_SqlServer_Parameterised'"
 		},
+		"AzureDataLakeStorage1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
+		},
 		"Azure_Sql_DfDemo_Db_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Azure_Sql_DfDemo_Db'"
@@ -47,6 +51,26 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'blob_linkedservice'"
 		},
+		"ls_Datalake_Json_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_Datalake_Json'"
+		},
+		"ls_azureTable_sseStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_azureTable_sseStorage'"
+		},
+		"ls_dataLakeV2_sseTurbines_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_dataLakeV2_sseTurbines'"
+		},
+		"ls_dataLakeV2_sseTurbines_mergedFiles_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_dataLakeV2_sseTurbines_mergedFiles'"
+		},
+		"ls_dataLakeV2_sseTurbines_transformedData_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_dataLakeV2_sseTurbines_transformedData'"
+		},
 		"ls_datalake_csv_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_datalake_csv'"
@@ -66,6 +90,10 @@
 		"AvanadeMachineFileSystem_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "localuser"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakesv2storage.dfs.core.windows.net/"
 		},
 		"DataLakeStorage_properties_typeProperties_url": {
 			"type": "string",
@@ -87,6 +115,22 @@
 			"type": "string",
 			"defaultValue": "@{linkedService().url}"
 		},
+		"ls_Datalake_Json_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakesv2storage.dfs.core.windows.net/"
+		},
+		"ls_dataLakeV2_sseTurbines_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://ssestoragedemo.dfs.core.windows.net/"
+		},
+		"ls_dataLakeV2_sseTurbines_mergedFiles_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://ssestoragedemo.dfs.core.windows.net/"
+		},
+		"ls_dataLakeV2_sseTurbines_transformedData_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://ssestoragedemo.dfs.core.windows.net/"
+		},
 		"ls_datalake_csv_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://datalakesv2storage.dfs.core.windows.net/"
@@ -94,6 +138,10 @@
 		"ls_function_salaryOperations_properties_typeProperties_functionAppUrl": {
 			"type": "string",
 			"defaultValue": "https://salaryoperations.azurewebsites.net"
+		},
+		"ls_rest_sseBazeFieldApi_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "@{concat('https://2ts.sserenewables.com/BazeField.Services/api/objects/points?',linkedService().objectIds,linkedService().points)}"
 		},
 		"BlobCreation_properties_typeProperties_scope": {
 			"type": "string",
@@ -114,6 +162,14 @@
 		"trg_OnBlobCreation_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
+		},
+		"scheduleTrigger-SSE_properties_sse-main_parameters_Locations": {
+			"type": "array",
+			"defaultValue": [
+				"GRIF",
+				"ARTM",
+				"DROM"
+			]
 		},
 		"containerUri": {
 			"type": "string",
@@ -142,6 +198,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"AzureDataLakeStorage1_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					},
 					"Azure_Sql_DfDemo_Db_connectionString": {
 						"value": "[parameters('Azure_Sql_DfDemo_Db_connectionString')]"
 					},
@@ -157,6 +216,21 @@
 					"blob_linkedservice_connectionString": {
 						"value": "[parameters('blob_linkedservice_connectionString')]"
 					},
+					"ls_Datalake_Json_accountKey": {
+						"value": "[parameters('ls_Datalake_Json_accountKey')]"
+					},
+					"ls_azureTable_sseStorage_connectionString": {
+						"value": "[parameters('ls_azureTable_sseStorage_connectionString')]"
+					},
+					"ls_dataLakeV2_sseTurbines_accountKey": {
+						"value": "[parameters('ls_dataLakeV2_sseTurbines_accountKey')]"
+					},
+					"ls_dataLakeV2_sseTurbines_mergedFiles_accountKey": {
+						"value": "[parameters('ls_dataLakeV2_sseTurbines_mergedFiles_accountKey')]"
+					},
+					"ls_dataLakeV2_sseTurbines_transformedData_accountKey": {
+						"value": "[parameters('ls_dataLakeV2_sseTurbines_transformedData_accountKey')]"
+					},
 					"ls_datalake_csv_accountKey": {
 						"value": "[parameters('ls_datalake_csv_accountKey')]"
 					},
@@ -165,6 +239,9 @@
 					},
 					"parameterised_linked_service_connectionString": {
 						"value": "[parameters('parameterised_linked_service_connectionString')]"
+					},
+					"AzureDataLakeStorage1_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
 					},
 					"DataLakeStorage_properties_typeProperties_url": {
 						"value": "[parameters('DataLakeStorage_properties_typeProperties_url')]"
@@ -175,11 +252,26 @@
 					"PdfSource_properties_typeProperties_url": {
 						"value": "[parameters('PdfSource_properties_typeProperties_url')]"
 					},
+					"ls_Datalake_Json_properties_typeProperties_url": {
+						"value": "[parameters('ls_Datalake_Json_properties_typeProperties_url')]"
+					},
+					"ls_dataLakeV2_sseTurbines_properties_typeProperties_url": {
+						"value": "[parameters('ls_dataLakeV2_sseTurbines_properties_typeProperties_url')]"
+					},
+					"ls_dataLakeV2_sseTurbines_mergedFiles_properties_typeProperties_url": {
+						"value": "[parameters('ls_dataLakeV2_sseTurbines_mergedFiles_properties_typeProperties_url')]"
+					},
+					"ls_dataLakeV2_sseTurbines_transformedData_properties_typeProperties_url": {
+						"value": "[parameters('ls_dataLakeV2_sseTurbines_transformedData_properties_typeProperties_url')]"
+					},
 					"ls_datalake_csv_properties_typeProperties_url": {
 						"value": "[parameters('ls_datalake_csv_properties_typeProperties_url')]"
 					},
 					"ls_function_salaryOperations_properties_typeProperties_functionAppUrl": {
 						"value": "[parameters('ls_function_salaryOperations_properties_typeProperties_functionAppUrl')]"
+					},
+					"ls_rest_sseBazeFieldApi_properties_typeProperties_url": {
+						"value": "[parameters('ls_rest_sseBazeFieldApi_properties_typeProperties_url')]"
 					},
 					"BlobCreation_properties_typeProperties_scope": {
 						"value": "[parameters('BlobCreation_properties_typeProperties_scope')]"
@@ -196,6 +288,26 @@
 				"mode": "incremental",
 				"templateLink": {
 					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'df-demo-05042020_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "df-demo-05042020_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {
@@ -232,17 +344,17 @@
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'df-demo-05042020_ArmTemplate_0')]"
+				"[resourceId('Microsoft.Resources/deployments', 'df-demo-05042020_ArmTemplate_1')]"
 			]
 		},
 		{
-			"name": "df-demo-05042020_ArmTemplate_2",
+			"name": "df-demo-05042020_ArmTemplate_3",
 			"type": "Microsoft.Resources/deployments",
 			"apiVersion": "2018-02-01",
 			"properties": {
 				"mode": "incremental",
 				"templateLink": {
-					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
 					"contentVersion": "1.0.0.0"
 				},
 				"parameters": {
@@ -254,17 +366,40 @@
 					},
 					"file_created_event_properties_typeProperties_scope": {
 						"value": "[parameters('file_created_event_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'df-demo-05042020_ArmTemplate_2')]"
+			]
+		},
+		{
+			"name": "df-demo-05042020_ArmTemplate_4",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_4.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
 					},
 					"Trigger_1hs_properties_pipeline_parameters_windowStart": {
 						"value": "[parameters('Trigger_1hs_properties_pipeline_parameters_windowStart')]"
 					},
 					"trg_OnBlobCreation_properties_typeProperties_scope": {
 						"value": "[parameters('trg_OnBlobCreation_properties_typeProperties_scope')]"
+					},
+					"scheduleTrigger-SSE_properties_sse-main_parameters_Locations": {
+						"value": "[parameters('scheduleTrigger-SSE_properties_sse-main_parameters_Locations')]"
 					}
 				}
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.Resources/deployments', 'df-demo-05042020_ArmTemplate_1')]"
+				"[resourceId('Microsoft.Resources/deployments', 'df-demo-05042020_ArmTemplate_3')]"
 			]
 		}
 	]

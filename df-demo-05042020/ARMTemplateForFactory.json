@@ -23,6 +23,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'AvanadeMachine_SqlServer_Parameterised'"
 		},
+		"AzureDataLakeStorage1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
+		},
 		"Azure_Sql_DfDemo_Db_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Azure_Sql_DfDemo_Db'"
@@ -47,6 +51,26 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'blob_linkedservice'"
 		},
+		"ls_Datalake_Json_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_Datalake_Json'"
+		},
+		"ls_azureTable_sseStorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_azureTable_sseStorage'"
+		},
+		"ls_dataLakeV2_sseTurbines_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_dataLakeV2_sseTurbines'"
+		},
+		"ls_dataLakeV2_sseTurbines_mergedFiles_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_dataLakeV2_sseTurbines_mergedFiles'"
+		},
+		"ls_dataLakeV2_sseTurbines_transformedData_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_dataLakeV2_sseTurbines_transformedData'"
+		},
 		"ls_datalake_csv_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_datalake_csv'"
@@ -66,6 +90,10 @@
 		"AvanadeMachineFileSystem_properties_typeProperties_userId": {
 			"type": "string",
 			"defaultValue": "localuser"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakesv2storage.dfs.core.windows.net/"
 		},
 		"DataLakeStorage_properties_typeProperties_url": {
 			"type": "string",
@@ -87,6 +115,22 @@
 			"type": "string",
 			"defaultValue": "@{linkedService().url}"
 		},
+		"ls_Datalake_Json_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://datalakesv2storage.dfs.core.windows.net/"
+		},
+		"ls_dataLakeV2_sseTurbines_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://ssestoragedemo.dfs.core.windows.net/"
+		},
+		"ls_dataLakeV2_sseTurbines_mergedFiles_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://ssestoragedemo.dfs.core.windows.net/"
+		},
+		"ls_dataLakeV2_sseTurbines_transformedData_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://ssestoragedemo.dfs.core.windows.net/"
+		},
 		"ls_datalake_csv_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://datalakesv2storage.dfs.core.windows.net/"
@@ -94,6 +138,10 @@
 		"ls_function_salaryOperations_properties_typeProperties_functionAppUrl": {
 			"type": "string",
 			"defaultValue": "https://salaryoperations.azurewebsites.net"
+		},
+		"ls_rest_sseBazeFieldApi_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "@{concat('https://2ts.sserenewables.com/BazeField.Services/api/objects/points?',linkedService().objectIds,linkedService().points)}"
 		},
 		"BlobCreation_properties_typeProperties_scope": {
 			"type": "string",
@@ -114,6 +162,14 @@
 		"trg_OnBlobCreation_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/fdf62bd8-f3c4-4a64-8226-d793b7659d78/resourceGroups/rg-datafactory/providers/Microsoft.Storage/storageAccounts/datalakesv2storage"
+		},
+		"scheduleTrigger-SSE_properties_sse-main_parameters_Locations": {
+			"type": "array",
+			"defaultValue": [
+				"GRIF",
+				"ARTM",
+				"DROM"
+			]
 		}
 	},
 	"variables": {
@@ -275,8 +331,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"SourceDatabase": {
@@ -323,8 +378,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"annotations": []
 			},
@@ -406,8 +460,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"windowStart": {
@@ -420,6 +473,178 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SourceDataset_1hs')]",
 				"[concat(variables('factoryId'), '/datasets/DestinationDataset_1hs')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Copy_Blob_To_Blob_DateFolder')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy Blob To Blob Date Folder",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "ds_datalake_csv",
+								"type": "DatasetReference",
+								"parameters": {
+									"FileName": "Employee.csv"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ds_AzureDatalake_Json_Parameterised",
+								"type": "DatasetReference",
+								"parameters": {
+									"DirectoryName": {
+										"value": "@concat('employee/',utcNow('ddMMyyyy'))",
+										"type": "Expression"
+									},
+									"FileName": {
+										"value": "Employee.csv",
+										"type": "Expression"
+									}
+								}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_datalake_csv')]",
+				"[concat(variables('factoryId'), '/datasets/ds_AzureDatalake_Json_Parameterised')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EmployeeDepartmentAggregationFlow')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Employee Department Aggregation",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "EmployeeDepartmentAggregation",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Employee": {},
+									"Department": {},
+									"SaveEmployeeDepartmentAggregation": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/EmployeeDepartmentAggregation')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EmployeeDepartmentJoinFlow')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Employee And Company",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "EmployeeDepartmentJoin",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"Employee": {},
+									"Department": {},
+									"EmployeeDepartmentJoinData": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/dataflows/EmployeeDepartmentJoin')]"
 			]
 		},
 		{
@@ -516,8 +741,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"FormRecognizerURL": {
@@ -542,6 +766,199 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/formRecognizer')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/For-Each-Sample')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "ForEach1",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Set variable3",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@variables('items')",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Set variable1",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "itemValue",
+										"value": {
+											"value": "@int(item())",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Set variable2",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "ForEach1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "recordSkipped",
+							"value": {
+								"value": "@add(last(variables('items')), 10)",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Set variable3",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "items",
+							"value": {
+								"value": "@createArray( mul(pipeline().parameters.lastRunValue, 1), mul(pipeline().parameters.lastRunValue, 2),mul(pipeline().parameters.lastRunValue, 3),mul(pipeline().parameters.lastRunValue, 4),mul(pipeline().parameters.lastRunValue, 5))",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Execute ReturnOutput",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Set variable2",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "ReturnOutput",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Set variable4",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Execute ReturnOutput",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "Output",
+							"value": {
+								"value": "@activity('Execute ReturnOutput').output.pipelineReturnValue.Response",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Set variable5",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "Execute ReturnOutput",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "pipelineReturnValue",
+							"value": [
+								{
+									"key": "KeepRunning",
+									"value": {
+										"type": "Expression",
+										"content": "@if(greater(pipeline().parameters.lastRunValue, 6),bool(0), bool(1))"
+									}
+								}
+							],
+							"setSystemVariable": true
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"lastRunValue": {
+						"type": "int"
+					}
+				},
+				"variables": {
+					"batchSize": {
+						"type": "Integer",
+						"defaultValue": 10
+					},
+					"itemValue": {
+						"type": "Integer"
+					},
+					"recordSkipped": {
+						"type": "Integer"
+					},
+					"items": {
+						"type": "Array"
+					},
+					"Output": {
+						"type": "Integer"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/ReturnOutput')]"
 			]
 		},
 		{
@@ -602,8 +1019,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"annotations": [],
 				"lastPublishTime": "2020-08-07T14:14:49Z"
@@ -671,6 +1087,10 @@
 									"name": "Set variable1",
 									"type": "SetVariable",
 									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
 									"userProperties": [],
 									"typeProperties": {
 										"variableName": "fileName",
@@ -685,8 +1105,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"variables": {
 					"fileName": {
@@ -734,8 +1153,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"Id": {
@@ -749,6 +1167,258 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/ls_function_salaryOperations')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ReturnOutput')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Set variable1",
+						"type": "SetVariable",
+						"dependsOn": [
+							{
+								"activity": "ForEach1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "pipelineReturnValue",
+							"value": [
+								{
+									"key": "Response",
+									"value": {
+										"type": "Expression",
+										"content": "@variables('LastCount')"
+									}
+								}
+							],
+							"setSystemVariable": true
+						}
+					},
+					{
+						"name": "ForEach1",
+						"type": "ForEach",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@createArray(1,2,3,4,5)",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Set variable2",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "LastCount",
+										"value": {
+											"value": "@int(item())",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "Set variable3",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Set variable2",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "pipelineReturnValue",
+										"value": [
+											{
+												"key": "LoopResponse",
+												"value": {
+													"type": "Int",
+													"content": -1
+												}
+											}
+										],
+										"setSystemVariable": true
+									}
+								}
+							]
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"inputValue": {
+						"type": "int"
+					}
+				},
+				"variables": {
+					"LastCount": {
+						"type": "Integer",
+						"defaultValue": 0
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/UntilSample')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Until False",
+						"type": "Until",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"expression": {
+								"value": "@equals(variables('KeepRunning'), bool('false'))",
+								"type": "Expression"
+							},
+							"activities": [
+								{
+									"name": "Call Foreach",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "For-Each-Sample",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"lastRunValue": {
+												"value": "@variables('LastRunValue')",
+												"type": "Expression"
+											}
+										}
+									}
+								},
+								{
+									"name": "Set KeepRunning",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Call Foreach",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "KeepRunning",
+										"value": {
+											"value": "@bool(activity('Call Foreach').output.pipelineReturnValue.KeepRunning)",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "Set LastRunValue",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Set KeepRunning",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "LastRunValue",
+										"value": {
+											"value": "@add(variables('Count'), 6)",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "Set Count",
+									"type": "SetVariable",
+									"dependsOn": [
+										{
+											"activity": "Set LastRunValue",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "Count",
+										"value": {
+											"value": "@variables('LastRunValue')",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"timeout": "0.12:00:00"
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"variables": {
+					"KeepRunning": {
+						"type": "Boolean",
+						"defaultValue": true
+					},
+					"LastRunValue": {
+						"type": "Integer",
+						"defaultValue": 0
+					},
+					"Count": {
+						"type": "Integer",
+						"defaultValue": 0
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/For-Each-Sample')]"
 			]
 		},
 		{
@@ -846,8 +1516,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"departmentid": {
@@ -953,8 +1622,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"annotations": [],
 				"lastPublishTime": "2022-07-12T21:50:46Z"
@@ -1045,8 +1713,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"annotations": [],
 				"lastPublishTime": "2020-08-07T14:14:48Z"
@@ -1099,6 +1766,10 @@
 								]
 							}
 						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
 						"userProperties": [],
 						"typeProperties": {
 							"variableName": "errorDetails",
@@ -1119,6 +1790,10 @@
 								]
 							}
 						],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
 						"userProperties": [],
 						"typeProperties": {
 							"variableName": "successDetails",
@@ -1130,8 +1805,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"month": {
@@ -1154,6 +1828,804 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/LinkedServiceToDataBricks')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sse-main-foreach-location')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Lookup List Of Turbines",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureTableSource",
+								"azureTableSourceQuery": {
+									"value": "@concat('PartitionKey eq ', '''',pipeline().parameters.Location,'''')",
+									"type": "Expression"
+								},
+								"azureTableSourceIgnoreTableNotFound": false
+							},
+							"dataset": {
+								"referenceName": "ds_azureTable_sseStorage",
+								"type": "DatasetReference",
+								"parameters": {
+									"tableName": "turbines"
+								}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "ForEach Turbine At One Location",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Lookup List Of Turbines",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Set points",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Lookup List Of Turbines').output.value",
+								"type": "Expression"
+							},
+							"isSequential": false,
+							"activities": [
+								{
+									"name": "Set turbine",
+									"type": "SetVariable",
+									"dependsOn": [],
+									"policy": {
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"variableName": "turbine",
+										"value": {
+											"value": "@concat('&ObjectIds=',item().RowKey)",
+											"type": "Expression"
+										}
+									}
+								},
+								{
+									"name": "Copy data from API Call to Storage",
+									"type": "Copy",
+									"dependsOn": [
+										{
+											"activity": "Set turbine",
+											"dependencyConditions": [
+												"Succeeded"
+											]
+										}
+									],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "RestSource",
+											"additionalColumns": [
+												{
+													"name": "ObjectName",
+													"value": {
+														"value": "@item().RowKey",
+														"type": "Expression"
+													}
+												},
+												{
+													"name": "Latitude",
+													"value": {
+														"value": "@item().Latitude",
+														"type": "Expression"
+													}
+												},
+												{
+													"name": "Longitude",
+													"value": {
+														"value": "@item().Longitude",
+														"type": "Expression"
+													}
+												},
+												{
+													"name": "Location",
+													"value": {
+														"value": "@pipeline().parameters.Location",
+														"type": "Expression"
+													}
+												}
+											],
+											"httpRequestTimeout": "00:01:40",
+											"requestInterval": "00.00:00:00.010",
+											"requestMethod": "GET",
+											"paginationRules": {
+												"supportRFC5988": "true"
+											}
+										},
+										"sink": {
+											"type": "JsonSink",
+											"storeSettings": {
+												"type": "AzureBlobFSWriteSettings"
+											},
+											"formatSettings": {
+												"type": "JsonWriteSettings"
+											}
+										},
+										"enableStaging": false
+									},
+									"inputs": [
+										{
+											"referenceName": "ds_Rest_sseBazeFieldApi",
+											"type": "DatasetReference",
+											"parameters": {
+												"objectIds": {
+													"value": "@variables('turbine')",
+													"type": "Expression"
+												},
+												"points": {
+													"value": "@variables('points')",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "ds_dataLakeV2_sseTurbines",
+											"type": "DatasetReference",
+											"parameters": {
+												"folderName": "rawFiles",
+												"fileName": {
+													"value": "@concat(guid(),'.json')",
+													"type": "Expression"
+												}
+											}
+										}
+									]
+								}
+							]
+						}
+					},
+					{
+						"name": "Set points",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "points",
+							"value": {
+								"value": "@concat('&Points=ActivePower','&Points=RotorSpeed', '&Points=WindSpeed','&Points=CALC-TheoreticalProduction','&Points=IEC-OperationState','&Points=CALC-ActivePower','&Points=PI-ProducedMWh','&Points=DailyBudget','&Points=PI-CapacityFactor','&Points=CALC-ExternalCurtailmentFlag')",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"Location": {
+						"type": "string"
+					}
+				},
+				"variables": {
+					"turbine": {
+						"type": "String"
+					},
+					"points": {
+						"type": "String"
+					},
+					"tempTurbine": {
+						"type": "String"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_azureTable_sseStorage')]",
+				"[concat(variables('factoryId'), '/datasets/ds_Rest_sseBazeFieldApi')]",
+				"[concat(variables('factoryId'), '/datasets/ds_dataLakeV2_sseTurbines')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sse-main-push-transformed-data-to-azureTable')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data to AzureTable for Serving",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"wildcardFolderPath": "transformedFiles",
+									"wildcardFileName": "*.json",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureTableSink",
+								"azureTableInsertType": "merge",
+								"azureTablePartitionKeyName": "Location",
+								"azureTableRowKeyName": "ObjectName",
+								"writeBatchSize": 10000
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['ObjectId']"
+										},
+										"sink": {
+											"name": "ObjectId",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ObjectName']"
+										},
+										"sink": {
+											"name": "ObjectName",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ActivePower']"
+										},
+										"sink": {
+											"name": "ActivePower",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['RotorSpeed']"
+										},
+										"sink": {
+											"name": "RotorSpeed",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['WindSpeed']"
+										},
+										"sink": {
+											"name": "WindSpeed",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"path": "$['IEC-OperationState']"
+										},
+										"sink": {
+											"name": "IEC_OperationState",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['CALC-ActivePower']"
+										},
+										"sink": {
+											"name": "CALC_ActivePower",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['PI-ProducedMWh']"
+										},
+										"sink": {
+											"name": "PI_ProducedMWh",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['PI-CapacityFactor']"
+										},
+										"sink": {
+											"name": "PI_CapacityFactor",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['CALC-ExternalCurtailmentFlag']"
+										},
+										"sink": {
+											"name": "CALC_ExternalCurtailmentFlag",
+											"type": "Boolean"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Latitude']"
+										},
+										"sink": {
+											"name": "Latitude",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Longitude']"
+										},
+										"sink": {
+											"name": "Longitude",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Location']"
+										},
+										"sink": {
+											"name": "Location"
+										}
+									}
+								],
+								"collectionReference": ""
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ds_dataLakeV2_transformedFileV2",
+								"type": "DatasetReference",
+								"parameters": {
+									"folderName": "transformedFiles",
+									"fileName": "*.json"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ds_azureTable_sseStorage",
+								"type": "DatasetReference",
+								"parameters": {
+									"tableName": "aggregatedData"
+								}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_dataLakeV2_transformedFileV2')]",
+				"[concat(variables('factoryId'), '/datasets/ds_azureTable_sseStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/sse-main')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "ForEach Location",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Delete files which are copid to archive",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@pipeline().parameters.Locations",
+								"type": "Expression"
+							},
+							"isSequential": true,
+							"activities": [
+								{
+									"name": "Execute sse-main-foreach-location",
+									"type": "ExecutePipeline",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"pipeline": {
+											"referenceName": "sse-main-foreach-location",
+											"type": "PipelineReference"
+										},
+										"waitOnCompletion": true,
+										"parameters": {
+											"Location": {
+												"value": "@item()",
+												"type": "Expression"
+											}
+										}
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "Merge all Newly Created Files",
+						"type": "Copy",
+						"dependsOn": [
+							{
+								"activity": "ForEach Location",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							},
+							{
+								"activity": "Set transformedFileName",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings",
+									"copyBehavior": "MergeFiles"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings",
+									"filePattern": "setOfObjects"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['Location']"
+										},
+										"sink": {
+											"path": "$['Location']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['ObjectName']"
+										},
+										"sink": {
+											"path": "$['ObjectName']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Latitude']"
+										},
+										"sink": {
+											"path": "$['Latitude']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['Longitude']"
+										},
+										"sink": {
+											"path": "$['Longitude']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['result']..['points']"
+										},
+										"sink": {
+											"path": "$['result']['points']"
+										}
+									}
+								],
+								"collectionReference": ""
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ds_dataLakeV2_sseTurbines",
+								"type": "DatasetReference",
+								"parameters": {
+									"folderName": "rawFiles",
+									"fileName": "\\"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ds_dataLakeV2_sseTurbines",
+								"type": "DatasetReference",
+								"parameters": {
+									"folderName": "mergedFiles",
+									"fileName": "mergedFile.json"
+								}
+							}
+						]
+					},
+					{
+						"name": "Transform Files",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [
+							{
+								"activity": "Merge all Newly Created Files",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "df_transform_sseApi_response",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"rawMergedFile": {},
+									"transformedFile": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					},
+					{
+						"name": "Set transformedFileName",
+						"type": "SetVariable",
+						"dependsOn": [],
+						"policy": {
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"variableName": "transformedFileName",
+							"value": {
+								"value": "@concat(guid(),'.json')",
+								"type": "Expression"
+							}
+						}
+					},
+					{
+						"name": "Execute sse-main-push-transformed-data-to-azureTable",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "Transform Files",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "sse-main-push-transformed-data-to-azureTable",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "Copy existing files to Archive folder",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"wildcardFolderPath": "rawFiles",
+									"wildcardFileName": "*.json",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings"
+								}
+							},
+							"enableStaging": false
+						},
+						"inputs": [
+							{
+								"referenceName": "ds_dataLakeV2_sseTurbines",
+								"type": "DatasetReference",
+								"parameters": {
+									"folderName": "rawFiles",
+									"fileName": "*.json"
+								}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ds_dataLakeV2_sseTurbines",
+								"type": "DatasetReference",
+								"parameters": {
+									"folderName": {
+										"value": "@concat('archive\\',utcnow())",
+										"type": "Expression"
+									},
+									"fileName": "\\"
+								}
+							}
+						]
+					},
+					{
+						"name": "Delete files which are copid to archive",
+						"type": "Delete",
+						"dependsOn": [
+							{
+								"activity": "Copy existing files to Archive folder",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "ds_dataLakeV2_sseTurbines",
+								"type": "DatasetReference",
+								"parameters": {
+									"folderName": "rawFiles",
+									"fileName": "*.json"
+								}
+							},
+							"enableLogging": false,
+							"storeSettings": {
+								"type": "AzureBlobFSReadSettings",
+								"recursive": true,
+								"wildcardFileName": "*.json",
+								"enablePartitionDiscovery": false
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"Locations": {
+						"type": "array",
+						"defaultValue": [
+							"GRIF",
+							"ARTF",
+							"DROM"
+						]
+					}
+				},
+				"variables": {
+					"turbine": {
+						"type": "String"
+					},
+					"points": {
+						"type": "String"
+					},
+					"turbineCollection": {
+						"type": "Array"
+					},
+					"pointsCollection": {
+						"type": "Array"
+					},
+					"transformedFileName": {
+						"type": "String"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_dataLakeV2_sseTurbines')]",
+				"[concat(variables('factoryId'), '/dataflows/df_transform_sseApi_response')]",
+				"[concat(variables('factoryId'), '/pipelines/sse-main-push-transformed-data-to-azureTable')]",
+				"[concat(variables('factoryId'), '/pipelines/sse-main-foreach-location')]"
 			]
 		},
 		{
@@ -1190,8 +2662,7 @@
 					}
 				],
 				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
+					"elapsedTimeMetric": {}
 				},
 				"parameters": {
 					"triggeringFileName": {
@@ -1532,6 +3003,485 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ds_AzureDatalake_Json_Parameterised')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_Datalake_Json",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"DirectoryName": {
+						"type": "string",
+						"defaultValue": "employee"
+					},
+					"FileName": {
+						"type": "string",
+						"defaultValue": "Employee.csv"
+					}
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().FileName",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().DirectoryName",
+							"type": "Expression"
+						},
+						"fileSystem": "genericcontainer"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_Datalake_Json')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_AzureSql_DfDemoDatabase_Department')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "azure_sql_db_dfdemodatabase_employee",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Department"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/azure_sql_db_dfdemodatabase_employee')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_AzureSql_DfDemoDatabase_Employee')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "azure_sql_db_dfdemodatabase_employee",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [
+					{
+						"name": "Id",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Name",
+						"type": "nvarchar"
+					},
+					{
+						"name": "DepartmentId",
+						"type": "int",
+						"precision": 10
+					},
+					{
+						"name": "Salary",
+						"type": "int",
+						"precision": 10
+					}
+				],
+				"typeProperties": {
+					"schema": "dbo",
+					"table": "Employee"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/azure_sql_db_dfdemodatabase_employee')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_Datalake_Json_EmployeeDepartment')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_Datalake_Json",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "EmployeeDepartment.json",
+						"folderPath": "EmployeeDepartment",
+						"fileSystem": "genericcontainer"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_Datalake_Json')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_Rest_sseBazeFieldApi')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_rest_sseBazeFieldApi",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"objectIds": {
+							"value": "@dataset().objectIds",
+							"type": "Expression"
+						},
+						"points": {
+							"value": "@dataset().points",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"objectIds": {
+						"type": "string"
+					},
+					"points": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"typeProperties": {},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_rest_sseBazeFieldApi')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_azureTable_sseStorage')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_azureTable_sseStorage",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"tableName": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureTable",
+				"schema": [],
+				"typeProperties": {
+					"tableName": {
+						"value": "@dataset().tableName",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_azureTable_sseStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_dataLakeV2_sseTurbines')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_dataLakeV2_sseTurbines",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"folderName": {
+						"type": "string"
+					},
+					"fileName": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().fileName",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().folderName",
+							"type": "Expression"
+						},
+						"fileSystem": "turbine"
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_dataLakeV2_sseTurbines')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_dataLakeV2_sseTurbines_mergedFiles')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_dataLakeV2_sseTurbines_mergedFiles",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "mergedFile.json",
+						"folderPath": "mergedFiles",
+						"fileSystem": "turbine"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"result": {
+							"type": "object",
+							"properties": {
+								"points": {
+									"type": "object",
+									"properties": {
+										"ActivePower": {
+											"type": "object",
+											"properties": {
+												"pointName": {
+													"type": "string"
+												},
+												"objectId": {
+													"type": "string"
+												},
+												"t": {
+													"type": "integer"
+												},
+												"q": {
+													"type": "integer"
+												},
+												"v": {
+													"type": "integer"
+												},
+												"t_local": {
+													"type": "string"
+												}
+											}
+										},
+										"RotorSpeed": {
+											"type": "object",
+											"properties": {
+												"pointName": {
+													"type": "string"
+												},
+												"objectId": {
+													"type": "string"
+												},
+												"t": {
+													"type": "integer"
+												},
+												"q": {
+													"type": "integer"
+												},
+												"v": {
+													"type": "number"
+												},
+												"t_local": {
+													"type": "string"
+												}
+											}
+										},
+										"WindSpeed": {
+											"type": "object",
+											"properties": {
+												"pointName": {
+													"type": "string"
+												},
+												"objectId": {
+													"type": "string"
+												},
+												"t": {
+													"type": "integer"
+												},
+												"q": {
+													"type": "integer"
+												},
+												"v": {
+													"type": "number"
+												},
+												"t_local": {
+													"type": "string"
+												}
+											}
+										}
+									}
+								}
+							}
+						},
+						"replyInfo": {
+							"type": "object",
+							"properties": {
+								"rcvTime": {
+									"type": "integer"
+								},
+								"replyTime": {
+									"type": "integer"
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_dataLakeV2_sseTurbines_mergedFiles')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_dataLakeV2_sseTurbines_transformedData')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_dataLakeV2_sseTurbines_transformedData",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "transformedFile.json",
+						"folderPath": "transformedFiles",
+						"fileSystem": "turbine"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"result": {
+							"type": "object",
+							"properties": {
+								"ObjectId": {
+									"type": "string"
+								},
+								"ObjectName": {
+									"type": "string"
+								},
+								"ActivePower": {
+									"type": "integer"
+								},
+								"RotorSpeed": {
+									"type": "integer"
+								},
+								"WindSpeed": {
+									"type": "number"
+								},
+								"Latitude": {
+									"type": "string"
+								},
+								"Longitude": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_dataLakeV2_sseTurbines_transformedData')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_dataLakeV2_transformedFileV2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_dataLakeV2_sseTurbines",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"folderName": {
+						"type": "string"
+					},
+					"fileName": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@dataset().fileName",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().folderName",
+							"type": "Expression"
+						},
+						"fileSystem": "turbine"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"Latitude": {
+							"type": "number"
+						},
+						"Longitude": {
+							"type": "number"
+						},
+						"ObjectName": {
+							"type": "string"
+						},
+						"ObjectId": {
+							"type": "string"
+						},
+						"ActivePower": {
+							"type": "integer"
+						},
+						"RotorSpeed": {
+							"type": "number"
+						},
+						"WindSpeed": {
+							"type": "number"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_dataLakeV2_sseTurbines')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ds_datalake_csv')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -1590,7 +3540,7 @@
 				"parameters": {
 					"databasename": {
 						"type": "string",
-						"defaultValue": "dfdemodatabaseserver"
+						"defaultValue": "dfdemodatabase"
 					},
 					"datatablename": {
 						"type": "string",
@@ -1715,6 +3665,23 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/Azure_Sql_DfDemo_Db')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -1834,6 +3801,87 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/ls_Datalake_Json')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('ls_Datalake_Json_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('ls_Datalake_Json_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_azureTable_sseStorage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureTableStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('ls_azureTable_sseStorage_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_dataLakeV2_sseTurbines')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('ls_dataLakeV2_sseTurbines_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('ls_dataLakeV2_sseTurbines_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_dataLakeV2_sseTurbines_mergedFiles')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('ls_dataLakeV2_sseTurbines_mergedFiles_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('ls_dataLakeV2_sseTurbines_mergedFiles_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_dataLakeV2_sseTurbines_transformedData')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('ls_dataLakeV2_sseTurbines_transformedData_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('ls_dataLakeV2_sseTurbines_transformedData_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/ls_datalake_csv')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
@@ -1864,6 +3912,35 @@
 						"value": "[parameters('ls_function_salaryOperations_functionKey')]"
 					},
 					"authentication": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_rest_sseBazeFieldApi')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"objectIds": {
+						"type": "string"
+					},
+					"points": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "RestService",
+				"typeProperties": {
+					"url": "[parameters('ls_rest_sseBazeFieldApi_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous",
+					"authHeaders": {
+						"Authorization": {
+							"type": "SecureString",
+							"value": "**********"
+						}
+					}
 				}
 			},
 			"dependsOn": []
@@ -2263,6 +4340,258 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/EmployeeDepartmentAggregation')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ds_AzureSql_DfDemoDatabase_Employee",
+								"type": "DatasetReference"
+							},
+							"name": "Employee",
+							"description": "Employee Dataset"
+						},
+						{
+							"dataset": {
+								"referenceName": "ds_AzureSql_DfDemoDatabase_Department",
+								"type": "DatasetReference"
+							},
+							"name": "Department",
+							"description": "Department Dataset"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "ds_Datalake_Json_EmployeeDepartment",
+								"type": "DatasetReference"
+							},
+							"name": "SaveEmployeeDepartmentAggregation",
+							"description": "Save Employee Department Aggregation"
+						}
+					],
+					"transformations": [
+						{
+							"name": "InnerJoinEmployeeDepartment",
+							"description": "Inner Join Employee Department on DepartmentId"
+						},
+						{
+							"name": "AverageSalaryGroupByDepartment"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          Id as integer,",
+						"          Name as string,",
+						"          DepartmentId as integer,",
+						"          Salary as integer",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> Employee",
+						"source(output(",
+						"          Id as integer,",
+						"          Name as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> Department",
+						"Employee, Department join(DepartmentId == Department@Id,",
+						"     joinType:'inner',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> InnerJoinEmployeeDepartment",
+						"InnerJoinEmployeeDepartment aggregate(groupBy({Department Name} = Department@Name),",
+						"     {Average Salary} = avg(Salary)) ~> AverageSalaryGroupByDepartment",
+						"AverageSalaryGroupByDepartment sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     mapColumn(",
+						"          {Department Name},",
+						"          {Average Salary}",
+						"     ),",
+						"     partitionBy('hash', 1)) ~> SaveEmployeeDepartmentAggregation"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_AzureSql_DfDemoDatabase_Employee')]",
+				"[concat(variables('factoryId'), '/datasets/ds_AzureSql_DfDemoDatabase_Department')]",
+				"[concat(variables('factoryId'), '/datasets/ds_Datalake_Json_EmployeeDepartment')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/EmployeeDepartmentJoin')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ds_AzureSql_DfDemoDatabase_Employee",
+								"type": "DatasetReference"
+							},
+							"name": "Employee",
+							"description": "Employee Dataset"
+						},
+						{
+							"dataset": {
+								"referenceName": "ds_AzureSql_DfDemoDatabase_Department",
+								"type": "DatasetReference"
+							},
+							"name": "Department",
+							"description": "Department Dataset"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "ds_Datalake_Json_EmployeeDepartment",
+								"type": "DatasetReference"
+							},
+							"name": "EmployeeDepartmentJoinData"
+						}
+					],
+					"transformations": [
+						{
+							"name": "InnerJoinEmployeeDepartment"
+						}
+					],
+					"scriptLines": [
+						"source(output(",
+						"          Id as integer,",
+						"          Name as string,",
+						"          DepartmentId as integer,",
+						"          Salary as integer",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     limit: 100,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> Employee",
+						"source(output(",
+						"          Id as integer,",
+						"          Name as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     isolationLevel: 'READ_UNCOMMITTED',",
+						"     format: 'table') ~> Department",
+						"Employee, Department join(DepartmentId == Department@Id,",
+						"     joinType:'inner',",
+						"     matchType:'exact',",
+						"     ignoreSpaces: false,",
+						"     broadcast: 'auto')~> InnerJoinEmployeeDepartment",
+						"InnerJoinEmployeeDepartment sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     truncate: true,",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     mapColumn(",
+						"          {Employee Id} = Employee@Id,",
+						"          {Employee Name} = Employee@Name,",
+						"          Department = Department@Name",
+						"     )) ~> EmployeeDepartmentJoinData"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_AzureSql_DfDemoDatabase_Employee')]",
+				"[concat(variables('factoryId'), '/datasets/ds_AzureSql_DfDemoDatabase_Department')]",
+				"[concat(variables('factoryId'), '/datasets/ds_Datalake_Json_EmployeeDepartment')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/df_transform_sseApi_response')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ds_dataLakeV2_sseTurbines_mergedFiles",
+								"type": "DatasetReference"
+							},
+							"name": "rawMergedFile"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "ds_dataLakeV2_sseTurbines_transformedData",
+								"type": "DatasetReference"
+							},
+							"name": "transformedFile",
+							"rejectedDataLinkedService": {
+								"referenceName": "ls_dataLakeV2_sseTurbines",
+								"type": "LinkedServiceReference"
+							}
+						}
+					],
+					"transformations": [],
+					"scriptLines": [
+						"source(output(",
+						"          Latitude as double,",
+						"          Location as string,",
+						"          Longitude as double,",
+						"          ObjectName as string,",
+						"          result as (points as (ActivePower as (objectId as string, pointName as string, q as integer, t as long, t_local as string, v as short), {CALC-ActivePower} as (objectId as string, pointName as string, q as integer, t as long, t_local as string, v as double), {CALC-ExternalCurtailmentFlag} as (objectId as string, pointName as string, q as integer, t as long, t_local as string, v as boolean), {CALC-TheoreticalProduction} as (objectId as string, pointName as string, q as integer, t as long, t_local as string, v as double), {IEC-OperationState} as (objectId as string, pointName as string, q as integer, t as long, t_local as string, v as short), {PI-CapacityFactor} as (objectId as string, pointName as string, q as integer, t as long, t_local as string, v as double), {PI-ProducedMWh} as (objectId as string, pointName as string, q as integer, t as long, t_local as string, v as double), RotorSpeed as (objectId as string, pointName as string, q as integer, t as long, t_local as string, v as double), WindSpeed as (objectId as string, pointName as string, q as integer, t as long, t_local as string, v as double)))",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     limit: 100,",
+						"     ignoreNoFilesFound: false,",
+						"     documentForm: 'documentPerLine',",
+						"     partitionBy('hash', 1)) ~> rawMergedFile",
+						"rawMergedFile sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          result as (ObjectId as string, ObjectName as string, ActivePower as integer, RotorSpeed as integer, WindSpeed as double, Latitude as string, Longitude as string)",
+						"     ),",
+						"     truncate: true,",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     mapColumn(",
+						"          ObjectId = result.points.{CALC-ActivePower}.objectId,",
+						"          ObjectName,",
+						"          ActivePower = result.points.ActivePower.v,",
+						"          RotorSpeed = result.points.RotorSpeed.v,",
+						"          WindSpeed = result.points.WindSpeed.v,",
+						"          {IEC-OperationState} = result.points.{IEC-OperationState}.v,",
+						"          {CALC-ActivePower} = result.points.{CALC-ActivePower}.v,",
+						"          {PI-ProducedMWh} = result.points.{PI-ProducedMWh}.v,",
+						"          {PI-CapacityFactor} = result.points.{PI-CapacityFactor}.v,",
+						"          {CALC-ExternalCurtailmentFlag} = result.points.{CALC-ExternalCurtailmentFlag}.v,",
+						"          Latitude,",
+						"          Longitude,",
+						"          Location",
+						"     )) ~> transformedFile"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_dataLakeV2_sseTurbines_mergedFiles')]",
+				"[concat(variables('factoryId'), '/datasets/ds_dataLakeV2_sseTurbines_transformedData')]",
+				"[concat(variables('factoryId'), '/linkedServices/ls_dataLakeV2_sseTurbines')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/formRecognizer')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
@@ -2382,6 +4711,39 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/PdfSource')]",
 				"[concat(variables('factoryId'), '/linkedServices/DataLakeStorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/scheduleTrigger-SSE')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "sse-main",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"Locations": "[parameters('scheduleTrigger-SSE_properties_sse-main_parameters_Locations')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Minute",
+						"interval": 15,
+						"startTime": "2023-10-26T14:28:00",
+						"endTime": "2023-10-27T17:28:00",
+						"timeZone": "GMT Standard Time"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/sse-main')]"
 			]
 		}
 	]
