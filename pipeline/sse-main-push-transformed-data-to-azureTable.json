@@ -146,6 +146,14 @@
 									"name": "Longitude",
 									"type": "Double"
 								}
+							},
+							{
+								"source": {
+									"path": "$['Location']"
+								},
+								"sink": {
+									"name": "Location"
+								}
 							}
 						],
 						"collectionReference": ""
