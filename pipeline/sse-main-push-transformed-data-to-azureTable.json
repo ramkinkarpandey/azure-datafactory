@@ -41,122 +41,96 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['Latitude']"
+									"path": "$['result']['ObjectId']"
 								},
 								"sink": {
-									"name": "Latitude"
+									"name": "ObjectId",
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"path": "$['Longitude']"
-								},
-								"sink": {
-									"name": "Longitude"
+									"path": "$['result']['ObjectName']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ObjectName']"
+									"path": "$['result']['ActivePower']"
 								},
 								"sink": {
-									"name": "ObjectName"
+									"name": "ActivePower",
+									"type": "Int64"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ObjectId']"
+									"path": "$['result']['RotorSpeed']"
 								},
 								"sink": {
-									"name": "ObjectId"
+									"name": "RotorSpeed",
+									"type": "Double"
 								}
 							},
 							{
 								"source": {
-									"path": "$['ActivePower']"
+									"path": "$['result']['WindSpeed']"
 								},
 								"sink": {
-									"name": "ActivePower"
+									"name": "WindSpeed",
+									"type": "Double"
 								}
 							},
 							{
 								"source": {
-									"path": "$['RotorSpeed']"
-								},
-								"sink": {
-									"name": "RotorSpeed"
+									"path": "$['result']['CALC-TheoreticalProduction']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['WindSpeed']"
-								},
-								"sink": {
-									"name": "WindSpeed"
+									"path": "$['result']['IEC-OperationState']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['Location']"
-								},
-								"sink": {
-									"name": "Location"
+									"path": "$['result']['CALC-ActivePower']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['CALC-TheoreticalProduction']"
-								},
-								"sink": {
-									"name": "CALC-TheoreticalProduction"
+									"path": "$['result']['PI-ProducedMWh']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['IEC-OperationState']"
-								},
-								"sink": {
-									"name": "IEC-OperationState"
+									"path": "$['result']['DailyBudget']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['CALC-ActivePower']"
-								},
-								"sink": {
-									"name": "CALC-ActivePower"
+									"path": "$['result']['PI-CapacityFactor']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['PI-ProducedMWh']"
-								},
-								"sink": {
-									"name": "PI-ProducedMWh"
+									"path": "$['result']['CALC-ExternalCurtailmentFlag']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['DailyBudget']"
+									"path": "$['result']['Latitude']"
 								},
 								"sink": {
-									"name": "DailyBudget"
+									"name": "Latitude",
+									"type": "Double"
 								}
 							},
 							{
 								"source": {
-									"path": "$['PI-CapacityFactor']"
+									"path": "$['result']['Longitude']"
 								},
 								"sink": {
-									"name": "PI-CapacityFactor"
-								}
-							},
-							{
-								"source": {
-									"path": "$['CALC-ExternalCurtailmentFlag']"
-								},
-								"sink": {
-									"name": "CALC-ExternalCurtailmentFlag"
+									"name": "Longitude",
+									"type": "Double"
 								}
 							}
 						],
