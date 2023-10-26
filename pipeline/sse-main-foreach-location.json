@@ -190,7 +190,7 @@
 				"typeProperties": {
 					"variableName": "points",
 					"value": {
-						"value": "@concat('&Points=ActivePower','&Points=RotorSpeed', '&Points=WindSpeed','&Points=CALC-TheoreticalProduction\"','&Points=IEC-OperationState','&Points=CALC-ActivePower','&Points=PI-ProducedMWh','&Points=DailyBudget','&Points=PI-CapacityFactor','&Points=CALC-ExternalCurtailmentFlag')",
+						"value": "@concat('&Points=ActivePower','&Points=RotorSpeed', '&Points=WindSpeed','&Points=CALC-TheoreticalProduction','&Points=IEC-OperationState','&Points=CALC-ActivePower','&Points=PI-ProducedMWh','&Points=DailyBudget','&Points=PI-CapacityFactor','&Points=CALC-ExternalCurtailmentFlag')",
 						"type": "Expression"
 					}
 				}
