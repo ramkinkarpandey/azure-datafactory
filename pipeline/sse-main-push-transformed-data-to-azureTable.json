@@ -80,7 +80,7 @@
 									"path": "$['result']['CALC-TheoreticalProduction']"
 								},
 								"sink": {
-									"name": "CALC-TheoreticalProduction"
+									"name": "CALC_TheoreticalProduction"
 								}
 							},
 							{
@@ -88,7 +88,7 @@
 									"path": "$['result']['IEC-OperationState']"
 								},
 								"sink": {
-									"name": "IEC-OperationStat"
+									"name": "IEC_OperationStat"
 								}
 							},
 							{
@@ -96,7 +96,7 @@
 									"path": "$['result']['CALC-ActivePower']"
 								},
 								"sink": {
-									"name": "CALC-ActivePower"
+									"name": "CALC_ActivePower"
 								}
 							},
 							{
@@ -104,7 +104,7 @@
 									"path": "$['result']['PI-ProducedMWh']"
 								},
 								"sink": {
-									"name": "PI-ProducedMWh"
+									"name": "PI_ProducedMWh"
 								}
 							},
 							{
@@ -120,7 +120,7 @@
 									"path": "$['result']['PI-CapacityFactor']"
 								},
 								"sink": {
-									"name": "PI-CapacityFactor"
+									"name": "PI_CapacityFactor"
 								}
 							},
 							{
@@ -128,7 +128,7 @@
 									"path": "$['result']['CALC-ExternalCurtailmentFlag']"
 								},
 								"sink": {
-									"name": "CALC-ExternalCurtailmentFlag"
+									"name": "CALC_ExternalCurtailmentFlag"
 								}
 							},
 							{
