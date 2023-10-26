@@ -1,0 +1,32 @@
+{
+	"name": "scheduleTrigger-SSE",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "sse-main",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"Locations": [
+						"GRIF",
+						"ARTM",
+						"DROM"
+					]
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2023-10-26T14:28:00",
+				"endTime": "2023-10-27T17:28:00",
+				"timeZone": "GMT Standard Time"
+			}
+		}
+	}
+}
