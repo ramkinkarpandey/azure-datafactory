@@ -19,7 +19,7 @@
 						"value": "@pipeline().parameters.Locations",
 						"type": "Expression"
 					},
-					"isSequential": false,
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "Execute sse-main-foreach-location",
