@@ -12,6 +12,7 @@
 						"value": "@variables('items')",
 						"type": "Expression"
 					},
+					"isSequential": false,
 					"activities": [
 						{
 							"name": "Execute Wait 10 Seconds",
@@ -23,7 +24,7 @@
 									"referenceName": "Wait 10 Seconds",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true
+								"waitOnCompletion": false
 							}
 						}
 					]
