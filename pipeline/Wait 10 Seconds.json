@@ -12,6 +12,7 @@
 				}
 			}
 		],
+		"concurrency": 5,
 		"annotations": []
 	}
 }
