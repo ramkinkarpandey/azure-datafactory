@@ -24,7 +24,7 @@
 									"referenceName": "Wait 10 Seconds",
 									"type": "PipelineReference"
 								},
-								"waitOnCompletion": true
+								"waitOnCompletion": false
 							}
 						}
 					]
