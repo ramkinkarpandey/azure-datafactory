@@ -1,6 +1,31 @@
 {
 	"name": "ForeachParallel",
 	"properties": {
+		"activities": [
+			{
+				"name": "ForEach Items",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('items')",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Wait 10 Secs",
+							"type": "Wait",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"waitTimeInSeconds": 10
+							}
+						}
+					]
+				}
+			}
+		],
 		"variables": {
 			"items": {
 				"type": "Array",
