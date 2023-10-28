@@ -14,12 +14,16 @@
 					},
 					"activities": [
 						{
-							"name": "Wait 10 Secs",
-							"type": "Wait",
+							"name": "Execute Wait 10 Seconds",
+							"type": "ExecutePipeline",
 							"dependsOn": [],
 							"userProperties": [],
 							"typeProperties": {
-								"waitTimeInSeconds": 10
+								"pipeline": {
+									"referenceName": "Wait 10 Seconds",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true
 							}
 						}
 					]
